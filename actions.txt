@@ -1,0 +1,15 @@
+'zoom in'      :: view this node
+'add node'     :: add a node to viewed node
+'delete node'  :: delete node from model
+'group nodes'  :: group selected nodes and move one level in the model tree
+'explode node' :: inverse of group - move the below one level up
+'begin arc'    :: start a new arc
+'add arc'      :: complete the started new arc
+'remove arc'   :: remove the selected arc
+'re-direct arc':: start moving the selected end to a new node
+'change arc'   :: complete the re-direction operation for the selected arc
+'insert knot'  :: insert a know in the middle of the selected section
+'remove knot'  :: remove the selected knot
+'make a copy'  :: copy the subbranch into a temporary snipsel
+'insert model' :: insert a model in the viewed node
+'reset'        :: abort current operation
