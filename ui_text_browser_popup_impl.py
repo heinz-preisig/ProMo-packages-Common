@@ -22,15 +22,15 @@ __version__ = "6.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
-from PyQt4 import QtGui
+from PyQt5 import QtWidgets
 
 from Common.ui_text_browser_popup import Ui_TextBrowserPopUp
 
 
-class UI_FileDisplayWindow(QtGui.QDialog):
+class UI_FileDisplayWindow(QtWidgets.QDialog):
 
   def __init__(self, txt_file):
-    QtGui.QMainWindow.__init__(self)
+    QtWidgets.QMainWindow.__init__(self)
     self.ui = Ui_TextBrowserPopUp()
     self.ui.setupUi(self)
 

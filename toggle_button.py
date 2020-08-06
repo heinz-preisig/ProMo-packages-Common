@@ -20,11 +20,11 @@ __status__ = "beta"
 
 import sys
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 
-class ToggleButton(QtGui.QPushButton):
+class ToggleButton(QtWidgets.QPushButton):
   """
   A toggle button
   On change the button shows the current state, which is also emited.
@@ -34,7 +34,7 @@ class ToggleButton(QtGui.QPushButton):
 
   def __init__(self, labelA, labelB):
 
-    QtGui.QPushButton.__init__(self)
+    QtWidgets.QPushButton.__init__(self)
     self.clicked.connect(self.toggleMe)
     self.labelA = labelA
     self.labelB = labelB
@@ -60,7 +60,7 @@ def printme(value):
 
 
 if __name__ == '__main__':
-  app = QtGui.QApplication(sys.argv)
+  app = QtWidgets.QApplication(sys.argv)
   button = ToggleButton('A', 'B')
   button.show()
   button.changed.connect(printme)

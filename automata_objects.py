@@ -28,8 +28,8 @@ from Common.graphics_objects import PHASES
 BUTTONS = ["left", "right"]
 
 DEDICATED_KEY = {
-      'reset': 'Key_Escape'
-      }
+        'reset': 'Key_Escape'
+        }
 
 # RULE: the first state must be reachable from the key automaton
 # Note: this defines the states of the automata
@@ -105,7 +105,7 @@ class MouseAutomaton(dict):
     print("\nBlank automaton")
     for editor_state in self:
       for object in self[editor_state]:
-        print("state :%s, object :%s, ---- item %s"%(editor_state, object, self[editor_state][object]))
+        print("state :%s, object :%s, ---- item %s" % (editor_state, object, self[editor_state][object]))
 
 
 class KeyAutomaton(dict):

@@ -26,15 +26,15 @@ __status__ = "beta"
 import os as OS
 from collections import OrderedDict
 
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
-from Common.common_resources import M_None
-from Common.common_resources import TEMPLATE_ARC_APPLICATION
-from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
 from Common.common_resources import getData
+from Common.common_resources import M_None
 from Common.common_resources import putData
 from Common.common_resources import putDataOrdered
 from Common.common_resources import saveBackupFile
+from Common.common_resources import TEMPLATE_ARC_APPLICATION
+from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
 from Common.common_resources import walkBreathFirstFnc
 from Common.common_resources import walkDepthFirstFnc
 from Common.qt_resources import OK
@@ -254,7 +254,7 @@ class OntologyContainer():
     self.equation_assignment = self.ontology_container["equation_assignment"]
 
     # file = FILES["rules_file"] % ontology_name
-    self.rules = self.ontology_container["rules"]#
+    self.rules = self.ontology_container["rules"]  #
     # a = getData(file)
 
     #
@@ -293,7 +293,8 @@ class OntologyContainer():
 
     # ............................................  dict(network) of sets of networks that are below the hashtag network
     self.heirs_network_dictionary = self.__makeAllWhoInherit()
-    self.interface_networks_accessible_to_networks_dictionary = self.__makeInterfaceNetworksAccessibleToNetworksDictionary()
+    self.interface_networks_accessible_to_networks_dictionary = \
+      self.__makeInterfaceNetworksAccessibleToNetworksDictionary()
     self.tokens_on_networks = self.__makeTokensOnNetworks()  # ..................... dict(network) of tokens on networks
     self.tokens = self.__makeTokenList()  # ......................................................... global list of all
     #
@@ -316,7 +317,7 @@ class OntologyContainer():
 
     self.vars, self.indices, \
     self.variable_record_filter, \
-    self.version,\
+    self.version, \
     self.ProMoIRI = self.readVariables()
     if self.indices == {}:  # DOC: make indices if they do not yet exist
       self.indices = makeIndices(self)
@@ -337,7 +338,7 @@ class OntologyContainer():
         interface = Interface(network, left_nw, right_nw, left_variable_types)
         self.interfaces[network] = interface
 
- #####################
+  #####################
   def __makeObjectKeyLists(self):
 
     keys_networks = []
@@ -385,6 +386,7 @@ class OntologyContainer():
       keys_inter.append((inter_nw, "inter"))
 
     return keys_networks, keys_intra, keys_inter
+
   ########################
 
   def __make_nw_token_typedtoken_dict(self):
@@ -436,23 +438,23 @@ class OntologyContainer():
         if type == "inter":
           cnw = TEMPLATE_CONNECTION_NETWORK % (l, r)
           interconnectionNetworks[cnw] = {
-                "left" : l,
-                "right": r,
-                "type" : type
-                }
+                  "left" : l,
+                  "right": r,
+                  "type" : type
+                  }
           cnw = TEMPLATE_CONNECTION_NETWORK % (r, l)  # NOTE: looks like duplicated but is not -- clarify
           interconnectionNetworks[cnw] = {
-                "left" : r,
-                "right": l,
-                "type" : type
-                }
+                  "left" : r,
+                  "right": l,
+                  "type" : type
+                  }
         else:
           cnw = TEMPLATE_CONNECTION_NETWORK % (l, r)
           intraconnectionNetworks[cnw] = {
-                "left" : l,
-                "right": r,
-                "type" : type
-                }
+                  "left" : l,
+                  "right": r,
+                  "type" : type
+                  }
           # cnw = TEMPLATE_CONNECTION_NETWORK%(r, l)
           # intraconnectionNetworks[cnw] = {
           #       "left" : r,
@@ -517,9 +519,9 @@ class OntologyContainer():
       r = self.intraconnection_network_dictionary[cnw]["right"]
 
       loc = {
-            l: "left",
-            r: "right"
-            }
+              l: "left",
+              r: "right"
+              }
       for s in [l, r]:
         left_vars = []
         for v in self.ontology_tree[s]["behaviour"]["node"]:
@@ -731,7 +733,8 @@ class OntologyContainer():
             for typed_token in self.token_typedtoken_on_networks[nw][token]:
               if typed_token not in typed_token_definition_nw:
                 typed_token_definition_nw[typed_token] = nw
-                # print("debugging - found first location of typed token %s in token %s in network %s"%(typed_token, token, nw))
+                # print("debugging - found first location of typed token %s in token %s in network %s"%(typed_token,
+                # token, nw))
     return token_definition_nw, typed_token_definition_nw
 
   def writeMe(self):
@@ -758,10 +761,11 @@ class OntologyContainer():
     """
 
     f_name = FILES[
-               "variables_file"] % self.ontology_name  # RULE: The file name carries also the version at least for the time being
+               "variables_file"] % self.ontology_name  # RULE: The file name carries also the version at least for
+    # the time being
 
     data = VariableFile(variables, indices, VARIABLE_EQUATIONS_VERSION, self.ProMoIRI)
-    saveBackupFile(f_name)      # NOTE: every saving generates a backup file -- enables scrolling back
+    saveBackupFile(f_name)  # NOTE: every saving generates a backup file -- enables scrolling back
     putData(data, f_name)
 
   def readVariables(self):
@@ -805,7 +809,8 @@ class OntologyContainer():
         variables[int(ID)] = variables_raw[ID]
 
       indices = {}
-      for i in indices_raw:  # DOC: indices are stored in a dictionary with the hash being the enumeration integer for the index
+      for i in indices_raw:  # DOC: indices are stored in a dictionary with the hash being the enumeration integer
+        # for the index
         indices[int(i)] = indices_raw[i]
 
       ProMoIRI = {}
@@ -815,7 +820,9 @@ class OntologyContainer():
       return variables, indices, variable_record_filter, version, ProMoIRI
 
     else:
-      msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty variable file"
+      msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty " \
+            "" \
+            "variable file"
 
       reply = QtGui.QMessageBox.warning(QtGui.QWidget(), "ProMo", msg, QtGui.QMessageBox.Ok)
       if reply == OK:

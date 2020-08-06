@@ -19,13 +19,14 @@ __version__ = "6.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 from Common.ui_string_dialog import Ui_Dialog
 
 
-class UI_String(QtGui.QDialog):
+class UI_String(QtWidgets.QDialog):
   '''
   user interface for defining a string
   designed to be either used with the signal mechanism or reading the result
@@ -48,7 +49,7 @@ class UI_String(QtGui.QDialog):
     :param reject: method/function reference
     """
     # TODO: add validator
-    QtGui.QDialog.__init__(self)
+    QtWidgets.QDialog.__init__(self)
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
     # print(" <<<< show me")
@@ -116,7 +117,7 @@ def changing(txt):
 
 
 if __name__ == '__main__':
-  a = QtGui.QApplication([])
+  a = QtWidgets.QApplication([])
 
   w = UI_String("give name", "name")
   w.accepted.connect(changing)

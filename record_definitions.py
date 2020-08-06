@@ -29,28 +29,29 @@ from OntologyBuilder.OntologyEquationEditor.resources import LANGUAGES
 from OntologyBuilder.OntologyEquationEditor.variable_framework import Units
 
 TEMPLATES = {
-      "incidence_matrix"          : "F_%s_%s",  # %(token, transfer_mechanism)
-      "incidence_matrix_interface": "FI_%s_%s",  # %(token, transfer_mechanism)
-      "projection_matrix"         : "P_%s_%s",  # %(<arc|node|conversion>, typed_token)
-      "ratio_matrix"              : "R_%s",
-      }
+        "incidence_matrix"          : "F_%s_%s",  # %(token, transfer_mechanism)
+        "incidence_matrix_interface": "FI_%s_%s",  # %(token, transfer_mechanism)
+        "projection_matrix"         : "P_%s_%s",  # %(<arc|node|conversion>, typed_token)
+        "ratio_matrix"              : "R_%s",
+        }
 
 
 class OntologyContainerFile(dict):  # TODO: integrate typed token conversion into file
   def __init__(self, version):
     super()
-    self["version"] = version # ...................................................................... ontology version
-    self["ontology_tree"] = OrderedDict() # ........domain tree RULE: hand defined should correspond to subtree of EMMO
+    self["version"] = version  # ...................................................................... ontology version
+    self["ontology_tree"] = OrderedDict()  # ........domain tree RULE: hand defined should correspond to subtree of EMMO
     self["interfaces"] = {}  # ................................................................... interface defintions
     self["equation_assignment"] = EquationAssignment()  # ....... object "entity" link to equations - defines behaviour
     self["rules"] = Rules()  # ....................  variable class rules -- port variables
+
 
 class VariableFile(dict):
   def __init__(self, variables, indices, version, ProMoIRI):
     self["version"] = version  # ..................................................................... ontology version
     self["variables"] = variables  # variable dictionary hash-key: global variable_ID contains also equation dictionary
     self["indices"] = indices  # .............................................. incidence dictionary hash-key: index_ID
-    self["Ontology_global_IDs"] = ProMoIRI   # ................... RULE: variable and equation ID is global to ontology
+    self["Ontology_global_IDs"] = ProMoIRI  # ................... RULE: variable and equation ID is global to ontology
 
 
 class RecordVariable_6(dict):  # obsolete as soon as Tobias is finished
@@ -111,6 +112,7 @@ class RecordEquation_6(dict):  # TODO: obsolete once Tobias is finished
 class EquationAssignment(dict):  # defines / controls entity definition
   pass
 
+
 class Rules(dict):
   def __init__(self):
     """
@@ -120,18 +122,21 @@ class Rules(dict):
     """
     self["variable_classes_having_port_variables"] = []
 
+
 class RecordProMoIRI(dict):
   def __init__(self):
     self["variable"] = 0
     self["equation"] = 0
 
+
 class RecordIndex(dict):  # ................................................................... hash is global index_ID
   def __init__(self):
     super()
-    self["type"] = "index" # .............................................................................. index class
-    self["label"] = "" # ........................................................................ label for readability
+    self["type"] = "index"  # .............................................................................. index class
+    self["label"] = ""  # ........................................................................ label for readability
     self[
-      "network"] = []  # TODO : the list of networks is available from the ontology >> heirs_network_dictionary --> simplify
+      "network"] = []  # TODO : the list of networks is available from the ontology >> heirs_network_dictionary -->
+    # simplify
     self["aliases"] = {}  # ...................................................................... hash-key is language
 
 
@@ -139,13 +144,13 @@ class RecordBlockIndex(dict):  # ...............................................
   def __init__(self):
     super()
     self["type"] = "block_index"  # ....................................................................... index class
-    self["label"] = "" # ........................................................................ label for readability
+    self["label"] = ""  # ........................................................................ label for readability
     self["indices"] = []  # ................................................. the two indices making up the block index
     self["network"] = []  # TODO: list of networks it applies to ???
     self["aliases"] = {}  # ...................................................................... hash-key is language
 
 
-class RecordIncidenceMatrix(RecordVariable): # obsolete for the time being
+class RecordIncidenceMatrix(RecordVariable):  # obsolete for the time being
   def __init__(self, network, token, transfer_mechanism, node_index, arc_index="arc"):
     RecordVariable.__init__(self)
     self["label"] = TEMPLATES["incidence_matrix"] % (token, transfer_mechanism)
@@ -158,7 +163,7 @@ class RecordIncidenceMatrix(RecordVariable): # obsolete for the time being
     self["immutable"] = True  # TODO: is this useful -- protect from stupidities ???
 
 
-class RecordProjectionMatrixConversion(RecordVariable): # obsolete for the time being
+class RecordProjectionMatrixConversion(RecordVariable):  # obsolete for the time being
   def __init__(self, network, convertion, block_index_label):
     RecordVariable.__init__(self)
     self["label"] = TEMPLATES["projection_matrix"] % ("convertion", block_index_label)
@@ -191,7 +196,7 @@ class RecordConversionRatioMatrix(RecordVariable):  # obsolete for the time bein
     self["immutable"] = True
 
 
-class Interface(dict): # ................................................................... interface record defintion
+class Interface(dict):  # ................................................................... interface record defintion
   def __init__(self, interface_network_label, left_network, right_network, left_variable_classes):
     self["type"] = "event"  # ............................................ RULE: hard wired node type
     self["doc"] = ""
@@ -206,7 +211,6 @@ class Interface(dict): # .......................................................
     self["nature"] = "unidirectional"  # ................................. RULE: hard wired tranfer nature
 
 
-
 # reading writing masks --> enable easy compatibility when changing structure
 # # TODO implement on reading in ontology_container
 # MASK = {}
@@ -216,7 +220,7 @@ class Interface(dict): # .......................................................
 # MASK["equation"] = list(RecordEquation())
 
 
-def makeCompleteVariableRecord(var_ID,                  # TODO: remove ?? and replace with variableRecord
+def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with variableRecord
                                label="",
                                type="",
                                network="",

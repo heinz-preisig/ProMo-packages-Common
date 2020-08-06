@@ -15,21 +15,17 @@ __version__ = "0"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
-#===============================================================================
+# ===============================================================================
 # Main
-#===============================================================================
-
-import Common.common_resources as CR
+# ===============================================================================
 
 import Common.automata.automata_modeller as A
-
+import Common.common_resources as CR
 
 if __name__ == '__main__':
-
   mouse_automaton = A.MOUSE_AUTOMATON
   key_automaton = A.KEY_AUTOMATON
   designated_automaton = A.DESIGNATED_KEYS
-
 
   data = {}
   data["MOUSE_AUTOMATON"] = mouse_automaton

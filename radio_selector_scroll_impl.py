@@ -1,39 +1,41 @@
-
-from PyQt4 import QtGui, QtCore
 import sys
+
+from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 from Common.radio_selector_scroll import Ui_Form
 
-class Selector(QtGui.QWidget):
-  def __init__(self,parent):
+
+class Selector(QtWidgets.QWidget):
+  def __init__(self, parent):
 
     super(Selector, self).__init__(parent)
 
     # main button
-    self.addButton = QtGui.QPushButton('button to add other widgets')
+    self.addButton = QtWidgets.QPushButton('button to add other widgets')
     self.addButton.clicked.connect(self.clean)  # (self.addWidget)
 
     # scroll area widget contents - layout
-    self.scrollLayout = QtGui.QFormLayout()
+    self.scrollLayout = QtWidgets.QFormLayout()
 
     # scroll area widget contents
-    self.scrollWidget = QtGui.QWidget()
+    self.scrollWidget = QtWidgets.QWidget()
     self.scrollWidget.setLayout(self.scrollLayout)
 
     # scroll area
-    self.scrollArea = QtGui.QScrollArea()
+    self.scrollArea = QtWidgets.QScrollArea()
     self.scrollArea.setWidgetResizable(True)
     self.scrollArea.setWidget(self.scrollWidget)
 
     # main layout
-    self.mainLayout = QtGui.QVBoxLayout()
+    self.mainLayout = QtWidgets.QVBoxLayout()
 
     # add all main to the main vLayout
     self.mainLayout.addWidget(self.addButton)
     self.mainLayout.addWidget(self.scrollArea)
 
     # central widget
-    self.centralWidget = QtGui.QWidget()
+    self.centralWidget = QtWidgets.QWidget()
     self.centralWidget.setLayout(self.mainLayout)
 
     self.radio_buttons = []
@@ -58,11 +60,10 @@ class Selector(QtGui.QWidget):
     for button in self.radio_buttons:
       button.deleteLater()
 
-class Main(QtGui.QMainWindow):
-  def __init__(self, parent = None):
 
-
-    QtGui.QWidget.__init__(self, parent=parent)
+class Main(QtWidgets.QMainWindow):
+  def __init__(self, parent=None):
+    QtWidgets.QWidget.__init__(self, parent=parent)
     self.ui = Ui_Form()
     self.ui.setupUi(self)
 
@@ -74,19 +75,16 @@ class Main(QtGui.QMainWindow):
     #   self.radioButton[i].setObjectName(str(i))
     #   self.radioButton[i].setText(str(i))
     #   self.radioButton[i].show()
-      # self.ui.verticalLayout.addWidget(self.radioButton[i])
-      # self.radio = QtGui.QRadioButton(self.ui.verticalLayoutWidget_2)
+    # self.ui.verticalLayout.addWidget(self.radioButton[i])
+    # self.radio = QtGui.QRadioButton(self.ui.verticalLayoutWidget_2)
     #
     #   self.ui.formLayout.addRow(QtGui.QRadioButton("gugugs"))
-
 
     # super(Main, self).__init__(parent)
     # s = Selector()
     # self.ui.verticalLayout.addWidget(Selector(self))
     # self.ui.scrollAreaWidgetContents = Selector(self)
     # self.ui.scrollAreaWidgetContents.show()
-
-
 
     ###################
     # # main button
@@ -142,14 +140,16 @@ class Main(QtGui.QMainWindow):
   #     button.deleteLater()
 
 
-class TestButton(QtGui.QPushButton):
-  def __init__( self, parent=None):
-      super(TestButton, self).__init__(parent)
-      self.setText("I am in Test widget")
-      # self.clicked.connect(self.clean)
+class TestButton(QtWidgets.QPushButton):
+  def __init__(self, parent=None):
+    super(TestButton, self).__init__(parent)
+    self.setText("I am in Test widget")
+    # self.clicked.connect(self.clean)
 
-class RadioButton(QtGui.QRadioButton):
-  radio_signal = QtCore.pyqtSignal(int, str,  bool)
+
+class RadioButton(QtWidgets.QRadioButton):
+  radio_signal = QtCore.pyqtSignal(int, str, bool)
+
   def __init__(self, ID_label, parent=None):
     super(RadioButton, self).__init__(parent)
     self.setText(ID_label)
@@ -158,13 +158,11 @@ class RadioButton(QtGui.QRadioButton):
     self.toggled.connect(self.beenToggled)
 
   def beenToggled(self, value):
-    print("debugging",self.ID, self.label, value)
+    print("debugging", self.ID, self.label, value)
     self.radio_signal.emit(self.ID, self.label, value)
 
 
-
-
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 myWidget = Main()
 myWidget.show()
 app.exec_()

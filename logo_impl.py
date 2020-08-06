@@ -1,12 +1,14 @@
-
-
-from PyQt4 import QtCore
-from PyQt4 import QtGui
-from Common.logo import Ui_Dialog
-from Common.resource_initialisation import DIRECTORIES
 import os
 
-class Logo(QtGui.QDialog):
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtWidgets
+
+from Common.logo import Ui_Dialog
+from Common.resource_initialisation import DIRECTORIES
+
+
+class Logo(QtWidgets.QDialog):
   """
   Opens a dialogue window with a logo.
   The whole window is one button.
@@ -36,20 +38,19 @@ class Logo(QtGui.QDialog):
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
 
-
     self.setGeometry(100, 100, 300, 300)
-    self.ui.pushButton.setGeometry(0,0,300,300)
+    self.ui.pushButton.setGeometry(0, 0, 300, 300)
 
     if icon_name:
-      icon = icon_name+".svg"
+      icon = icon_name + ".svg"
       icon_location = DIRECTORIES["icon_location"]
       path = os.path.join(icon_location, icon)
       accept_icon = QtGui.QIcon(QtGui.QPixmap(path))
       self.ui.pushButton.setIcon(accept_icon)
-      self.ui.pushButton.setIconSize(QtCore.QSize(300,300))
+      self.ui.pushButton.setIconSize(QtCore.QSize(300, 300))
 
-
-    # oImage = QtGui.QImage(path) #"/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/icons/ProMo_logo.png")
+    # oImage = QtGui.QImage(path) #"/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/icons
+    # /ProMo_logo.png")
     # # sImage = oImage.scaled(QtCore.QSize(300, 300))  # resize Image to widgets size
     # # palette = QtGui.QPalette()
     # # palette.setBrush(QtGui.QPalette.Button, QtGui.QBrush(sImage))

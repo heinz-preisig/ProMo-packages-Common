@@ -21,17 +21,17 @@ __status__ = "beta"
 
 import sys
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 from Common.save_file import Ui_Dialog
 
 
-class SaveFileDialog(QtGui.QDialog):
+class SaveFileDialog(QtWidgets.QDialog):
   answer = QtCore.pyqtSignal(str)
 
   def __init__(self):
-    QtGui.QWidget.__init__(self)
+    QtWidgets.QWidget.__init__(self)
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
 
@@ -52,7 +52,7 @@ class SaveFileDialog(QtGui.QDialog):
 
 
 if __name__ == '__main__':
-  a = QtGui.QApplication(sys.argv)
+  a = QtWidgets.QApplication(sys.argv)
   w = SaveFileDialog()
   w.show()
   value = a.exec_()

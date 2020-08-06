@@ -16,8 +16,8 @@ changes
 
 '''
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 from Common.qt_resources import ModellerRadioButton
 from Common.radio_selector import Ui_Form
@@ -25,7 +25,7 @@ from Common.radio_selector import Ui_Form
 TOKEN_STRING_SEPARATOR = " :: "
 
 
-class RadioSelector(QtGui.QWidget):
+class RadioSelector(QtWidgets.QWidget):
   '''
   sends a signal on selecting an item
   '''
@@ -37,7 +37,7 @@ class RadioSelector(QtGui.QWidget):
     Constructor
     '''
 
-    QtGui.QWidget.__init__(self, parent=myparent)
+    QtWidgets.QWidget.__init__(self, parent=myparent)
     self.ui = Ui_Form()
     self.ui.setupUi(self)
     self.groupboxes = {}
@@ -62,8 +62,8 @@ class RadioSelector(QtGui.QWidget):
     """
 
     self.radiobuttons[group_name] = []
-    self.groupboxes[group_name] = QtGui.QGroupBox(group_name, parent=self)
-    self.formLayoutWidget = QtGui.QFormLayout(self.groupboxes[group_name])
+    self.groupboxes[group_name] = QtWidgets.QGroupBox(group_name, parent=self)
+    self.formLayoutWidget = QtWidgets.QFormLayout(self.groupboxes[group_name])
     self.autoexclusive = autoexclusive
 
     # print("\nadd List %s"%(title))
@@ -74,10 +74,10 @@ class RadioSelector(QtGui.QWidget):
 
     for item in list_of_choices:
       token, label_string, target = item
-      label = "%s%s%s"%(token, TOKEN_STRING_SEPARATOR, label_string)
+      label = "%s%s%s" % (token, TOKEN_STRING_SEPARATOR, label_string)
       # print("add item %s"%label)
       r = ModellerRadioButton(group_name, token, label_string, label, autoexclusive=autoexclusive)
-      self.formLayoutWidget.setWidget(list_of_choices.index(item), QtGui.QFormLayout.LabelRole, r)
+      self.formLayoutWidget.setWidget(list_of_choices.index(item), QtWidgets.QFormLayout.LabelRole, r)
       r.radio_signal.connect(target)
       self.radiobuttons[group_name].append(r)
       list_of_labels.append(label_string)
@@ -85,7 +85,7 @@ class RadioSelector(QtGui.QWidget):
       if r_width > width:
         width = r_width
 
-    height = (len(list_of_choices) + 2)*20
+    height = (len(list_of_choices) + 2) * 20
     self.groupboxes[group_name].setGeometry(self.x, self.y, width, height)
 
     self.y += height
@@ -161,7 +161,7 @@ def addToTokenList(token, token_string, ID, toggle):
 
 
 if __name__ == '__main__':
-  a = QtGui.QApplication([])
+  a = QtWidgets.QApplication([])
   selection = [('a', 'first', addToTokenList), ('b', 'second', addToTokenList)]
   w = RadioSelector()
   w.addListOfChoices("first title", selection, "first", autoexclusive=True)

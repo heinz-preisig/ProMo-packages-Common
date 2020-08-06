@@ -14,13 +14,13 @@
 
 from collections import OrderedDict
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtWidgets
 
 from Common.ui_radio_selector_w_scroll import Ui_Form
 
 
-class UI_RadioSelector(QtGui.QDialog):
+class UI_RadioSelector(QtWidgets.QDialog):
   """
   selects an item from a list
   """
@@ -37,7 +37,7 @@ class UI_RadioSelector(QtGui.QDialog):
     self.allowed = allowed
     self.maxheight = maxheight
 
-    QtGui.QDialog.__init__(self)
+    QtWidgets.QDialog.__init__(self)
     self.ui = Ui_Form()
     self.ui.setupUi(self)
     self.radioButton = {}
@@ -53,9 +53,9 @@ class UI_RadioSelector(QtGui.QDialog):
     width_offset = 100
     height = 0
     for i in active_radios:
-      label = QtGui.QLabel(i)
+      label = QtWidgets.QLabel(i)
       width = label.fontMetrics().boundingRect(label.text()).width()
-      height = height + 2*label.fontMetrics().boundingRect(label.text()).height()
+      height = height + 2 * label.fontMetrics().boundingRect(label.text()).height()
       if width > max_width:
         max_width = width
 
@@ -72,7 +72,7 @@ class UI_RadioSelector(QtGui.QDialog):
       self.addRadio(b, b in self.checked)
 
   def addRadio(self, name, checked):
-    self.radioButton[name] = QtGui.QRadioButton(self.ui.scrollAreaWidgetContents)
+    self.radioButton[name] = QtWidgets.QRadioButton(self.ui.scrollAreaWidgetContents)
     self.radioButton[name].setAutoExclusive(False)
     self.radioButton[name].setObjectName(name)
     n = name.replace('&', '&&')  # brrrr
@@ -96,13 +96,12 @@ class UI_RadioSelector(QtGui.QDialog):
     return self.checked
 
 
-
 if __name__ == '__main__':
-  a = QtGui.QApplication([])
+  a = QtWidgets.QApplication([])
   selection = 'b'
   w = UI_RadioSelector(
-        ['a', 'befg', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'], [],
-        maxheight=100)
+          ['a', 'befg', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'], [],
+          maxheight=100)
   w.newSelection.connect(print)
   w.show()
   a.exec_()

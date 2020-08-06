@@ -21,45 +21,45 @@ __status__ = "beta"
 
 import sys
 
-from PyQt4 import QtGui
+from PyQt5 import QtWidgets
 
 BUTTONS = {
-      "OK"             : QtGui.QMessageBox.Ok,
-      "open"           : QtGui.QMessageBox.Open,
-      "save"           : QtGui.QMessageBox.Save,
-      "cancel"         : QtGui.QMessageBox.Cancel,
-      "close"          : QtGui.QMessageBox.Close,
-      "discard"        : QtGui.QMessageBox.Discard,
-      "apply"          : QtGui.QMessageBox.Apply,
-      "reset"          : QtGui.QMessageBox.Reset,
-      "restore_default": QtGui.QMessageBox.RestoreDefaults,
-      "help"           : QtGui.QMessageBox.Help,
-      "save_all"       : QtGui.QMessageBox.SaveAll,
-      "yes"            : QtGui.QMessageBox.Yes,
-      "yes_to_all"     : QtGui.QMessageBox.YesToAll,
-      "no"             : QtGui.QMessageBox.No,
-      "no_to_all"      : QtGui.QMessageBox.NoToAll,
-      "abort"          : QtGui.QMessageBox.Abort,
-      "retry"          : QtGui.QMessageBox.Retry,
-      "ignore"         : QtGui.QMessageBox.Ignore,
-      "no button"      : QtGui.QMessageBox.NoButton,
-      }
+        "OK"             : QtWidgets.QMessageBox.Ok,
+        "open"           : QtWidgets.QMessageBox.Open,
+        "save"           : QtWidgets.QMessageBox.Save,
+        "cancel"         : QtWidgets.QMessageBox.Cancel,
+        "close"          : QtWidgets.QMessageBox.Close,
+        "discard"        : QtWidgets.QMessageBox.Discard,
+        "apply"          : QtWidgets.QMessageBox.Apply,
+        "reset"          : QtWidgets.QMessageBox.Reset,
+        "restore_default": QtWidgets.QMessageBox.RestoreDefaults,
+        "help"           : QtWidgets.QMessageBox.Help,
+        "save_all"       : QtWidgets.QMessageBox.SaveAll,
+        "yes"            : QtWidgets.QMessageBox.Yes,
+        "yes_to_all"     : QtWidgets.QMessageBox.YesToAll,
+        "no"             : QtWidgets.QMessageBox.No,
+        "no_to_all"      : QtWidgets.QMessageBox.NoToAll,
+        "abort"          : QtWidgets.QMessageBox.Abort,
+        "retry"          : QtWidgets.QMessageBox.Retry,
+        "ignore"         : QtWidgets.QMessageBox.Ignore,
+        "no button"      : QtWidgets.QMessageBox.NoButton,
+        }
 
 
-def makeMessageBox(message, buttons=["cancel","OK"], infotext=""):
-  msg_box = QtGui.QMessageBox()
+def makeMessageBox(message, buttons=["cancel", "OK"], infotext=""):
+  msg_box = QtWidgets.QMessageBox()
   msg_box.setText(message)
   msg_box.setInformativeText(infotext)
   msg_box.setWindowTitle("dialog")
 
-  # save = QtGui.QMessageBox.Save
-  # discard = QtGui.QMessageBox.Discard
-  # cancel = QtGui.QMessageBox.Cancel
+  # save = QtWidgets.QMessageBox.Save
+  # discard = QtWidgets.QMessageBox.Discard
+  # cancel = QtWidgets.QMessageBox.Cancel
   mybuttons = BUTTONS[buttons[0]]
   for buts in buttons:
     mybuttons = mybuttons | BUTTONS[buts]
 
-  msg_box.setStandardButtons(mybuttons) # discard | save | cancel);
+  msg_box.setStandardButtons(mybuttons)  # discard | save | cancel);
   msg_box.show()
   r = msg_box.exec_()
 
@@ -71,8 +71,8 @@ def makeMessageBox(message, buttons=["cancel","OK"], infotext=""):
 
 
 if __name__ == '__main__':
-  a = QtGui.QApplication(sys.argv)
+  a = QtWidgets.QApplication(sys.argv)
   s = makeMessageBox("hello this is a very long message  even longer than one expcts \n hello",
-                                      infotext="gugus")
+                     infotext="gugus")
   print(s)
   sys.exit()

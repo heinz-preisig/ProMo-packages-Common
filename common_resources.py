@@ -46,8 +46,9 @@ import json
 import os
 import sys
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 from Common.resource_initialisation import DIRECTORIES
 from Common.single_list_selector_impl import SingleListSelector
@@ -59,10 +60,10 @@ from Common.ui_string_dialog_impl import UI_String
 DEFAULT = "default"
 
 DIALOGUE = {
-      "choose"   : "make a choice",
-      "new model": "new model",
-      "new case" : "new case"
-      }
+        "choose"   : "make a choice",
+        "new model": "new model",
+        "new case" : "new case"
+        }
 
 M_None = "-"  # used in place of None as the latter is not a string.
 
@@ -70,13 +71,14 @@ M_None = "-"  # used in place of None as the latter is not a string.
 
 ARC_COMPONENT_SEPARATOR = "|"
 EQUATION_COMPONENT_SEPARATOR = "|"
-CONNECTION_NETWORK_SEPARATOR = " >>> "    #RULE: separator is the same for inter and intra networks
+CONNECTION_NETWORK_SEPARATOR = " >>> "  # RULE: separator is the same for inter and intra networks
 CONVERSION_SEPARATOR = " --> "
 
-TEMPLATE_ARC_APPLICATION = "%s" + ARC_COMPONENT_SEPARATOR + "%s" + ARC_COMPONENT_SEPARATOR + "%s"  # %(token, mechanism, nature)
+TEMPLATE_ARC_APPLICATION = "%s" + ARC_COMPONENT_SEPARATOR + "%s" + ARC_COMPONENT_SEPARATOR + "%s"  # %(token,
+# mechanism, nature)
 TEMPLATE_CONNECTION_NETWORK = "%s" + CONNECTION_NETWORK_SEPARATOR + "%s"
-TEMPLATE_EQUATION_ASSIGNMENT_KEY = "%s" + EQUATION_COMPONENT_SEPARATOR + "%s" + EQUATION_COMPONENT_SEPARATOR + "%s"  # % (node_type, nature, token)
-
+TEMPLATE_EQUATION_ASSIGNMENT_KEY = "%s" + EQUATION_COMPONENT_SEPARATOR + "%s" + EQUATION_COMPONENT_SEPARATOR + "%s"
+# % (node_type, nature, token)
 
 
 def invertDict(dictionary):
@@ -218,7 +220,8 @@ def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", accept_i
   hiden directories are ignored
   :param new: logical
   :param task: selects logo from logo repository -- default is ProMo_logo
-  :param behaviour: on_cklick makes logo to behave as button (default) alterenative is auto_close after selection has been made
+  :param behaviour: on_cklick makes logo to behave as button (default) alterenative is auto_close after selection has 
+  been made
   :return:  depends on new
             new == True :  it returns the chosen ontology, but also the list of existing ontologies
                            that can be used to constrain the definition of a new one.
@@ -282,7 +285,7 @@ def makeTreeView(treeWidget, ontology_tree):
 
 def __addItemToTreeWidget(treeWidget, parent, nodeID):
   name = str(nodeID)
-  item = QtGui.QTreeWidgetItem(parent, None)
+  item = QtWidgets.QTreeWidgetItem(parent, None)
   item.nodeID = nodeID
   item.setText(0, name)
   item.setSelected(True)
@@ -335,7 +338,7 @@ def getFilesAndVersions(abs_name, ext):
   base_name = os.path.basename(abs_name)
   ver = 0  # initial last version
   _s = []
-  directory = os.path.dirname(abs_name) #listdir(os.getcwd())
+  directory = os.path.dirname(abs_name)  # listdir(os.getcwd())
   files = os.listdir(directory)
 
   for f in files:
@@ -353,7 +356,8 @@ def getFilesAndVersions(abs_name, ext):
   return _s, ver
 
 
-# NOTE: the global handling of the IDs has been abandoned for the time being -- was not practical now but may be necessary to reconsider in the future
+# NOTE: the global handling of the IDs has been abandoned for the time being -- was not practical now but may be
+# necessary to reconsider in the future
 # RULE: ProMoIRIs are handled local to the ontologies for the time being.
 # def globalEquationID(update=False, reset=False):
 #   """
@@ -484,7 +488,7 @@ def getIcon(what):
     pass
 
 
-def roundButton(button, what,tooltip=None):
+def roundButton(button, what, tooltip=None):
   button.setIcon(getIcon(what))
   button.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
   button.setIconSize(BUTTON_ICON_SIZE)

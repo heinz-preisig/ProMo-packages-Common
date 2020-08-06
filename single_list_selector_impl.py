@@ -23,8 +23,9 @@ __status__ = "beta"
 import os
 from copy import copy
 
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 from Common.resource_initialisation import DIRECTORIES
 from Common.single_list_selector import Ui_Dialog
@@ -36,10 +37,12 @@ BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
 BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
 BUTTON_ICON_STYLE_ROUND += 'border-radius: 14px; '
 BUTTON_ICON_STYLE_ROUND += 'border-color: beige;    '
+
+
 # BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
 # BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
 
-class SingleListSelector(QtGui.QDialog):
+class SingleListSelector(QtWidgets.QDialog):
   '''
   selects an item from a list
   '''
@@ -52,7 +55,7 @@ class SingleListSelector(QtGui.QDialog):
     '''
     self.thelist = thelist
     self.selection = None
-    QtGui.QDialog.__init__(self, parent=myparent)
+    QtWidgets.QDialog.__init__(self, parent=myparent)
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
 
@@ -76,7 +79,7 @@ class SingleListSelector(QtGui.QDialog):
     max_width = 0
     height = 20
     for i in thelist:
-      label = QtGui.QLabel(i)
+      label = QtWidgets.QLabel(i)
       width = label.fontMetrics().boundingRect(label.text()).width()
       height = height + label.fontMetrics().boundingRect(label.text()).height()
       if width > max_width: max_width = width
@@ -97,10 +100,10 @@ class SingleListSelector(QtGui.QDialog):
 
   def Show(self, entry):
     self.__move2row(entry)
-    QtGui.QDialog.show(self)
+    QtWidgets.QDialog.show(self)
 
   def hide(self):
-    QtGui.QWidget.hide(self)
+    QtWidgets.QWidget.hide(self)
 
   def getSelection(self):
     return self.selection

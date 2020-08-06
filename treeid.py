@@ -98,11 +98,11 @@ class ObjectTree:
     _nodeID = 0
     self.tree = Tree(_nodeID)
     self.nodes = {
-          _nodeID: root
-          }
+            _nodeID: root
+            }
     self.IDs = {
-          root: _nodeID
-          }
+            root: _nodeID
+            }
 
   def addChildtoNode(self, child, parent):
     """
@@ -177,10 +177,9 @@ class Tree(dict):
     self.root = root
     self.currentID = root
     self[root] = {
-          'ancestors': [],
-          'children' : []
-          }
-
+            'ancestors': [],
+            'children' : []
+            }
 
   def imposeIDTree(self, IDtree):
     nodes = list(IDtree.keys())
@@ -189,16 +188,15 @@ class Tree(dict):
     self.currentID = m
     self.__redoMap()
 
-
     # nodes = list(self.keys())
     # m = max(nodes)
     # self.currentID = m
     # self.__redoMap()
+
   #
   #
   def __redoMap(self):
     self.map = dict([(i, i) for i in self.keys()])
-
 
   def getLastID(self):
     a = self.currentID
@@ -209,9 +207,9 @@ class Tree(dict):
     self.currentID = self.currentID + 1
     the_ID = self.currentID
     self[the_ID] = {
-          'ancestors': [],
-          'children' : []
-          }
+            'ancestors': [],
+            'children' : []
+            }
     self[the_parentID]['children'].append(the_ID)
     self[the_ID]['ancestors'].append(the_parentID)
     self[the_ID]['ancestors'].extend(self[the_parentID]['ancestors'][:])
@@ -358,17 +356,17 @@ class Tree(dict):
     for i in self.walkDepthFirst(nodeID):
       id = i
       branch[id] = {
-            'ancestors': [],
-            'children' : []
-            }
+              'ancestors': [],
+              'children' : []
+              }
       branch[id]['ancestors'].extend(copy.copy(self[id]['ancestors']))
       branch[id]['children'].extend(copy.copy(self[id]['children']))
       for k in parents:
         branch[id]['ancestors'].remove(k)
     branch[nodeID] = {
-          'ancestors': [],
-          'children' : []
-          }
+            'ancestors': [],
+            'children' : []
+            }
     branch[nodeID]['ancestors'].extend([])
     branch[nodeID]['children'].extend(copy.copy(self[nodeID]['children']))
 
@@ -506,7 +504,7 @@ class Tree(dict):
     for i in sorted(self.walkDepthFirst(self.root)):
       ancestors = self[i]['ancestors']
       children = self[i]['children']
-      print(template%(i, ancestors, children))
+      print(template % (i, ancestors, children))
 
   def write(self, f, ID):
     f.write('>>> begin tree:')
@@ -536,9 +534,9 @@ class Tree(dict):
       line = f.readline()
       i, A, C = eval(line)
       self[i] = {
-            'ancestors': A,
-            'children' : C
-            }
+              'ancestors': A,
+              'children' : C
+              }
     # print self[i]
     line = f.readline()
     if line[:12] != 'end tree <<<':
@@ -552,8 +550,8 @@ class Tree(dict):
       try:
         print(('try :', self[id]))
         self[id].update({
-                              'ancestors': self[id]['parents']
-                              })
+                'ancestors': self[id]['parents']
+                })
         del self[id]['parents']
         print(('fixed :', id, self[id]))
       except:

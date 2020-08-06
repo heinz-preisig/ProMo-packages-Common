@@ -275,7 +275,7 @@ FILES["icons"] = {
       }
 
 # compilation of rst to html  NOTE: not a good way of doing things -- generate HTML directly with normal editor
-import docutils.core
+# import docutils.core
 
 # docutils.core.publish_file(
 #       source_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/info_ontology_design_editor.rst",

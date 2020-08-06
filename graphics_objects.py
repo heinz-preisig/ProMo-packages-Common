@@ -25,7 +25,7 @@ import os
 from collections import OrderedDict
 from copy import deepcopy
 
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
 from Common.common_resources import ARC_COMPONENT_SEPARATOR
 from Common.common_resources import getData
@@ -33,59 +33,59 @@ from Common.common_resources import M_None
 from Common.qt_resources import PEN_STYLES
 
 NAMES = {
-      "node"                 : "node_simple",
-      "branch"               : "node_composite",
-      "panel"                : "node_viewed",
-      "connector"            : "connector",
-      "intraface"            : "node_intraface",
-      "interface"            : "node_interface",
-      "reservoir"            : "constant",
-      "elbow"                : "knot",
-      "parent"               : "ancestor",
-      "sibling"              : "sibling",
-      "connection"           : "arc_edge",
-      "left panel"           : "pane_ancestors",
-      "right panel"          : "pane_siblings",
-      "root"                 : "root",
-      "name"                 : "name",
-      "network"              : "network",
-      "named_network"        : "named_network",
-      "property"             : "property",
-      "tail"                 : "tail",
-      "head"                 : "head",
-      "token"                : "token",
-      "indicator token"      : "indicator_dot",  # indicators for tokens
-      "indicator typed token": "indicator_text"  # indicators for typed_tokens
-      }
+        "node"                 : "node_simple",
+        "branch"               : "node_composite",
+        "panel"                : "node_viewed",
+        "connector"            : "connector",
+        "intraface"            : "node_intraface",
+        "interface"            : "node_interface",
+        "reservoir"            : "constant",
+        "elbow"                : "knot",
+        "parent"               : "ancestor",
+        "sibling"              : "sibling",
+        "connection"           : "arc_edge",
+        "left panel"           : "pane_ancestors",
+        "right panel"          : "pane_siblings",
+        "root"                 : "root",
+        "name"                 : "name",
+        "network"              : "network",
+        "named_network"        : "named_network",
+        "property"             : "property",
+        "tail"                 : "tail",
+        "head"                 : "head",
+        "token"                : "token",
+        "indicator token"      : "indicator_dot",  # indicators for tokens
+        "indicator typed token": "indicator_text"  # indicators for typed_tokens
+        }
 
 LOCATION_PARAMETERS = {
-      "arc_node_gap_factor": 1.2,
-      "token_indicators"   : {
-            "x" : -10,
-            "y" : -15,
-            "dx": 5,
-            "dy": 0
-            },
-      "ancestor_spacing"   : 50,
-      "sibling_spacing"    : 50,
-      "ancestor_offset"    : 20,
-      "sibling_offset"     : 20,
-      "connector_offset"   : 50
-      }
+        "arc_node_gap_factor": 1.2,
+        "token_indicators"   : {
+                "x" : -10,
+                "y" : -15,
+                "dx": 5,
+                "dy": 0
+                },
+        "ancestor_spacing"   : 50,
+        "sibling_spacing"    : 50,
+        "ancestor_offset"    : 20,
+        "sibling_offset"     : 20,
+        "connector_offset"   : 50
+        }
 
 TOOLTIP_TEMPLATES = {
-      "nodes"    : '<b> capacity: <br>%s - %s <b><br>%s <br>%s',
-      "intraface": '<b> intraface: <br>%s - %s <b><br>%s <br> <b> %s - %s<b>',
-      "arc"      : '<b>arc: <br> %s - %s <b><br>%s <br>%s <br>%s - %s ',
-      "ancestor" : '<b> %s',  # name
-      "sibling"  : '<b> %s',  # name
-      }
+        "nodes"    : '<b> capacity: <br>%s - %s <b><br>%s <br>%s',
+        "intraface": '<b> intraface: <br>%s - %s <b><br>%s <br> <b> %s - %s<b>',
+        "arc"      : '<b>arc: <br> %s - %s <b><br>%s <br>%s <br>%s - %s ',
+        "ancestor" : '<b> %s',  # name
+        "sibling"  : '<b> %s',  # name
+        }
 
 
 class GraphObjectError(Exception):
   def __init__(self, phase, graphics_object, decoration, application, state):
     print("object error [phase] %s, [graphics_object] %s, [decoration] %s, [application] %s, [state] %s"
-          %(phase, graphics_object, decoration, application, state))
+          % (phase, graphics_object, decoration, application, state))
 
 
 # base objects
@@ -233,66 +233,66 @@ class TokenDataObjects(dict):
 
 
 DATA_STRUCTURE = {
-      NAMES["network"]: Colour(),
-      "ellipse"       : EllipseData(),
-      "panel"         : PanelData(),
-      "line"          : LineData(),
-      "text"          : TextData(),
-      }
+        NAMES["network"]: Colour(),
+        "ellipse"       : EllipseData(),
+        "panel"         : PanelData(),
+        "line"          : LineData(),
+        "text"          : TextData(),
+        }
 
 STRUCTURES_Gaph_Item = {}
 
 STRUCTURES_Gaph_Item[NAMES["panel"]] = {
-      NAMES["root"]       : "panel",
-      NAMES["left panel"] : "panel",
-      NAMES["right panel"]: "panel"
-      }
+        NAMES["root"]       : "panel",
+        NAMES["left panel"] : "panel",
+        NAMES["right panel"]: "panel"
+        }
 
 STRUCTURES_Gaph_Item[NAMES["connector"]] = {
-      NAMES["root"]: "ellipse",
-      NAMES["name"]: "text"
-      }
+        NAMES["root"]: "ellipse",
+        NAMES["name"]: "text"
+        }
 
 STRUCTURES_Gaph_Item[NAMES["node"]] = {
-      NAMES["root"]   : "ellipse",
-      NAMES["name"]   : "text",
-      NAMES["network"]: "ellipse"
-      }
+        NAMES["root"]   : "ellipse",
+        NAMES["name"]   : "text",
+        NAMES["network"]: "ellipse"
+        }
 
 STRUCTURES_Gaph_Item[NAMES["branch"]] = {
-      NAMES["root"]: "panel",
-      NAMES["name"]: "text",
-      }
+        NAMES["root"]: "panel",
+        NAMES["name"]: "text",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["intraface"]] = {
-      NAMES["root"]: "panel",
-      NAMES["name"]: "text",
-      }
+        NAMES["root"]: "panel",
+        NAMES["name"]: "text",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["interface"]] = {
-      NAMES["root"]: "ellipse",
-      NAMES["name"]: "text",
-      }
+        NAMES["root"]: "ellipse",
+        NAMES["name"]: "text",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["elbow"]] = {
-      NAMES["root"]: "ellipse",
-      }
+        NAMES["root"]: "ellipse",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["parent"]] = {
-      NAMES["root"]: "ellipse",
-      NAMES["name"]: "text",
-      }
+        NAMES["root"]: "ellipse",
+        NAMES["name"]: "text",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["sibling"]] = {
-      NAMES["root"]: "ellipse",
-      NAMES["name"]: "text",
-      }
+        NAMES["root"]: "ellipse",
+        NAMES["name"]: "text",
+        }
 
 STRUCTURES_Gaph_Item[NAMES["connection"]] = {
-      NAMES["root"]: "line",
-      NAMES["head"]: "ellipse",
-      NAMES["tail"]: "ellipse"
-      }
+        NAMES["root"]: "line",
+        NAMES["head"]: "ellipse",
+        NAMES["tail"]: "ellipse"
+        }
 
 # -------------------------------------------------------------------------
 # RULE: The composer has three main layers: topology, tokens, typed_tokens
@@ -301,17 +301,17 @@ STRUCTURES_Gaph_Item[NAMES["connection"]] = {
 
 STATES = OrderedDict()
 STATES["topology"] = {
-      "nodes": ["enabled", "blocked", "selected"],
-      "arcs" : ["enabled", "selected", "open"]
-      }
+        "nodes": ["enabled", "blocked", "selected"],
+        "arcs" : ["enabled", "selected", "open"]
+        }
 STATES["token_topology"] = {
-      "nodes": ["enabled", "selected", "blocked"],  # hash was typed_tokens
-      "arcs" : [M_None]
-      }
+        "nodes": ["enabled", "selected", "blocked"],  # hash was typed_tokens
+        "arcs" : [M_None]
+        }
 STATES["equation_topology"] = {
-      "nodes": ["enabled","selected"],
-      "arcs" : ["enabled","selected"]
-      }
+        "nodes": ["enabled", "selected"],
+        "arcs" : ["enabled", "selected"]
+        }
 # -------------------------------------------------------------------------
 
 DEFAULT_STATES = OrderedDict()
@@ -361,15 +361,15 @@ OBJECTS_with_application = [NAMES["node"],
 OBJECTS_not_move = [NAMES["panel"], NAMES["left panel"], NAMES["right panel"]]
 
 LAYERS = {
-      "mainPanel": 0,
-      "sidePanel": 5,
-      "network"  : 10,
-      "arc"      : 20,
-      "knot"     : 30,
-      "node"     : 40,
-      "property" : 50,
-      "text"     : 60,
-      }
+        "mainPanel": 0,
+        "sidePanel": 5,
+        "network"  : 10,
+        "arc"      : 20,
+        "knot"     : 30,
+        "node"     : 40,
+        "property" : 50,
+        "text"     : 60,
+        }
 
 OBJECTS_changing_position = [NAMES["node"],
                              NAMES["branch"],
