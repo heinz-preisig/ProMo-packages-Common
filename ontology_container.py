@@ -290,6 +290,7 @@ class OntologyContainer():
     self.__setupInterfaces()
 
     self.variable_types_on_interfaces = self.__makeVariableTypeListInterfaces()
+    self.variable_types_on_intrafaces = self.__makeVariableTypeListIntraFaces()
 
     # ............................................  dict(network) of sets of networks that are below the hashtag network
     self.heirs_network_dictionary = self.__makeAllWhoInherit()
@@ -509,25 +510,16 @@ class OntologyContainer():
 
     return variable_types_on_interfaces
 
-  def __makeVariableTypeListIntraFaces(self, variable_types_on_networks):
+  def __makeVariableTypeListIntraFaces(self):
     # connection networks
     variable_types = {}
     for cnw in self.intraconnection_network_dictionary:
-      variable_types_on_networks[cnw] = []
+      # variable_types_on_networks[cnw] = []
       variable_types[cnw] = {}
-      l = self.intraconnection_network_dictionary[cnw]["left"]
-      r = self.intraconnection_network_dictionary[cnw]["right"]
+      nw_left = self.intraconnection_network_dictionary[cnw]["left"]
+      nw_right = self.intraconnection_network_dictionary[cnw]["right"]
+      variable_types[cnw] = sorted(set(self.variable_types_on_networks[nw_left]) | set(self.variable_types_on_networks[nw_right]))
 
-      loc = {
-              l: "left",
-              r: "right"
-              }
-      for s in [l, r]:
-        left_vars = []
-        for v in self.ontology_tree[s]["behaviour"]["node"]:
-          if "state" in v:
-            left_vars.append(v)
-        variable_types[cnw][loc[s]] = left_vars
     return variable_types
 
   def __makeVariableTypeListInterFaces(self, variable_types_on_networks):
