@@ -20,6 +20,8 @@ __copyright__ = "Copyright 2015, PREISIG, Heinz A"
 __since__ = "2014. 08. 14"
 __license__ = "GPL planned -- until further notice for Bio4Fuel & MarketPlace internal use only"
 __version__ = "6.00"
+__version__ = "7.00"
+__version__ = "8.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
@@ -316,7 +318,7 @@ class OntologyContainer():
     self.object_key_list_intra, \
     self.object_key_list_inter = self.__makeObjectKeyLists()
 
-    self.vars, self.indices, \
+    self.variables, self.indices, \
     self.variable_record_filter, \
     self.version, \
     self.ProMoIRI = self.readVariables()
@@ -768,48 +770,23 @@ class OntologyContainer():
     """
     # print ("----------------------")
 
-    variables_f_name = FILES["variables_file_v7"] % self.ontology_name
+    variables_f_name = FILES["variables_file"] % self.ontology_name
+    variables_f_name_v7 = FILES["variables_file_v7"] % self.ontology_name
     variable_record_filter = set(list(RecordVariable().keys()))  # minimal configuration
 
     if OS.path.exists(variables_f_name):
-      data = getData(variables_f_name)
+      return self.__readVariablesEquationFile(variable_record_filter, variables_f_name)
 
-      variables_raw = data["variables"]
-      version = data["version"]
-      indices_raw = data["indices"]
-      ProMoIRI_raw = data["Ontology_global_IDs"]
-
-      for ID in variables_raw:
-        try:
-          ad = sorted(variables_raw[ID].keys())
-        except:
-          ad = []
-          pass
-        variable_record_filter.update(ad)  # TODO: do we still need this ?
-      # print("debugging read variables filter:", filter)
-
-      variables = {}
-      for ID in variables_raw:
-        u = eval(variables_raw[ID]["units"])
-        a = Units(ALL=u)
-        variables_raw[ID]["units"] = a
-        e = eval(variables_raw[ID]["equations"])
-        variables_raw[ID]["equations"] = e
-        aliases = eval(variables_raw[ID]["aliases"])
-        variables_raw[ID]["aliases"] = aliases
-        variables_raw[ID]["index_structures"] = eval(variables_raw[ID]["index_structures"])
-        variables[int(ID)] = variables_raw[ID]
-
-      indices = {}
-      for i in indices_raw:  # DOC: indices are stored in a dictionary with the hash being the enumeration integer
-        # for the index
-        indices[int(i)] = indices_raw[i]
-
-      ProMoIRI = {}
-      for i in ProMoIRI_raw:
-        ProMoIRI[i] = int(ProMoIRI_raw[i])
-
+    # shift from version 7 to version 8
+    elif  OS.path.exists(variables_f_name_v7):
+      variables, indices, variable_record_filter, version, ProMoIRI = self.__readVariablesEquationFile(variable_record_filter, variables_f_name_v7)
+      for ID in variables:
+        if len(variables[ID]["equations"].keys()) == 0:
+          variables[ID]["port_variable"] = True
+        else:
+          variables[ID]["port_variable"] = False
       return variables, indices, variable_record_filter, version, ProMoIRI
+
 
     else:
       msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty " \
@@ -819,3 +796,37 @@ class OntologyContainer():
       reply = QtGui.QMessageBox.warning(QtGui.QWidget(), "ProMo", msg, QtGui.QMessageBox.Ok)
       if reply == OK:
         exit(-1)
+
+  def __readVariablesEquationFile(self, variable_record_filter, variables_f_name):
+    data = getData(variables_f_name)
+    variables_raw = data["variables"]
+    version = data["version"]
+    indices_raw = data["indices"]
+    ProMoIRI_raw = data["Ontology_global_IDs"]
+    for ID in variables_raw:
+      try:
+        ad = sorted(variables_raw[ID].keys())
+      except:
+        ad = []
+        pass
+      variable_record_filter.update(ad)  # TODO: do we still need this ?
+    # print("debugging read variables filter:", filter)
+    variables = {}
+    for ID in variables_raw:
+      u = eval(variables_raw[ID]["units"])
+      a = Units(ALL=u)
+      variables_raw[ID]["units"] = a
+      e = eval(variables_raw[ID]["equations"])
+      variables_raw[ID]["equations"] = e
+      aliases = eval(variables_raw[ID]["aliases"])
+      variables_raw[ID]["aliases"] = aliases
+      variables_raw[ID]["index_structures"] = eval(variables_raw[ID]["index_structures"])
+      variables[int(ID)] = variables_raw[ID]
+    indices = {}
+    for i in indices_raw:  # DOC: indices are stored in a dictionary with the hash being the enumeration integer
+      # for the index
+      indices[int(i)] = indices_raw[i]
+    ProMoIRI = {}
+    for i in ProMoIRI_raw:
+      ProMoIRI[i] = int(ProMoIRI_raw[i])
+    return variables, indices, variable_record_filter, version, ProMoIRI

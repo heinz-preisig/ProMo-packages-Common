@@ -9,7 +9,7 @@ Created on Jan16 July, 2016
 
 """
 ONTOLOGY_VERSION = "3"
-VARIABLE_EQUATIONS_VERSION = "7"
+VARIABLE_EQUATIONS_VERSION = "8"
 
 __project__ = "ProcessModeller  Suite"
 __author__ = "PREISIG, Heinz A"
@@ -17,6 +17,8 @@ __copyright__ = "Copyright 2015, PREISIG, Heinz A"
 __since__ = "2016. 07. 2016"
 __license__ = "GPL planned -- until further notice for Bio4Fuel & MarketPlace internal use only"
 __version__ = "6.00"
+__version__ = "7.00"
+__version__ = "8.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
@@ -32,9 +34,10 @@ FILE_NAMES = {
       "model_file"                      : "model.json",
       "indices_file"                    : "indices.json",
       "rules_file"                      : "rules.json",
-      "variables_file"                  : "variables_v7.json",
+      "variables_file"                  : "variables_v8.json",
       "variables_file_v6"               : "variables_v6.json",
       "variables_file_v7"               : "variables_v7.json",
+      "variables_file_v8"               : "variables_v8.json",
       "variables_initial"               : "variables_initial.json",
       "equations_file"                  : "equations.json",
       "typed_tokens_file"               : "typed_tokens.json",
@@ -141,13 +144,17 @@ FILES["global_equation_identifier"] = JOIN(DIRECTORIES["ontology_repository"],"%
                                            FILE_NAMES["global_equation_identifier"])# %ontology_name
 
 FILES["variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                               FILE_NAMES["variables_file_v7"])  # %ontology_name
+                               FILE_NAMES["variables_file"])  # %ontology_name
 
 FILES["variables_file_v6"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v6"])  # %ontology_name
 
+FILES["variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                  FILE_NAMES["variables_file"])  # %ontology_name
+
 FILES["variables_file_v7"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v7"])  # %ontology_name
+
 
 FILES["initial_variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                        FILE_NAMES["variables_initial"])  # %ontology_name

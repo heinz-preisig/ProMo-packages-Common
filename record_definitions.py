@@ -19,6 +19,7 @@ __copyright__ = "Copyright 2015, PREISIG, Heinz A"
 __since__ = "03.04.2019"
 __license__ = "GPL planned -- until further notice for Bio4Fuel & MarketPlace internal use only"
 __version__ = "7.00"
+__version__ = "8.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
@@ -85,7 +86,7 @@ class RecordVariable(dict):
     self["units"] = None,  # ................................................................ # TODO; default 8 zeros ?
     self["equations"] = {}  # ............................................................ hash is equation_ID: integer
     self["aliases"] = {}  # ..................................  one for each language, with language being the hash key
-    self["immutable"] = True  # .................................................................... currently not used
+    self["port_variable"] = False  # ................. port variables are at the bottom of the definition -- foundation
 
 
 class RecordEquation(dict):
@@ -255,6 +256,7 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
   self["units"] = units  # ....................................................................
   self["equations"] = equations  # ..................................................... hash is equation ID, an integer
   self["aliases"] = aliases  # .....could be in code - not handy and not quite logical: there is also a compiled version
+  self["port_variable"] = False # ..................... port variables are at the bottom of the definition -- foundation
 
   for language in LANGUAGES["aliasing"]:
     self["aliases"][language] = label
