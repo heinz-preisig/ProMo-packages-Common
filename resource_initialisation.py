@@ -33,7 +33,7 @@ FILE_NAMES = {
       "ontology_file"                   : "ontology.json",
       "model_file"                      : "model.json",
       "indices_file"                    : "indices.json",
-      "rules_file"                      : "rules.json",
+      # "rules_file"                      : "rules.json",
       "variables_file"                  : "variables_v8.json",
       "variables_file_v6"               : "variables_v6.json",
       "variables_file_v7"               : "variables_v7.json",
@@ -135,7 +135,7 @@ DIRECTORIES["common_shell_scripts"] = JOIN(DIRECTORIES["common"], "shell_scripts
 FILES = {}
 FILES["ontology_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["ontology_file"])  # %ontology_name
 FILES["indices_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["indices_file"])  # %ontolgy_name
-FILES["rules_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["rules_file"])  # %ontology_name
+# FILES["rules_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["rules_file"])  # %ontology_name
 FILES["global_variable_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                            FILE_NAMES["global_variable_identifier"]) # %ontology_name
 FILES["global_index_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s" ,
@@ -312,9 +312,9 @@ def checkAndFixResources(ontology_name, stage="ontology_stage_1"):
         "ontology_stage_1": [(FILES["ontology_file"]%ontology_name,
                               JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["ontology_file"])
                               ),
-                             (FILES["rules_file"]%ontology_name,
-                              JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
-                              ),
+                             # (FILES["rules_file"]%ontology_name,
+                             #  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
+                             #  ),
                              ],
         "ontology_stage_2": [(FILES["converting_tokens_file"]%ontology_name,
                               JOIN(DIRECTORIES["repository_infrastructure"],
