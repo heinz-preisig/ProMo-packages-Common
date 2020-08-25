@@ -66,6 +66,7 @@ DIALOGUE = {
         }
 
 M_None = "-"  # used in place of None as the latter is not a string.
+M_any  = "*"
 
 # ontology definitions --------------------------------------------------------
 

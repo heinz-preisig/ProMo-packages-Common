@@ -29,7 +29,7 @@ from PyQt5 import QtGui
 
 from Common.common_resources import ARC_COMPONENT_SEPARATOR
 from Common.common_resources import getData
-from Common.common_resources import M_None
+from Common.common_resources import M_None, M_any
 from Common.qt_resources import PEN_STYLES
 
 NAMES = {
@@ -232,6 +232,7 @@ class TokenDataObjects(dict):
     return BRUSHES
 
 
+
 DATA_STRUCTURE = {
         NAMES["network"]: Colour(),
         "ellipse"       : EllipseData(),
@@ -240,55 +241,56 @@ DATA_STRUCTURE = {
         "text"          : TextData(),
         }
 
-STRUCTURES_Gaph_Item = {}
+STRUCTURES_Graph_Item = {}
 
-STRUCTURES_Gaph_Item[NAMES["panel"]] = {
+STRUCTURES_Graph_Item[NAMES["panel"]] = {
         NAMES["root"]       : "panel",
         NAMES["left panel"] : "panel",
         NAMES["right panel"]: "panel"
         }
 
-STRUCTURES_Gaph_Item[NAMES["connector"]] = {
+STRUCTURES_Graph_Item[NAMES["connector"]] = {
         NAMES["root"]: "ellipse",
         NAMES["name"]: "text"
         }
 
-STRUCTURES_Gaph_Item[NAMES["node"]] = {
+STRUCTURES_Graph_Item[NAMES["node"]] = {
         NAMES["root"]   : "ellipse",
         NAMES["name"]   : "text",
-        NAMES["network"]: "ellipse"
+        NAMES["network"]: "ellipse",
+        NAMES["named_network"] : "ellipse"
         }
 
-STRUCTURES_Gaph_Item[NAMES["branch"]] = {
+STRUCTURES_Graph_Item[NAMES["branch"]] = {
         NAMES["root"]: "panel",
         NAMES["name"]: "text",
         }
 
-STRUCTURES_Gaph_Item[NAMES["intraface"]] = {
+STRUCTURES_Graph_Item[NAMES["intraface"]] = {
         NAMES["root"]: "panel",
         NAMES["name"]: "text",
         }
 
-STRUCTURES_Gaph_Item[NAMES["interface"]] = {
+STRUCTURES_Graph_Item[NAMES["interface"]] = {
         NAMES["root"]: "ellipse",
         NAMES["name"]: "text",
         }
 
-STRUCTURES_Gaph_Item[NAMES["elbow"]] = {
+STRUCTURES_Graph_Item[NAMES["elbow"]] = {
         NAMES["root"]: "ellipse",
         }
 
-STRUCTURES_Gaph_Item[NAMES["parent"]] = {
-        NAMES["root"]: "ellipse",
-        NAMES["name"]: "text",
-        }
-
-STRUCTURES_Gaph_Item[NAMES["sibling"]] = {
+STRUCTURES_Graph_Item[NAMES["parent"]] = {
         NAMES["root"]: "ellipse",
         NAMES["name"]: "text",
         }
 
-STRUCTURES_Gaph_Item[NAMES["connection"]] = {
+STRUCTURES_Graph_Item[NAMES["sibling"]] = {
+        NAMES["root"]: "ellipse",
+        NAMES["name"]: "text",
+        }
+
+STRUCTURES_Graph_Item[NAMES["connection"]] = {
         NAMES["root"]: "line",
         NAMES["head"]: "ellipse",
         NAMES["tail"]: "ellipse"
@@ -312,6 +314,8 @@ STATES["equation_topology"] = {
         "nodes": ["enabled", "selected"],
         "arcs" : ["enabled", "selected"]
         }
+STATE_OBJECT_COLOURED = "enabled"
+DEFAULT_PHASE = "topology"
 # -------------------------------------------------------------------------
 
 DEFAULT_STATES = OrderedDict()
@@ -321,7 +325,8 @@ for phase in STATES:
   DEFAULT_STATES[phase]["arcs"] = STATES[phase]["arcs"][0]
 
 PHASES = sorted(STATES.keys())
-GRAPHICS_OBJECTS = sorted(STRUCTURES_Gaph_Item.keys())
+
+GRAPHICS_OBJECTS = sorted(STRUCTURES_Graph_Item.keys())
 
 NODES = [NAMES["node"],
          NAMES["branch"],
@@ -350,8 +355,9 @@ OBJECTS_without_state = [NAMES["branch"],
                          NAMES["connector"],
                          NAMES["panel"]]
 DECORATIONS_with_state = ["root",
-                          "head",
-                          "tail"]
+                          # "head",
+                          # "tail"
+                          ]
 OBJECTS_with_application = [NAMES["node"],
                             NAMES["connection"],
                             # NAMES["interface"],
@@ -378,6 +384,7 @@ OBJECTS_changing_position = [NAMES["node"],
                              # NAMES["boundary"],
                              NAMES["elbow"]]
 
+OBJECTS_colour_defined_separate = [NAMES["network"],NAMES["named_network"]]
 
 class GraphDataObjects(OrderedDict):
   """
@@ -401,9 +408,9 @@ class GraphDataObjects(OrderedDict):
       self[phase] = {}
       for graphics_object in GRAPHICS_OBJECTS:
         self[phase][graphics_object] = {}
-        decorations = STRUCTURES_Gaph_Item[graphics_object]  # ["decoration"]
+        decorations = STRUCTURES_Graph_Item[graphics_object]  # ["decoration"]
         for decoration in decorations:
-          shape = STRUCTURES_Gaph_Item[graphics_object][decoration]  # ["decoration"][decoration]
+          shape = STRUCTURES_Graph_Item[graphics_object][decoration]  # ["decoration"][decoration]
           self[phase][graphics_object][decoration] = {}
           # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
           if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
@@ -459,7 +466,8 @@ class GraphDataObjects(OrderedDict):
       data = IndicatorText()
 
       return data
-
+    if phase == M_any:
+      phase = DEFAULT_PHASE
     if application not in self[phase][root_object][decoration]:
       application = M_None
     if state not in self[phase][root_object][decoration][application]:
@@ -495,7 +503,7 @@ class GraphDataObjects(OrderedDict):
     for p in PHASES:
       active_objects[p] = []
       for r in GRAPHICS_OBJECTS:
-        decorations = STRUCTURES_Gaph_Item[r]
+        decorations = STRUCTURES_Graph_Item[r]
         for d in decorations:
           for a in self[p][r][d]:
             # print("[p][r][d]", p,r,d, self[p][r][d])
@@ -509,7 +517,7 @@ class GraphDataObjects(OrderedDict):
     for p in PHASES:
       obj = []
       for r in GRAPHICS_OBJECTS:
-        decorations = STRUCTURES_Gaph_Item[r]
+        decorations = STRUCTURES_Graph_Item[r]
         for d in decorations:
           for a in self[p][r][d]:
             token = a.split(ARC_COMPONENT_SEPARATOR)[0]
@@ -527,7 +535,7 @@ class GraphDataObjects(OrderedDict):
     for p in PHASES:
       obj = []
       for r in GRAPHICS_OBJECTS:
-        decorations = STRUCTURES_Gaph_Item[r]
+        decorations = STRUCTURES_Graph_Item[r]
         for d in decorations:
           for a in self[p][r][d]:
             for s in self[p][r][d][a]:
@@ -545,7 +553,7 @@ class GraphDataObjects(OrderedDict):
       for p in PHASES:
         obj = []
         for r in GRAPHICS_OBJECTS:
-          decorations = STRUCTURES_Gaph_Item[r]
+          decorations = STRUCTURES_Graph_Item[r]
           for d in decorations:
             for a in self[p][r][d]:
               for s in self[p][r][d][a]:
@@ -598,6 +606,11 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
   DATA = GraphDataObjects(application_node_types, application_arcs_types)
   NETWORK = NetworkDataObjects(networks, connection_networks)
   TOKENS = TokenDataObjects(tokens)
+  STATE_colours_set = set()
+  for phase in STATES:
+    for component in STATES[phase]:
+      for state in STATES[phase][component]:
+        STATE_colours_set.add(state)
 
   # TODO -- cleaning operation is missing
   if os.path.exists(graph_resource_file_spec):
@@ -607,7 +620,7 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
     for p in DATA:
       for r in DATA[p]:
         for d in DATA[p][r]:
-          shape = STRUCTURES_Gaph_Item[r][d]  # ["decoration"][d]
+          shape = STRUCTURES_Graph_Item[r][d]  # ["decoration"][d]
           for a in DATA[p][r][d]:
             for s in DATA[p][r][d][a]:
               try:
@@ -642,4 +655,9 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
     for token in delete_me:
       del TOKENS[token]
 
-  return NETWORK, TOKENS, DATA
+    state_colours = {}
+    for s in sorted(STATE_colours_set):
+        state_colours[s] = Colour()    # colour data
+
+
+  return NETWORK, TOKENS, DATA, state_colours
