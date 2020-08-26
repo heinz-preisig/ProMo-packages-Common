@@ -324,7 +324,7 @@ for phase in STATES:
   DEFAULT_STATES[phase]["nodes"] = STATES[phase]["nodes"][0]
   DEFAULT_STATES[phase]["arcs"] = STATES[phase]["arcs"][0]
 
-PHASES = sorted(STATES.keys())
+PHASES = list(STATES.keys())
 
 GRAPHICS_OBJECTS = sorted(STRUCTURES_Graph_Item.keys())
 
@@ -447,9 +447,9 @@ class GraphDataObjects(OrderedDict):
             # print(self)
 
   def setData(self, what, value, phase, root_object, decoration, application, state):
-    # print("put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s"
-    #       % (phase, root_object, decoration, application, state, what))
-    # print("            value: ", value)
+    print("put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s"
+          % (phase, root_object, decoration, application, state, what))
+    print("            value: ", value)
     self[phase][root_object][decoration][application][state][what] = value
     # print("after       value: ",self[phase][root_object][component][application][state])
 
@@ -657,7 +657,10 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
 
     state_colours = {}
     for s in sorted(STATE_colours_set):
-        state_colours[s] = Colour()    # colour data
+      state_colours[s] = Colour()    # colour data
+      if "states" in data_dict:
+        state_colours.update(data_dict["states"])
+
 
 
   return NETWORK, TOKENS, DATA, state_colours
