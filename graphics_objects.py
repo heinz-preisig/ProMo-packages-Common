@@ -28,8 +28,9 @@ from copy import deepcopy
 from PyQt5 import QtGui
 
 from Common.common_resources import ARC_COMPONENT_SEPARATOR
+from Common.common_resources import M_None
+from Common.common_resources import M_any
 from Common.common_resources import getData
-from Common.common_resources import M_None, M_any
 from Common.qt_resources import PEN_STYLES
 
 NAMES = {
@@ -210,6 +211,56 @@ class NetworkDataObjects(dict):
     return BRUSHES
 
 
+class NamedNetworkDataObjects(dict):
+  def __init__(self, networks):
+    super().__init__()
+    for nw in networks:
+      self[nw] = {}
+      self[nw][nw] = NetworkData()
+
+  def add(self, network, name):
+    self[network][name]=NetworkData()
+
+  def remove(self, network, name):
+    no_named_networks = self[network]
+    if no_named_networks == 1:
+      return False
+    del self[network][name]
+    return True
+
+  def rename(self, network, old_name, new_name):
+    value = self[network][old_name]
+    self[network][new_name] = value
+    del self[network][old_name]
+    pass
+
+  def listOfNamedNetwords(self, network):
+    a = self[network].keys()
+    return sorted(a)
+
+  def indexForNamedNetwork(self, network, name):
+    list_named_networks = self.listOfNamedNetwords(network)
+    index = list_named_networks.index(name)
+    return index
+
+  def setColour(self, network, named_network, colour):
+    print("network set ", colour)
+    self[network][named_network]["colour"] = colour
+
+  def getColour(self, network, named_network):
+    print("network get ", self[network][named_network]["colour"])
+    return self[network][named_network]["colour"]
+
+  def makeBrushes(self):
+    BRUSHES = {}
+    for nw in self:
+      BRUSHES[nw] = {}
+      for n_nw in self[nw]:
+        red, green, blue, ar = self[nw][n_nw]["colour"]
+        BRUSHES[nw][n_nw] = QtGui.QBrush(QtGui.QColor(red, green, blue, ar))
+    return BRUSHES
+
+
 class TokenDataObjects(dict):
   def __init__(self, tokens):
     super().__init__()
@@ -230,7 +281,6 @@ class TokenDataObjects(dict):
       red, green, blue, ar = self[nw]["colour"]
       BRUSHES[nw] = QtGui.QBrush(QtGui.QColor(red, green, blue, ar))
     return BRUSHES
-
 
 
 DATA_STRUCTURE = {
@@ -255,10 +305,10 @@ STRUCTURES_Graph_Item[NAMES["connector"]] = {
         }
 
 STRUCTURES_Graph_Item[NAMES["node"]] = {
-        NAMES["root"]   : "ellipse",
-        NAMES["name"]   : "text",
-        NAMES["network"]: "ellipse",
-        NAMES["named_network"] : "ellipse"
+        NAMES["root"]         : "ellipse",
+        NAMES["name"]         : "text",
+        NAMES["network"]      : "ellipse",
+        NAMES["named_network"]: "ellipse"
         }
 
 STRUCTURES_Graph_Item[NAMES["branch"]] = {
@@ -384,7 +434,8 @@ OBJECTS_changing_position = [NAMES["node"],
                              # NAMES["boundary"],
                              NAMES["elbow"]]
 
-OBJECTS_colour_defined_separate = [NAMES["network"],NAMES["named_network"]]
+OBJECTS_colour_defined_separate = [NAMES["network"], NAMES["named_network"]]
+
 
 class GraphDataObjects(OrderedDict):
   """
@@ -657,10 +708,8 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
 
     state_colours = {}
     for s in sorted(STATE_colours_set):
-      state_colours[s] = Colour()    # colour data
+      state_colours[s] = Colour()  # colour data
       if "states" in data_dict:
         state_colours.update(data_dict["states"])
-
-
 
   return NETWORK, TOKENS, DATA, state_colours
