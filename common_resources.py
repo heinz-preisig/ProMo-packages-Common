@@ -139,41 +139,71 @@ def __getSortedDirList(location):
   return dirs
 
 
-def askForModelFileGivenOntologyLocation(model_library_location, alternative=True, new=False, exit="exit"):
-  acceptance_list = []
-  if exit == "exit":
-    model_names = [exit]
-  else:
-    model_names = []
-  if not new:
-    if alternative:
-      model_names.append(DIALOGUE["new model"])
-      acceptance_list.append(DIALOGUE["new model"])
-    else:
-      pass
+def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit="exit", left_icon=None, right_icon=None):
+  # acceptance_list = []
+  # if exit == "exit":
+  #   model_names = [exit]
+  # else:
+  #   model_names = []
+  # if not new:
+  #   if not alternative:
+  #     # model_names.append(DIALOGUE["new model"])
+  #     # acceptance_list.append(DIALOGUE["new model"])
+  #   else:
+  #     pass
 
-    model_names.extend(__getSortedDirList(model_library_location))
-    acceptance_list.extend(__getSortedDirList(model_library_location))
+  # model_names.extend(__getSortedDirList(model_library_location))
+  model_names = __getSortedDirList(model_library_location)
+  # acceptance_list.extend(__getSortedDirList(model_library_location))
 
-    modellist = SingleListSelector(model_names)
-    modellist.exec_()
-    modellist.show()
-    model_name = modellist.getSelection()
+  model_name, status = selectFromList("choose model", model_names, left_icon=left_icon, right_icon=right_icon)
+  print("debugging -- ask for model name", model_name, status)
 
-  else:
-    return DIALOGUE["new model"], True
+  if (not model_name) and (not status):
+    sys.exit()
 
-  if model_name == DIALOGUE["new model"]:
-    while (model_name in acceptance_list):
-      ui_ask = UI_String("give new model name or type exit ", "model name or exit", limiting_list=acceptance_list)
-      ui_ask.exec_()
-      model_name = ui_ask.getText()
-      print("new model name defined", model_name)
-      if model_name == "exit":
-        return model_name, False
-    return model_name, True
+  if model_name:
+    return model_name, "existent"
 
-  return model_name, False
+  # while (model_name in acceptance_list):
+  while not (model_name or (status == "exit")):
+    ui_ask = UI_String("give new model name or type exit ", "model name or exit", limiting_list=model_names)
+    ui_ask.exec_()
+    model_name = ui_ask.getText()
+    print("new model name defined", model_name)
+    if not model_name : # == "exit":
+      return model_name, "exit"
+  return model_name, "new"
+
+
+
+  # if new:
+  #   return model_name, model_names
+  # elif model_name:
+  #   return model_name
+  # else:
+  #   sys.exit(0)
+
+
+  #   modellist = SingleListSelector(model_names)
+  #   modellist.exec_()
+  #   modellist.show()
+  #   model_name = modellist.getSelection()
+  #
+  # else:
+  #   return DIALOGUE["new model"], True
+  #
+  # if model_name == DIALOGUE["new model"]:
+  #   while (model_name in acceptance_list):
+  #     ui_ask = UI_String("give new model name or type exit ", "model name or exit", limiting_list=acceptance_list)
+  #     ui_ask.exec_()
+  #     model_name = ui_ask.getText()
+  #     print("new model name defined", model_name)
+  #     if model_name == "exit":
+  #       return model_name, False
+  #   return model_name, True
+  #
+  # return model_name, False
 
 
 def askForCasefileGivenLocation(case_rep_loc, alternative=True, new=False, exit="exit"):
@@ -213,7 +243,7 @@ def askForCasefileGivenLocation(case_rep_loc, alternative=True, new=False, exit=
   return case_name, False
 
 
-def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", accept_icon=None, reject_icon=None):
+def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", left_icon=None, right_icon=None):
   from Common.logo_impl import Logo
   """
   asks for a ontology name from a list of ontologies in the repository
@@ -246,13 +276,16 @@ def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", accept_i
   if behaviour != "on_click":
     logo.close()
 
-  ontology = __selectFromList(ontologies, accept_icon=accept_icon, reject_icon=reject_icon)
+  ontology, state = selectFromList("choose ontology", ontologies, left_icon=left_icon, right_icon=right_icon)
   if new:
     return ontology, ontologies
   elif ontology:
     return ontology
   else:
     sys.exit(0)
+
+
+
 
 
 def makeTreeView(treeWidget, ontology_tree):
@@ -302,23 +335,24 @@ def __addItemToTreeWidget(treeWidget, parent, nodeID):
   return item
 
 
-def __selectFromList(items, accept_icon, reject_icon):
+def selectFromList(title, items, left_icon, right_icon):
+
   items.sort()
-  if accept_icon:
-    if reject_icon:
-      selector = SingleListSelector(items, accept_icon=accept_icon)
+  if right_icon:
+    if left_icon:
+      selector = SingleListSelector(items, right_icon=right_icon)
     else:
-      selector = SingleListSelector(items, accept_icon=accept_icon, reject_icon=reject_icon)
-  elif reject_icon:
-    selector = SingleListSelector(items, reject_icon=reject_icon)
+      selector = SingleListSelector(items, left_icon=left_icon, right_icon=right_icon)
+  elif left_icon:
+    selector = SingleListSelector(items, left_icon=left_icon)
   else:
     selector = SingleListSelector(items)
-  selector.setWindowTitle("ontology name")
+  selector.setWindowTitle(title)
   selector.exec_()
   selector.show()
-  selection = selector.getSelection()
+  selection, status = selector.getSelection()
   del selector
-  return selection
+  return selection, status
 
 
 def saveBackupFile(path):

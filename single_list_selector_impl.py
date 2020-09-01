@@ -49,9 +49,14 @@ class SingleListSelector(QtWidgets.QDialog):
 
   newSelection = QtCore.pyqtSignal(str)
 
-  def __init__(self, thelist, selected=None, myparent=None, accept_icon="accept.png", reject_icon="reject.png"):
+  def __init__(self, thelist, selected=None, myparent=None, left_icon="reject.png", right_icon="accept.png"):
     '''
     Constructor
+    Behaviour
+     -- double click assumes also right button pressed
+     -- single click requires acceptance -- default right button
+     -- left button is default reject
+     -- returns selection and state (left | right | selected)
     '''
     self.thelist = thelist
     self.selection = None
@@ -60,21 +65,22 @@ class SingleListSelector(QtWidgets.QDialog):
     self.ui.setupUi(self)
 
     self.ui.listWidget.addItems(thelist)
-    accept_file = os.path.join(DIRECTORIES["icon_location"], accept_icon)  # 'accept.png')
-    reject_file = os.path.join(DIRECTORIES["icon_location"], reject_icon)  # 'reject.png')
-    accept_icon = QtGui.QIcon(QtGui.QPixmap(accept_file))
-    reject_icon = QtGui.QIcon(QtGui.QPixmap(reject_file))
+    left_file = os.path.join(DIRECTORIES["icon_location"], left_icon)
+    right_file = os.path.join(DIRECTORIES["icon_location"], right_icon)
+    left_icon = QtGui.QIcon(QtGui.QPixmap(left_file))
+    right_icon = QtGui.QIcon(QtGui.QPixmap(right_file))
 
-    self.ui.pushAccept.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-    self.ui.pushAccept.setIconSize(BUTTON_ICON_SIZE)
-    self.ui.pushAccept.setIcon(accept_icon)
-    self.ui.pushAccept.setText('')
+    self.ui.pushLeft.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
+    self.ui.pushLeft.setIconSize(BUTTON_ICON_SIZE)
+    self.ui.pushLeft.setIcon(left_icon)
+    self.ui.pushLeft.setText('')
 
-    self.ui.pushCancle.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-    self.ui.pushCancle.setIconSize(BUTTON_ICON_SIZE)
-    self.ui.pushCancle.setIcon(reject_icon)
-    self.ui.pushCancle.setText('')
+    self.ui.pushRight.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
+    self.ui.pushRight.setIconSize(BUTTON_ICON_SIZE)
+    self.ui.pushRight.setIcon(right_icon)
+    self.ui.pushRight.setText('')
     self.selection = None
+    self.state = None # left | right | selected
 
     max_width = 0
     height = 20
@@ -86,6 +92,11 @@ class SingleListSelector(QtWidgets.QDialog):
     self.__resizeMe(height, max_width + 20)
 
     self.__move2row(selected)
+    if not left_icon:
+      self.ui.pushLeft.hide()
+    else:
+      self.ui.pushLeft.show()
+    self.ui.pushRight.hide()
     self.hide()
 
   def __move2row(self, selected):
@@ -95,7 +106,7 @@ class SingleListSelector(QtWidgets.QDialog):
       self.selection = copy(selected)
     else:
       row = -1
-      self.ui.pushAccept.hide()
+      self.ui.pushLeft.hide()
     self.ui.listWidget.setCurrentRow(row)
 
   def Show(self, entry):
@@ -106,7 +117,7 @@ class SingleListSelector(QtWidgets.QDialog):
     QtWidgets.QWidget.hide(self)
 
   def getSelection(self):
-    return self.selection
+    return self.selection, self.state
 
   def __resizeMe(self, height, width):
     tab_size = QtCore.QSize(width, height)
@@ -130,24 +141,29 @@ class SingleListSelector(QtWidgets.QDialog):
     # print('item clicked')
     currentItem = self.ui.listWidget.currentItem()
     self.selection = str(currentItem.text())
-    self.ui.pushAccept.show()
+    self.state = "selected"
+    self.ui.pushRight.show()
 
   def on_listWidget_itemDoubleClicked(self, v):
     self.on_listWidget_itemClicked(v)
-    self.on_pushAccept_pressed()
+    self.state = "selected"
+    self.on_pushRight_pressed()
 
-  def on_pushAccept_pressed(self):
-    self.newSelection.emit(str(self.selection))
+  def on_pushRight_pressed(self):
+    # self.newSelection.emit(str(self.selection))
+    self.state = "right"
     self.hide()
 
-  def on_pushCancle_pressed(self):
+  def on_pushLeft_pressed(self):
+    self.state = "left"
     self.selection = None
     self.hide()
 
-  def accept(self):
+  def accept(self):   # overwrite dialogue method
     # print('accept', self.selection)
     self.hide()
 
-  def reject(self):
-    # print('reject', self.selection)
+  def reject(self):   # overwrite dialogue method
+    print('reject', self.selection)
     self.hide()
+    return

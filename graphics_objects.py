@@ -214,50 +214,73 @@ class NetworkDataObjects(dict):
 class NamedNetworkDataObjects(dict):
   def __init__(self, networks):
     super().__init__()
+    self["network__named_network"] = {}
     for nw in networks:
-      self[nw] = {}
-      self[nw][nw] = NetworkData()
+      name = "A-%s"%nw
+      self["network__named_network"][nw] = [name]
+      self[name] = NetworkData()
+
+  def updateWithData(self, data):
+    for n_nw in data:
+      if n_nw == "network__named_network":
+        self["network__named_network"].update(data["network__named_network"])
+      else:
+        self[n_nw] = data[n_nw]
 
   def add(self, network, name):
-    self[network][name]=NetworkData()
+    self["network__named_network"][network].append(name)
+    self[name]=NetworkData()
 
   def remove(self, network, name):
-    no_named_networks = self[network]
+    no_named_networks = len(self["network__named_network}"][network])
     if no_named_networks == 1:
       return False
-    del self[network][name]
+    self["network__named_network"][network].remove(name)
+    del self[name]
     return True
 
   def rename(self, network, old_name, new_name):
-    value = self[network][old_name]
-    self[network][new_name] = value
-    del self[network][old_name]
+    self["network__named_network"][network].remove(old_name)
+    self["network__named_network"][network].append(new_name)
+
+    value = self[old_name]
+    self[new_name] = value
+    del self[old_name]
     pass
 
-  def listOfNamedNetwords(self, network):
-    a = self[network].keys()
-    return sorted(a)
+  def listOfNamedNetworksAll(self):
+    l = []
+    for nw in self["network__named_network"]:
+      l.extend(self["network__named_network"][nw])
+    l.append("network__named_network")
+    return l
+
+  def listOfNamedNetworksPerNetwork(self, network):
+    return self["network__named_network"][network]
 
   def indexForNamedNetwork(self, network, name):
-    list_named_networks = self.listOfNamedNetwords(network)
+    list_named_networks = self["network__named_network"][network]
     index = list_named_networks.index(name)
     return index
 
-  def setColour(self, network, named_network, colour):
+  def setColour(self, named_network, colour):
     print("network set ", colour)
-    self[network][named_network]["colour"] = colour
+    self[named_network]["colour"] = colour
 
-  def getColour(self, network, named_network):
-    print("network get ", self[network][named_network]["colour"])
-    return self[network][named_network]["colour"]
+  def getColour(self, named_network):
+    print("network get ", self[named_network]["colour"])
+    return self[named_network]["colour"]
+
+  def makeBrush(self, named_network):
+    red, green, blue, ar = self[named_network]["colour"]
+    brush = QtGui.QBrush(QtGui.QColor(red, green, blue, ar))
+    return brush
 
   def makeBrushes(self):
     BRUSHES = {}
-    for nw in self:
-      BRUSHES[nw] = {}
-      for n_nw in self[nw]:
-        red, green, blue, ar = self[nw][n_nw]["colour"]
-        BRUSHES[nw][n_nw] = QtGui.QBrush(QtGui.QColor(red, green, blue, ar))
+    for nw in self["network__named_network"]:
+      for n_nw in self["network__named_network"][nw]:
+        BRUSHES[n_nw] = self.makeBrush(n_nw)
     return BRUSHES
 
 
@@ -358,7 +381,7 @@ STATES["topology"] = {
         }
 STATES["token_topology"] = {
         "nodes": ["enabled", "selected", "blocked"],  # hash was typed_tokens
-        "arcs" : [M_None]
+        "arcs" : ["enabled"]
         }
 STATES["equation_topology"] = {
         "nodes": ["enabled", "selected"],
