@@ -521,11 +521,11 @@ class GraphDataObjects(OrderedDict):
             # print(self)
 
   def setData(self, what, value, phase, root_object, decoration, application, state):
-    print("put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s"
-          % (phase, root_object, decoration, application, state, what))
-    print("            value: ", value)
+    print("put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value : %s"
+          % (phase, root_object, decoration, application, state, what, value))
     self[phase][root_object][decoration][application][state][what] = value
-    # print("after       value: ",self[phase][root_object][component][application][state])
+    print("did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value: %s"
+          % (phase, root_object, decoration, application, state, what, value))
 
   def getData(self, phase, root_object, decoration, application, state):
     # print("get data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s"
