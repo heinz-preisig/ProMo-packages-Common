@@ -196,11 +196,11 @@ class NetworkDataObjects(dict):
       self[nw] = deepcopy(NetworkData())
 
   def setData(self, network, value):
-    print("network set ", value)
+    # print("debugging -- network set ", value)
     self[network]["colour"] = value
 
   def getData(self, network):
-    print("network get ", self[network]["colour"])
+    # print("debugging -- network get ", self[network]["colour"])
     return self[network]["colour"]
 
   def makeBrushes(self):
@@ -268,7 +268,7 @@ class NamedNetworkDataObjects(dict):
     self[named_network]["colour"] = colour
 
   def getColour(self, named_network):
-    print("network get ", self[named_network]["colour"])
+    # print("debugging -- network get ", self[named_network]["colour"])
     return self[named_network]["colour"]
 
   def makeBrush(self, named_network):
@@ -528,9 +528,30 @@ class GraphDataObjects(OrderedDict):
           % (phase, root_object, decoration, application, state, what, value))
 
   def getData(self, phase, root_object, decoration, application, state):
-    # print("get data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s"
-    #       %(phase, root_object, decoration, application, state))
-    # print("            value: ",self[phase][root_object][decoration][application][state])
+    # if phase == "equation_topology":
+    #   print("\n get data -- phase : ", phase)
+    #   try:
+    #     print("root_object : ", root_object)
+    #   except:
+    #     print(" no root_object")
+    #   try:
+    #     print("decoration  : ", decoration)
+    #   except:
+    #     print("no decoration")
+    #   try:
+    #     print("application : ", application)
+    #   except:
+    #     print("no application")
+    #   try:
+    #     print("state       : ", state)
+    #     if state == "-":
+    #       print("debugging --  state -")
+    #   except:
+    #     print("no state defined")
+    #   try:
+    #     print("value       : ", self[phase][root_object][decoration][application][state])
+    #   except:
+    #     print("no value")
 
     if decoration == NAMES["indicator token"]:
       data = IndicatorDot()
@@ -538,8 +559,8 @@ class GraphDataObjects(OrderedDict):
 
     elif decoration == NAMES["indicator typed token"]:
       data = IndicatorText()
-
       return data
+
     if phase == M_any:
       phase = DEFAULT_PHASE
     if application not in self[phase][root_object][decoration]:
@@ -701,9 +722,9 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
                 obj = deepcopy(DATA_STRUCTURE[shape])
                 obj.update(mouse_data[p][r][d][a][s])
                 DATA[p][r][d][a][s] = obj  # mouse_data[p][r][d][a][s]
-                # print(p,r,d,a,s, "-- OK")
+                print(p,r,d,a,s, "-- OK")
               except:
-                # print(p,r,d,a,a, "-- x")
+                print(p,r,d,a,a, "-- x")
                 pass
 
     # udate and clean out
