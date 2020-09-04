@@ -77,7 +77,7 @@ class UI_String(QtWidgets.QDialog):
       self.ui.lineEdit.setFocus()
 
   def setText(self, txt):
-    self.ui.lineEdit.setText(txt)
+    self.ui.lineEdit.setText(str(txt))
 
   def __changedText(self, Qtext):
     text = Qtext

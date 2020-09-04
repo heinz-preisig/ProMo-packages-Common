@@ -37,8 +37,12 @@ class Logo(QtWidgets.QDialog):
     super().__init__(flags=QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowSystemMenuHint)
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
+    qr = self.frameGeometry()
+    screen = QtWidgets.QDesktopWidget().availableGeometry().center()
+    x = screen.x()
+    y = screen.y()
 
-    self.setGeometry(100, 100, 300, 300)
+    self.setGeometry(x-150, y-150, 300, 300)
     self.ui.pushButton.setGeometry(0, 0, 300, 300)
 
     if icon_name:
