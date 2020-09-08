@@ -492,7 +492,7 @@ ICONS["task_model_composer"] = "task_model_composer.svg"
 ICONS["task_graphic_objects"] = "task_graphic_objects.svg"
 ICONS["task_entity_generation"] = "task_entity_generation.svg"
 ICONS["task_automata"] = "task_automata.svg"
-ICONS["info"] = "info_button.png"
+ICONS["info"] = "info_button_01.png"
 ICONS["accept"] = "accept.png"
 ICONS["reject"] = "reject.png"
 ICONS["back"] = "back.png"
@@ -500,6 +500,7 @@ ICONS["new"] = "new_button.png"
 ICONS["compile"] = "compile_button.png"
 ICONS["dot_graph"] = "dot_graph_button.png"
 ICONS["save"] = "save_button.png"
+ICONS["port"] = "port_button.png"
 
 BUTTON_ICON_SIZE = QtCore.QSize(40, 40)
 BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
