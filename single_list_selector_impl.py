@@ -152,6 +152,7 @@ class SingleListSelector(QtWidgets.QDialog):
   def on_pushRight_pressed(self):
     # self.newSelection.emit(str(self.selection))
     self.state = "right"
+    self.newSelection.emit(self.selection)
     self.hide()
 
   def on_pushLeft_pressed(self):

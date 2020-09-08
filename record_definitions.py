@@ -230,6 +230,7 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
                                units=Units(),
                                equations={},
                                aliases={},
+                               port_variable = False,
                                ):
   """
   NOTE: there is a problem here with the defaults -- do not use them, but define everthing explicitly.
@@ -256,7 +257,7 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
   self["units"] = units  # ....................................................................
   self["equations"] = equations  # ..................................................... hash is equation ID, an integer
   self["aliases"] = aliases  # .....could be in code - not handy and not quite logical: there is also a compiled version
-  self["port_variable"] = False # ..................... port variables are at the bottom of the definition -- foundation
+  self["port_variable"] = port_variable # ............. port variables are at the bottom of the definition -- foundation
 
   for language in LANGUAGES["aliasing"]:
     self["aliases"][language] = label
