@@ -26,16 +26,16 @@ TOKEN_STRING_SEPARATOR = " :: "
 
 
 class RadioSelector(QtWidgets.QWidget):
-  '''
+  """
   sends a signal on selecting an item
-  '''
+  """
 
   newSelection = QtCore.pyqtSignal(str)
 
   def __init__(self, myparent=None):
-    '''
+    """
     Constructor
-    '''
+    """
 
     QtWidgets.QWidget.__init__(self, parent=myparent)
     self.ui = Ui_Form()
@@ -44,6 +44,9 @@ class RadioSelector(QtWidgets.QWidget):
     self.radiobuttons = {}
     self.x = 10
     self.y = 10
+    self.autoexclusive = False
+    self.formLayoutWidget = None
+    self.initialise = True
 
   def addListOfChoices(self, group_name, list_of_choices, checked, autoexclusive=True):
     """
@@ -91,6 +94,8 @@ class RadioSelector(QtWidgets.QWidget):
     self.y += height
     self.y += 0
     self.initialise = True
+    token = None
+    label_string = None
 
     count = 0
     if isinstance(checked, str):

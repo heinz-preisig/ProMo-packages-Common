@@ -502,11 +502,11 @@ ICONS["dot_graph"] = "dot_graph_button.png"
 ICONS["save"] = "save_button.png"
 
 BUTTON_ICON_SIZE = QtCore.QSize(40, 40)
-BUTTON_ICON_STYLE_ROUND = 'background-color: black; '
+BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
 BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
 BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
 BUTTON_ICON_STYLE_ROUND += 'border-radius: 20px; '
-# BUTTON_ICON_STYLE_ROUND += 'border-color: beige;    '
+BUTTON_ICON_STYLE_ROUND += 'border-color: white;    '
 BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
 BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
 
@@ -528,3 +528,8 @@ def roundButton(button, what, tooltip=None):
   button.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
   button.setIconSize(BUTTON_ICON_SIZE)
   button.setToolTip(tooltip)
+  # button.setStyleSheet("""QToolTip {
+  #                            background-color: black;
+  #                            color: white;
+  #                            border: black solid 1px
+  #                            }""")
