@@ -78,16 +78,16 @@
   <sodipodi:namedview
      inkscape:window-maximized="1"
      inkscape:window-y="27"
-     inkscape:window-x="48"
-     inkscape:window-height="1016"
-     inkscape:window-width="1872"
+     inkscape:window-x="56"
+     inkscape:window-height="1376"
+     inkscape:window-width="2504"
      inkscape:snap-text-baseline="false"
      showgrid="true"
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
      inkscape:cy="124.7735"
-     inkscape:cx="440.33417"
+     inkscape:cx="249.92042"
      inkscape:zoom="0.98994951"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -111,7 +111,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -152,15 +152,15 @@
        style="opacity:1;vector-effect:none;fill:url(#linearGradient1482);fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:4.31200027;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:67.6447525px;line-height:1.25;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fffdfd;fill-opacity:1;stroke:#073466;stroke-width:0.44500001;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;"
-       x="80.126534"
-       y="121.355"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:69.35284424px;line-height:1.25;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0e2f6a;fill-opacity:1;stroke:#073466;stroke-width:1.48148763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+       x="-129.34033"
+       y="137.47588"
        id="text829"
-       transform="scale(0.67132655,1.489588)"><tspan
+       transform="matrix(0.47202521,-0.47738906,1.0473637,1.0592655,0,0)"><tspan
          sodipodi:role="line"
          id="tspan827"
-         x="80.126534"
-         y="121.355"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:67.6447525px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.44500001;stroke:#073466;stroke-opacity:1;fill:#fffdfd;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;">new</tspan></text>
+         x="-129.34033"
+         y="137.47588"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:69.35284424px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0e2f6a;fill-opacity:1;stroke:#073466;stroke-width:1.48148763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;">new</tspan></text>
   </g>
 </svg>

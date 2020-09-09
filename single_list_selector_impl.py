@@ -27,6 +27,7 @@ from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
+from Common.resources_icons import roundButton
 from Common.resource_initialisation import DIRECTORIES
 from Common.single_list_selector import Ui_Dialog
 
@@ -49,7 +50,8 @@ class SingleListSelector(QtWidgets.QDialog):
 
   newSelection = QtCore.pyqtSignal(str)
 
-  def __init__(self, thelist, selected=None, myparent=None, left_icon="reject.png", right_icon="accept.png"):
+  def __init__(self, thelist, selected=None, myparent=None, left_icon="reject", left_tooltip="reject",
+               right_icon="accept", right_tooltip="accept"):
     '''
     Constructor
     Behaviour
@@ -65,22 +67,22 @@ class SingleListSelector(QtWidgets.QDialog):
     self.ui.setupUi(self)
 
     self.ui.listWidget.addItems(thelist)
-    left_file = os.path.join(DIRECTORIES["icon_location"], left_icon)
-    right_file = os.path.join(DIRECTORIES["icon_location"], right_icon)
-    left_icon = QtGui.QIcon(QtGui.QPixmap(left_file))
-    right_icon = QtGui.QIcon(QtGui.QPixmap(right_file))
+    # left_file = os.path.join(DIRECTORIES["icon_location"], left_icon)
+    # right_file = os.path.join(DIRECTORIES["icon_location"], right_icon)
+    # left_icon = QtGui.QIcon(QtGui.QPixmap(left_file))
+    # right_icon = QtGui.QIcon(QtGui.QPixmap(right_file))
 
-    self.ui.pushLeft.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-    self.ui.pushLeft.setIconSize(BUTTON_ICON_SIZE)
-    self.ui.pushLeft.setIcon(left_icon)
-    self.ui.pushLeft.setText('')
+    roundButton(self.ui.pushLeft, left_icon, left_tooltip )
+    # self.ui.pushLeft.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
+    # self.ui.pushLeft.setIconSize(BUTTON_ICON_SIZE)
+    # self.ui.pushLeft.setIcon(left_icon)
+    # self.ui.pushLeft.setText('')
 
-    self.ui.pushRight.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-    self.ui.pushRight.setIconSize(BUTTON_ICON_SIZE)
-    self.ui.pushRight.setIcon(right_icon)
-    self.ui.pushRight.setText('')
+    roundButton(self.ui.pushRight, right_icon, right_tooltip )
+    # self.ui.pushRight.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
+
     self.selection = None
-    self.state = None # left | right | selected
+    self.state = None  # left | right | selected
 
     max_width = 0
     height = 20
@@ -88,7 +90,8 @@ class SingleListSelector(QtWidgets.QDialog):
       label = QtWidgets.QLabel(i)
       width = label.fontMetrics().boundingRect(label.text()).width()
       height = height + label.fontMetrics().boundingRect(label.text()).height()
-      if width > max_width: max_width = width
+      if width > max_width:
+        max_width = width
     self.__resizeMe(height, max_width + 20)
 
     self.__move2row(selected)
@@ -160,11 +163,11 @@ class SingleListSelector(QtWidgets.QDialog):
     self.selection = None
     self.hide()
 
-  def accept(self):   # overwrite dialogue method
+  def accept(self):  # overwrite dialogue method
     # print('accept', self.selection)
     self.hide()
 
-  def reject(self):   # overwrite dialogue method
+  def reject(self):  # overwrite dialogue method
     print('reject', self.selection)
     self.hide()
     return

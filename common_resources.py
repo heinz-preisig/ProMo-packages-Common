@@ -473,65 +473,66 @@ def walkBreathFirstFnc(tree, id):
       stack.append(child)
   return nodes
 
-
-# ===========================================  icons ==============================
-ICONS = {}
-ICONS["+"] = "plus-icon.png"
-ICONS["-"] = "minus-icon.png"
-ICONS["->"] = "right-icon.png"
-ICONS["<-"] = "left-icon.png"
-ICONS["^"] = "up-icon.png"
-ICONS["v"] = "right-icon.png"
-ICONS["delete"] = "icon_trash_it.png"
-ICONS["ontology"] = "ontology.xpm"
-ICONS["exit"] = "exit.xpm"
-ICONS["task_automata"] = "task_automata.svg"
-ICONS["task_ontology_foundation"] = "task_ontology_foundation.svg"
-ICONS["task_ontology_equations"] = "task_ontology_equations.svg"
-ICONS["task_model_composer"] = "task_model_composer.svg"
-ICONS["task_graphic_objects"] = "task_graphic_objects.svg"
-ICONS["task_entity_generation"] = "task_entity_generation.svg"
-ICONS["task_automata"] = "task_automata.svg"
-ICONS["info"] = "info_button_hap.png"
-ICONS["accept"] = "accept.png"
-ICONS["reject"] = "reject.png"
-ICONS["back"] = "back_button_hap.png"
-ICONS["new"] = "new_button_hap.png"
-ICONS["compile"] = "compile_button_hap.png"
-ICONS["dot_graph"] = "dot_graph_button_hap.png"
-ICONS["save"] = "save_button.png"
-ICONS["port"] = "port_button_hap.png"
-ICONS["dependent_variable"] = "dependent_new_button.svg"
-
-BUTTON_ICON_SIZE = QtCore.QSize(40, 40)
-BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
-BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
-BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
-BUTTON_ICON_STYLE_ROUND += 'border-radius: 20px; '
-BUTTON_ICON_STYLE_ROUND += 'border-color: white;    '
-BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
-BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
-
-
-def getIcon(what):
-  assert what in ICONS.keys()
-  f_name = os.path.join(DIRECTORIES["icon_location"], ICONS[what])
-  # print("debugging .....", f_name)
-  if os.path.exists(f_name):
-    pm = QtGui.QPixmap(f_name)
-    return QtGui.QIcon(pm)
-  else:
-    print("no such file : ", f_name)
-    pass
-
-
-def roundButton(button, what, tooltip=None):
-  button.setIcon(getIcon(what))
-  button.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-  button.setIconSize(BUTTON_ICON_SIZE)
-  button.setToolTip(tooltip)
-  # button.setStyleSheet("""QToolTip {
-  #                            background-color: black;
-  #                            color: white;
-  #                            border: black solid 1px
-  #                            }""")
+#
+# # ===========================================  icons ==============================
+# ICONS = {}
+# ICONS["+"] = "plus-icon.png"
+# ICONS["-"] = "minus-icon.png"
+# ICONS["->"] = "right-icon.png"
+# ICONS["<-"] = "left-icon.png"
+# ICONS["^"] = "up-icon.png"
+# ICONS["v"] = "right-icon.png"
+# ICONS["delete"] = "icon_trash_it.png"
+# ICONS["ontology"] = "ontology.xpm"
+# ICONS["exit"] = "exit.xpm"
+# ICONS["task_automata"] = "task_automata.svg"
+# ICONS["task_ontology_foundation"] = "task_ontology_foundation.svg"
+# ICONS["task_ontology_equations"] = "task_ontology_equations.svg"
+# ICONS["task_model_composer"] = "task_model_composer.svg"
+# ICONS["task_graphic_objects"] = "task_graphic_objects.svg"
+# ICONS["task_entity_generation"] = "task_entity_generation.svg"
+# ICONS["task_automata"] = "task_automata.svg"
+# ICONS["info"] = "info_button_hap.png"
+# ICONS["accept"] = "accept.png"
+# ICONS["reject"] = "reject.png"
+# ICONS["back"] = "back_button_hap.png"
+# ICONS["new"] = "new_button_hap.png"
+# ICONS["compile"] = "compile_button_hap.png"
+# ICONS["dot_graph"] = "dot_graph_button_hap.png"
+# ICONS["save"] = "save_button.png"
+# ICONS["port"] = "port_button_hap.png"
+# ICONS["dependent_variable"] = "dependent_new_button.svg"
+#
+# BUTTON_ICON_SIZE = QtCore.QSize(40, 40)
+# BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
+# BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
+# BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
+# BUTTON_ICON_STYLE_ROUND += 'border-radius: 20px; '
+# BUTTON_ICON_STYLE_ROUND += 'border-color: white;    '
+# BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
+# BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
+#
+#
+# def getIcon(what):
+#   assert what in ICONS.keys()
+#   f_name = os.path.join(DIRECTORIES["icon_location"], ICONS[what])
+#   # print("debugging .....", f_name)
+#   if os.path.exists(f_name):
+#     pm = QtGui.QPixmap(f_name)
+#     return QtGui.QIcon(pm)
+#   else:
+#     print("no such file : ", f_name)
+#     pass
+#
+#
+# def roundButton(button, what, tooltip=None):
+#   button.setFixedSize(BUTTON_ICON_SIZE)
+#   button.setIcon(getIcon(what))
+#   button.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
+#   button.setIconSize(BUTTON_ICON_SIZE)
+#   button.setToolTip(tooltip)
+#   # button.setStyleSheet("""QToolTip {
+#   #                            background-color: black;
+#   #                            color: white;
+#   #                            border: black solid 1px
+#   #                            }""")
