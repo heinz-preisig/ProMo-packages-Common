@@ -30,7 +30,7 @@ ICONS["back"] = "back_button_hap.png"
 ICONS["new"] = "new_button_hap.png"
 ICONS["compile"] = "compile_button_hap.png"
 ICONS["dot_graph"] = "dot_graph_button_hap.png"
-ICONS["save"] = "save_button.png"
+ICONS["save"] = "save_button_hap.png"
 ICONS["port"] = "port_button_hap.png"
 ICONS["dependent_variable"] = "dependent_new_button.svg"
 
