@@ -707,6 +707,11 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
       for state in STATES[phase][component]:
         STATE_colours_set.add(state)
 
+  state_colours = {}
+  for s in sorted(STATE_colours_set):
+    state_colours[s] = Colour()  # colour data
+
+
   # TODO -- cleaning operation is missing
   if os.path.exists(graph_resource_file_spec):
     data_dict = getData(graph_resource_file_spec)

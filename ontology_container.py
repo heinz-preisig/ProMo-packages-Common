@@ -38,7 +38,7 @@ from Common.common_resources import saveBackupFile
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
 from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
 from Common.common_resources import walkBreathFirstFnc
-from Common.common_resources import walkDepthFirstFnc
+from Common.common_resources import walkDepthFirstFnc, TEMPLATE_NODE_OBJECT,TEMPLATE_ARC_APPLICATION
 from Common.qt_resources import OK
 from Common.record_definitions import Interface
 from Common.record_definitions import OntologyContainerFile
@@ -304,19 +304,29 @@ class OntologyContainer():
     self.token_typedtoken_on_networks = self.__make_nw_token_typedtoken_dict()  # .. tokens and typed tokens per network
     #
     self.node_type_list = self.__makeNodeTypesList()  # ........................... global list of node types (dynamics)
-    self.node_types_in_networks = self.__makeNodeTypesInNetworksODict()  # ....... dict(leave networks) of lists of node
+    self.node_types_in_networks = self.__makeNodeTypesInNetworksDict()  # ....... dict(leave networks) of lists of node
+    #
     #
     self.arc_type_list = self.__makeArcTypesList()  # ............. coded list of coded arc types token|mechanism|nature
-    self.arc_types_in_leave_networks_list_coded = self.__makeArcTypesInLeaveNetworksDictCoded()
+
+    self.object_key_list_networks, \
+    self.object_key_list_intra, \
+    self.object_key_list_inter = self.__makeObjectKeyLists()
+
+    # self.arc_types_in_leave_networks_list_coded = self.__makeArcTypesInLeaveNetworksDictCoded()
+    # self.node_types_in_leave_networks_list_coded = self.__makeNodeTypesInLeaveNetworksDictCoded()
+
+    self.list_nodeObjects_in_networks, \
+    self.list_arcObjects_in_networks = self.__makeNodeObjectList()
+
+
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
     self.arc_info_dictionary = self.__makeArcTypeDictionary()  # TODO check usage  -->  done is used check structure
     self.arc_info_allnetworks_dict = self.__make_arc_type_network_dict()  # TODO: check usage
 
     self.token_definition_nw, self.typed_token_definition_nw = self.__makeDefinitionNetworkDictionaries()
 
-    self.object_key_list_networks, \
-    self.object_key_list_intra, \
-    self.object_key_list_inter = self.__makeObjectKeyLists()
+
 
     self.variables, self.indices, \
     self.variable_record_filter, \
@@ -389,6 +399,41 @@ class OntologyContainer():
       keys_inter.append((inter_nw, "inter"))
 
     return keys_networks, keys_intra, keys_inter
+
+  def __makeNodeObjectList(self):
+    """
+    list of nodes per network (dynamics|nature)
+    list of arcs per network (
+    """
+    nodeObjects = {}
+    arcObjects = {}
+    for nw in self.networks:
+      nodeObjects[nw] = set()
+      arcObjects[nw] = set()
+
+    for nw,component,a,nature,token in self.object_key_list_networks:
+      if component == "node":
+        dynamics = a
+        dummy = TEMPLATE_NODE_OBJECT%(dynamics,nature)
+        nodeObjects[nw].add(dummy)
+
+      elif component == "arc":
+        mechanism = a
+        dummy = TEMPLATE_ARC_APPLICATION%(token,mechanism,nature)
+        arcObjects[nw].add(dummy)
+
+    listNodeObjects = {}
+    for nw in nodeObjects:
+      listNodeObjects[nw] = sorted(nodeObjects[nw])
+
+
+    listArcObjects = {}
+    for nw in arcObjects:
+      listArcObjects[nw] = sorted(arcObjects[nw])
+
+
+    return listNodeObjects, listArcObjects
+
 
   ########################
 
@@ -604,7 +649,7 @@ class OntologyContainer():
       all_arcs.extend(arcs[cnw])
     return sorted(set(all_arcs))
 
-  def __makeNodeTypesInNetworksODict(self):
+  def __makeNodeTypesInNetworksDict(self):
     # RULE: this is a generation rule for graph objects nodes
     leave_nws = self.leave_networks_list
     nodetypes = OrderedDict()

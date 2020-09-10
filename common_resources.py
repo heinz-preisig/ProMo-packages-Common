@@ -70,11 +70,13 @@ M_any  = "*"
 
 # ontology definitions --------------------------------------------------------
 
+NODE_COMPONENT_SEPARATOR = "|"
 ARC_COMPONENT_SEPARATOR = "|"
 EQUATION_COMPONENT_SEPARATOR = "|"
 CONNECTION_NETWORK_SEPARATOR = " >>> "  # RULE: separator is the same for inter and intra networks
 CONVERSION_SEPARATOR = " --> "
 
+TEMPLATE_NODE_OBJECT = "%s"+NODE_COMPONENT_SEPARATOR+"%s"
 TEMPLATE_ARC_APPLICATION = "%s" + ARC_COMPONENT_SEPARATOR + "%s" + ARC_COMPONENT_SEPARATOR + "%s"  # %(token,
 # mechanism, nature)
 TEMPLATE_CONNECTION_NETWORK = "%s" + CONNECTION_NETWORK_SEPARATOR + "%s"
