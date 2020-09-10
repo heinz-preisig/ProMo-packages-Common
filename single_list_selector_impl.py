@@ -20,28 +20,14 @@ __version__ = "6.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
-import os
 from copy import copy
 
 from PyQt5 import QtCore
-from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
 from Common.resources_icons import roundButton
-from Common.resource_initialisation import DIRECTORIES
 from Common.single_list_selector import Ui_Dialog
 
-# Note: entanglement -- Common.common_resources -- roundButton cannot be loaded here.
-BUTTON_ICON_SIZE = QtCore.QSize(30, 30)
-BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
-BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
-BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
-BUTTON_ICON_STYLE_ROUND += 'border-radius: 14px; '
-BUTTON_ICON_STYLE_ROUND += 'border-color: beige;    '
-
-
-# BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
-# BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
 
 class SingleListSelector(QtWidgets.QDialog):
   '''
@@ -67,19 +53,9 @@ class SingleListSelector(QtWidgets.QDialog):
     self.ui.setupUi(self)
 
     self.ui.listWidget.addItems(thelist)
-    # left_file = os.path.join(DIRECTORIES["icon_location"], left_icon)
-    # right_file = os.path.join(DIRECTORIES["icon_location"], right_icon)
-    # left_icon = QtGui.QIcon(QtGui.QPixmap(left_file))
-    # right_icon = QtGui.QIcon(QtGui.QPixmap(right_file))
 
     roundButton(self.ui.pushLeft, left_icon, left_tooltip )
-    # self.ui.pushLeft.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
-    # self.ui.pushLeft.setIconSize(BUTTON_ICON_SIZE)
-    # self.ui.pushLeft.setIcon(left_icon)
-    # self.ui.pushLeft.setText('')
-
     roundButton(self.ui.pushRight, right_icon, right_tooltip )
-    # self.ui.pushRight.setStyleSheet(BUTTON_ICON_STYLE_ROUND)
 
     self.selection = None
     self.state = None  # left | right | selected
@@ -125,19 +101,16 @@ class SingleListSelector(QtWidgets.QDialog):
   def __resizeMe(self, height, width):
     tab_size = QtCore.QSize(width, height)
     self.ui.listWidget.resize(tab_size)
-    size_b = self.ui.pushLeft.size()  #self.ui.myframe.size()
-    b_width = size_b.width()
+    size_b = self.ui.pushLeft.size()
+    b_width = size_b.width()* 2 #there are two buttons plus margin
     b_height = size_b.height()
     if b_width < width:
       size_b.setWidth(width)
-      # self.ui.horizontalLayout(size_b) #myframe.resize(size_b)  # adjust box
     elif width < b_width:
       width = b_width
       tab_size = QtCore.QSize(width, height)
       self.ui.listWidget.resize(tab_size)
     s = QtCore.QSize(width + 20, b_height + height + 60)
-    # s.setHeight(size_b.height() + height +10)
-    # s.setWidth(width+20)
     self.resize(s)
 
   def on_listWidget_itemClicked(self, v):

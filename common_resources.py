@@ -140,21 +140,8 @@ def __getSortedDirList(location):
 
 
 def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit="exit", left_icon=None, right_icon=None):
-  # acceptance_list = []
-  # if exit == "exit":
-  #   model_names = [exit]
-  # else:
-  #   model_names = []
-  # if not new:
-  #   if not alternative:
-  #     # model_names.append(DIALOGUE["new model"])
-  #     # acceptance_list.append(DIALOGUE["new model"])
-  #   else:
-  #     pass
 
-  # model_names.extend(__getSortedDirList(model_library_location))
   model_names = __getSortedDirList(model_library_location)
-  # acceptance_list.extend(__getSortedDirList(model_library_location))
 
   model_name, status = selectFromList("choose model", model_names, left_icon=left_icon, right_icon=right_icon)
   print("debugging -- ask for model name", model_name, status)
