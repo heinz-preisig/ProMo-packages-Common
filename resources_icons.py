@@ -1,6 +1,10 @@
-from PyQt5 import QtCore, QtGui
 import os
+
+from PyQt5 import QtCore
+from PyQt5 import QtGui
+
 from Common.resource_initialisation import DIRECTORIES
+
 # ===========================================  icons ==============================
 ICONS = {}
 ICONS["+"] = "plus-icon.png"
@@ -20,8 +24,8 @@ ICONS["task_graphic_objects"] = "task_graphic_objects.svg"
 ICONS["task_entity_generation"] = "task_entity_generation.svg"
 ICONS["task_automata"] = "task_automata.svg"
 ICONS["info"] = "info_button_hap.png"
-ICONS["accept"] = "accept.png"
-ICONS["reject"] = "reject.png"
+ICONS["accept"] = "accept_button_hap.png"
+ICONS["reject"] = "reject_button_hap.png"
 ICONS["back"] = "back_button_hap.png"
 ICONS["new"] = "new_button_hap.png"
 ICONS["compile"] = "compile_button_hap.png"
@@ -30,31 +34,16 @@ ICONS["save"] = "save_button.png"
 ICONS["port"] = "port_button_hap.png"
 ICONS["dependent_variable"] = "dependent_new_button.svg"
 
-BUTTON_ICON_SIZE = QtCore.QSize(40, 40)
+size = 60
+BUTTON_ICON_SIZE = QtCore.QSize(size, size)
+round = 'border-radius: %spx; ' % (size / 2)
 BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
 BUTTON_ICON_STYLE_ROUND += 'border-style: outset; '
 BUTTON_ICON_STYLE_ROUND += 'border-width: 2px; '
-BUTTON_ICON_STYLE_ROUND += 'border-radius: 20px; '
+BUTTON_ICON_STYLE_ROUND += round
 BUTTON_ICON_STYLE_ROUND += 'border-color: white;    '
 BUTTON_ICON_STYLE_ROUND += 'font: bold 14px;   '
 BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
-
-
-def getIcon(what):
-  try:
-    what in ICONS.keys()
-  except:
-    print("assertation error %s is not in the icon dictionary"%what)
-    os.exit()
-
-  f_name = os.path.join(DIRECTORIES["icon_location"], ICONS[what])
-  # print("debugging .....", f_name)
-  if os.path.exists(f_name):
-    pm = QtGui.QPixmap(f_name)
-    return QtGui.QIcon(pm)
-  else:
-    print("no such file : ", f_name)
-    pass
 
 
 def roundButton(button, what, tooltip=None):
@@ -68,3 +57,20 @@ def roundButton(button, what, tooltip=None):
   #                            color: white;
   #                            border: black solid 1px
   #                            }""")
+
+
+def getIcon(what):
+  try:
+    what in ICONS.keys()
+  except:
+    print("assertation error %s is not in the icon dictionary" % what)
+    os.exit()
+
+  f_name = os.path.join(DIRECTORIES["icon_location"], ICONS[what])
+  # print("debugging .....", f_name)
+  if os.path.exists(f_name):
+    pm = QtGui.QPixmap(f_name)
+    return QtGui.QIcon(pm)
+  else:
+    print("no such file : ", f_name)
+    pass

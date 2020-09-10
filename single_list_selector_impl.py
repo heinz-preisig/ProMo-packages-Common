@@ -125,17 +125,17 @@ class SingleListSelector(QtWidgets.QDialog):
   def __resizeMe(self, height, width):
     tab_size = QtCore.QSize(width, height)
     self.ui.listWidget.resize(tab_size)
-    size_b = self.ui.myframe.size()
+    size_b = self.ui.pushLeft.size()  #self.ui.myframe.size()
     b_width = size_b.width()
     b_height = size_b.height()
     if b_width < width:
       size_b.setWidth(width)
-      self.ui.myframe.resize(size_b)  # adjust box
+      # self.ui.horizontalLayout(size_b) #myframe.resize(size_b)  # adjust box
     elif width < b_width:
       width = b_width
       tab_size = QtCore.QSize(width, height)
       self.ui.listWidget.resize(tab_size)
-    s = QtCore.QSize(width + 20, b_height + height + 20)
+    s = QtCore.QSize(width + 20, b_height + height + 60)
     # s.setHeight(size_b.height() + height +10)
     # s.setWidth(width+20)
     self.resize(s)
