@@ -321,9 +321,13 @@ class OntologyContainer():
     # self.arc_types_in_leave_networks_list_coded = self.__makeArcTypesInLeaveNetworksDictCoded()
     # self.node_types_in_leave_networks_list_coded = self.__makeNodeTypesInLeaveNetworksDictCoded()
 
+
     self.list_nodeObjects_in_networks, \
-    self.list_arcObjects_in_networks, \
-    self.list_nodeObjects, \
+    self.list_nodeObjects_in_intra_networks, \
+    self.list_nodeObjects_in_inter_networks, \
+    self.listNetworkNodeObjects, \
+    self.listIntraNodeObjects, \
+    self.listInterNodeObjects, \
     self.list_arcObjects = self.__makeNodeObjectList()
 
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
@@ -412,19 +416,36 @@ class OntologyContainer():
     list of arcs per network (
     """
     nodeObjects_on_networks = {}
-    setNodeObjects = set()
+    nodeObjects_on_intra_networks = {}
+    nodeObjects_on_inter_networks = {}
+
+    setNodeObjects_on_networks = set()
+    setNodeObjects_on_intra_networks = set()
+    setNodeObjects_on_inter_networks = set()
     arcObjects_on_networks = {}
     setArcObjects = set()
-    for nw in self.networks+self.interconnection_networks: # + self.intraconnection_networks:
+
+    for nw in self.networks:
       nodeObjects_on_networks[nw] = set()
       arcObjects_on_networks[nw] = set()
+
+    for nw in self.intraconnection_networks:
+      nodeObjects_on_intra_networks[nw] = set()
+      arcObjects_on_networks[nw] = set()
+
+    for nw in self.interconnection_networks:
+      nodeObjects_on_inter_networks[nw] = set()
+      arcObjects_on_networks[nw] = set()
+
+
+
 
     for nw, component, a, nature, token in self.object_key_list_networks:
       if component == "node":
         dynamics = a
         dummy = TEMPLATE_NODE_OBJECT % (dynamics, nature)
         nodeObjects_on_networks[nw].add(dummy)
-        setNodeObjects.add(dummy)
+        setNodeObjects_on_networks.add(dummy)
 
       elif component == "arc":
         mechanism = a
@@ -432,17 +453,17 @@ class OntologyContainer():
         arcObjects_on_networks[nw].add(dummy)
         setArcObjects.add(dummy)
 
-    # for nw, nature, token in self.object_key_list_intra:
-    #   dummy = TEMPLATE_INTRA_NODE_OBJECT % (nature)
-    #   nodeObjects_on_networks[nw].add(dummy)
-    #   setNodeObjects.add(dummy)
-    #   pass
+    for nw, nature, token in self.object_key_list_intra:
+      dummy = TEMPLATE_INTRA_NODE_OBJECT % (nature)
+      nodeObjects_on_intra_networks[nw].add(dummy)
+      setNodeObjects_on_intra_networks.add(dummy)
+      pass
 
 
     for nw, nature, token in self.object_key_list_inter:
       dummy = TEMPLATE_INTER_NODE_OBJECT % (nature, token)
-      nodeObjects_on_networks[nw].add(dummy)
-      setNodeObjects.add(dummy)
+      nodeObjects_on_inter_networks[nw].add(dummy)
+      setNodeObjects_on_inter_networks.add(dummy)
       setArcObjects.add(dummy)
       pass
 
@@ -450,11 +471,26 @@ class OntologyContainer():
     for nw in nodeObjects_on_networks:
       listNodeObjects_on_networks[nw] = sorted(nodeObjects_on_networks[nw])
 
+    listNodeObjects_on_intra_networks = {}
+    for nw in nodeObjects_on_intra_networks:
+      listNodeObjects_on_intra_networks[nw] = sorted(nodeObjects_on_intra_networks[nw])
+
+    listNodeObjects_on_inter_networks = {}
+    for nw in nodeObjects_on_inter_networks:
+      listNodeObjects_on_inter_networks[nw] = sorted(nodeObjects_on_inter_networks[nw])
+
     listArcObjects_on_networks = {}
     for nw in arcObjects_on_networks:
       listArcObjects_on_networks[nw] = sorted(arcObjects_on_networks[nw])
 
-    return listNodeObjects_on_networks, listArcObjects_on_networks, sorted(setNodeObjects), sorted(setArcObjects)
+    return \
+      listNodeObjects_on_networks, \
+      listNodeObjects_on_intra_networks, \
+      listNodeObjects_on_inter_networks, \
+      sorted(setNodeObjects_on_networks), \
+      sorted(setNodeObjects_on_intra_networks), \
+      sorted(setNodeObjects_on_inter_networks), \
+      sorted(setArcObjects)
 
   ########################
 

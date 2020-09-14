@@ -434,8 +434,8 @@ DECORATIONS_with_state = ["root",
                           ]
 OBJECTS_with_application = [NAMES["node"],
                             NAMES["connection"],
-                            # NAMES["interface"],
-                            # NAMES["intraface"]
+                            NAMES["interface"],
+                            NAMES["intraface"]
                             ]
 
 OBJECTS_not_move = [NAMES["panel"], NAMES["left panel"], NAMES["right panel"]]
