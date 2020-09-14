@@ -28,9 +28,9 @@ from copy import deepcopy
 from PyQt5 import QtGui
 
 from Common.common_resources import ARC_COMPONENT_SEPARATOR
-from Common.common_resources import M_None
-from Common.common_resources import M_any
 from Common.common_resources import getData
+from Common.common_resources import M_any
+from Common.common_resources import M_None
 from Common.qt_resources import PEN_STYLES
 
 NAMES = {
@@ -216,7 +216,7 @@ class NamedNetworkDataObjects(dict):
     super().__init__()
     self["network__named_network"] = {}
     for nw in networks:
-      name = "A-%s"%nw
+      name = "A-%s" % nw
       self["network__named_network"][nw] = [name]
       self[name] = NetworkData()
 
@@ -229,7 +229,7 @@ class NamedNetworkDataObjects(dict):
 
   def add(self, network, name):
     self["network__named_network"][network].append(name)
-    self[name]=NetworkData()
+    self[name] = NetworkData()
 
   def remove(self, network, name):
     no_named_networks = len(self["network__named_network}"][network])
@@ -416,11 +416,12 @@ ARCS = [NAMES["connection"]]
 INTERFACE = [NAMES["interface"], NAMES["connection"]]
 INTRAFACE = [NAMES["intraface"], ]
 
-OBJECTS_with_state = [NAMES["node"],
-                      NAMES["intraface"],
-                      NAMES["interface"],
-                      # NAMES["boundary"],
-                      NAMES["connection"]]
+OBJECTS_nodes_with_states = [NAMES["node"],
+                             NAMES["intraface"],
+                             NAMES["interface"], ]
+OBJECTS_arcs_with_states = [NAMES["connection"]]
+OBJECTS_with_state = OBJECTS_nodes_with_states + OBJECTS_arcs_with_states
+
 OBJECTS_without_state = [NAMES["branch"],
                          NAMES["elbow"],
                          NAMES["parent"],
@@ -477,14 +478,14 @@ class GraphDataObjects(OrderedDict):
    """
 
   def __init__(self, application_node_types, application_arc_types):
-    super().__init__()
+
     for phase in PHASES:
       self[phase] = {}
       for graphics_object in GRAPHICS_OBJECTS:
         self[phase][graphics_object] = {}
-        decorations = STRUCTURES_Graph_Item[graphics_object]  # ["decoration"]
+        decorations = STRUCTURES_Graph_Item[graphics_object]
         for decoration in decorations:
-          shape = STRUCTURES_Graph_Item[graphics_object][decoration]  # ["decoration"][decoration]
+          shape = STRUCTURES_Graph_Item[graphics_object][decoration]
           self[phase][graphics_object][decoration] = {}
           # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
           if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
@@ -520,15 +521,62 @@ class GraphDataObjects(OrderedDict):
 
             # print(self)
 
+
+    # super().__init__()
+    # for phase in PHASES:
+    #   self[phase] = {}
+    #   for graphics_object in GRAPHICS_OBJECTS:
+    #     self[phase][graphics_object] = {}
+    #     decorations = STRUCTURES_Graph_Item[graphics_object]
+    #     for decoration in decorations:
+    #       shape = STRUCTURES_Graph_Item[graphics_object][decoration]
+    #       self[phase][graphics_object][decoration] = {}
+    #       # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
+    #       if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
+    #         if graphics_object in NODES:
+    #           # RULE : constrain once more
+    #           if graphics_object in OBJECTS_with_application:
+    #             applications = application_node_types
+    #           else:
+    #             applications = M_None
+    #           for application in applications:
+    #             self[phase][graphics_object][decoration][application] = {}
+    #
+    #             states = STATES[phase]["nodes"]
+    #             for state in states:
+    #               self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
+    #         else:
+    #           # RULE : constrain once more
+    #           if graphics_object in OBJECTS_with_application:
+    #             applications = application_arc_types
+    #           else:
+    #             applications = M_None
+    #           for application in applications:
+    #             self[phase][graphics_object][decoration][application] = {}
+    #             states = STATES[phase]["arcs"]
+    #
+    #             for state in states:
+    #               self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
+    #       else:
+    #         application = M_None
+    #         state = M_None
+    #         self[phase][graphics_object][decoration][application] = {}
+    #         self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
+    #
+    #         # print(self)
+
   def setData(self, what, value, phase, root_object, decoration, application, state):
-    print("put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value : %s"
-          % (phase, root_object, decoration, application, state, what, value))
+    print(
+      "put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value : %s"
+      % (phase, root_object, decoration, application, state, what, value))
     self[phase][root_object][decoration][application][state][what] = value
-    print("did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value: %s"
-          % (phase, root_object, decoration, application, state, what, value))
+    print(
+      "did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
+      "value: %s"
+      % (phase, root_object, decoration, application, state, what, value))
 
   def getData(self, phase, root_object, decoration, application, state):
-    # if phase == "equation_topology":
+    # if phase == "topology":
     #   print("\n get data -- phase : ", phase)
     #   try:
     #     print("root_object : ", root_object)
@@ -540,8 +588,22 @@ class GraphDataObjects(OrderedDict):
     #     print("no decoration")
     #   try:
     #     print("application : ", application)
+    #     if application not in self[phase][root_object][decoration]:
+    #       if "| in application":
+    #         app, distr = application.split("|")
+    #         print(" application split :", app, distr)
+    #         q = self[phase][root_object][decoration][app][state]
+    #         print(" found hopefully ", q)
+    #         self[phase][root_object][decoration][application]= self[phase][root_object][decoration][app]
+    #         del self[phase][root_object][decoration][app]
+    #         print(" done !")
     #   except:
-    #     print("no application")
+    #     print("fixing") #event|distributed
+    #     if application == "event|distributed":
+    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration]["event|lumped"])
+    #     elif application == "event|lumped":
+    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration]["event|distributed"])
+    #
     #   try:
     #     print("state       : ", state)
     #     if state == "-":
@@ -711,7 +773,6 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
   for s in sorted(STATE_colours_set):
     state_colours[s] = Colour()  # colour data
 
-
   # TODO -- cleaning operation is missing
   if os.path.exists(graph_resource_file_spec):
     data_dict = getData(graph_resource_file_spec)
@@ -727,9 +788,9 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
                 obj = deepcopy(DATA_STRUCTURE[shape])
                 obj.update(mouse_data[p][r][d][a][s])
                 DATA[p][r][d][a][s] = obj  # mouse_data[p][r][d][a][s]
-                print(p,r,d,a,s, "-- OK")
+                # print(p, r, d, a, s, "-- OK")
               except:
-                print(p,r,d,a,a, "-- x")
+                print(p, r, d, a, s, "-- x")
                 pass
 
     # udate and clean out

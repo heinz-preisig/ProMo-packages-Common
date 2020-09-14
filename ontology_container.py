@@ -37,8 +37,11 @@ from Common.common_resources import putDataOrdered
 from Common.common_resources import saveBackupFile
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
 from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
+from Common.common_resources import TEMPLATE_INTER_NODE_OBJECT
+from Common.common_resources import TEMPLATE_INTRA_NODE_OBJECT
+from Common.common_resources import TEMPLATE_NODE_OBJECT
 from Common.common_resources import walkBreathFirstFnc
-from Common.common_resources import walkDepthFirstFnc, TEMPLATE_NODE_OBJECT,TEMPLATE_ARC_APPLICATION
+from Common.common_resources import walkDepthFirstFnc
 from Common.qt_resources import OK
 from Common.record_definitions import Interface
 from Common.record_definitions import OntologyContainerFile
@@ -269,6 +272,8 @@ class OntologyContainer():
     self.leave_networks_list = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
     self.interconnection_network_dictionary, \
     self.intraconnection_network_dictionary = self.__makeConnectionNetworks()  # ...... dict(connection network) of dict
+    self.interconnection_networks = sorted(self.interconnection_network_dictionary.keys())
+    self.intraconnection_networks = sorted(self.intraconnection_network_dictionary.keys())
     """ 
        variable_types_on_networks: dict
          #<networks>
@@ -317,16 +322,15 @@ class OntologyContainer():
     # self.node_types_in_leave_networks_list_coded = self.__makeNodeTypesInLeaveNetworksDictCoded()
 
     self.list_nodeObjects_in_networks, \
-    self.list_arcObjects_in_networks = self.__makeNodeObjectList()
-
+    self.list_arcObjects_in_networks, \
+    self.list_nodeObjects, \
+    self.list_arcObjects = self.__makeNodeObjectList()
 
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
     self.arc_info_dictionary = self.__makeArcTypeDictionary()  # TODO check usage  -->  done is used check structure
     self.arc_info_allnetworks_dict = self.__make_arc_type_network_dict()  # TODO: check usage
 
     self.token_definition_nw, self.typed_token_definition_nw = self.__makeDefinitionNetworkDictionaries()
-
-
 
     self.variables, self.indices, \
     self.variable_record_filter, \
@@ -396,7 +400,9 @@ class OntologyContainer():
       # left = self.interconnection_network_dictionary[inter_nw]["left"]
       # right = self.interconnection_network_dictionary[inter_nw]["right"]
       # keys_inter.append((inter_nw, "inter", left, right))
-      keys_inter.append((inter_nw, "inter"))
+      inter_token = self.interfaces[inter_nw]["token"]
+      keys_inter.append((inter_nw, "inter", inter_token))
+
 
     return keys_networks, keys_intra, keys_inter
 
@@ -405,35 +411,50 @@ class OntologyContainer():
     list of nodes per network (dynamics|nature)
     list of arcs per network (
     """
-    nodeObjects = {}
-    arcObjects = {}
-    for nw in self.networks:
-      nodeObjects[nw] = set()
-      arcObjects[nw] = set()
+    nodeObjects_on_networks = {}
+    setNodeObjects = set()
+    arcObjects_on_networks = {}
+    setArcObjects = set()
+    for nw in self.networks+self.interconnection_networks: # + self.intraconnection_networks:
+      nodeObjects_on_networks[nw] = set()
+      arcObjects_on_networks[nw] = set()
 
-    for nw,component,a,nature,token in self.object_key_list_networks:
+    for nw, component, a, nature, token in self.object_key_list_networks:
       if component == "node":
         dynamics = a
-        dummy = TEMPLATE_NODE_OBJECT%(dynamics,nature)
-        nodeObjects[nw].add(dummy)
+        dummy = TEMPLATE_NODE_OBJECT % (dynamics, nature)
+        nodeObjects_on_networks[nw].add(dummy)
+        setNodeObjects.add(dummy)
 
       elif component == "arc":
         mechanism = a
-        dummy = TEMPLATE_ARC_APPLICATION%(token,mechanism,nature)
-        arcObjects[nw].add(dummy)
+        dummy = TEMPLATE_ARC_APPLICATION % (token, mechanism, nature)
+        arcObjects_on_networks[nw].add(dummy)
+        setArcObjects.add(dummy)
 
-    listNodeObjects = {}
-    for nw in nodeObjects:
-      listNodeObjects[nw] = sorted(nodeObjects[nw])
-
-
-    listArcObjects = {}
-    for nw in arcObjects:
-      listArcObjects[nw] = sorted(arcObjects[nw])
+    # for nw, nature, token in self.object_key_list_intra:
+    #   dummy = TEMPLATE_INTRA_NODE_OBJECT % (nature)
+    #   nodeObjects_on_networks[nw].add(dummy)
+    #   setNodeObjects.add(dummy)
+    #   pass
 
 
-    return listNodeObjects, listArcObjects
+    for nw, nature, token in self.object_key_list_inter:
+      dummy = TEMPLATE_INTER_NODE_OBJECT % (nature, token)
+      nodeObjects_on_networks[nw].add(dummy)
+      setNodeObjects.add(dummy)
+      setArcObjects.add(dummy)
+      pass
 
+    listNodeObjects_on_networks = {}
+    for nw in nodeObjects_on_networks:
+      listNodeObjects_on_networks[nw] = sorted(nodeObjects_on_networks[nw])
+
+    listArcObjects_on_networks = {}
+    for nw in arcObjects_on_networks:
+      listArcObjects_on_networks[nw] = sorted(arcObjects_on_networks[nw])
+
+    return listNodeObjects_on_networks, listArcObjects_on_networks, sorted(setNodeObjects), sorted(setArcObjects)
 
   ########################
 
@@ -565,7 +586,8 @@ class OntologyContainer():
       variable_types[cnw] = {}
       nw_left = self.intraconnection_network_dictionary[cnw]["left"]
       nw_right = self.intraconnection_network_dictionary[cnw]["right"]
-      variable_types[cnw] = sorted(set(self.variable_types_on_networks[nw_left]) | set(self.variable_types_on_networks[nw_right]))
+      variable_types[cnw] = sorted(
+              set(self.variable_types_on_networks[nw_left]) | set(self.variable_types_on_networks[nw_right]))
 
     return variable_types
 
@@ -823,8 +845,9 @@ class OntologyContainer():
       return self.__readVariablesEquationFile(variable_record_filter, variables_f_name)
 
     # shift from version 7 to version 8
-    elif  OS.path.exists(variables_f_name_v7):
-      variables, indices, variable_record_filter, version, ProMoIRI = self.__readVariablesEquationFile(variable_record_filter, variables_f_name_v7)
+    elif OS.path.exists(variables_f_name_v7):
+      variables, indices, variable_record_filter, version, ProMoIRI = self.__readVariablesEquationFile(
+              variable_record_filter, variables_f_name_v7)
       for ID in variables:
         if len(variables[ID]["equations"].keys()) == 0:
           variables[ID]["port_variable"] = True
@@ -835,6 +858,8 @@ class OntologyContainer():
 
     else:
       msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty " \
+            "" \
+            "" \
             "" \
             "variable file"
 
