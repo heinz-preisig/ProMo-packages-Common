@@ -460,6 +460,11 @@ OBJECTS_changing_position = [NAMES["node"],
 
 OBJECTS_colour_defined_separate = [NAMES["network"], NAMES["named_network"]]
 
+class GraphObject():
+  def __init__(self, **kwargs):
+    self.__dict__ = kwargs
+
+
 
 class GraphDataObjects(OrderedDict):
   """
@@ -477,8 +482,10 @@ class GraphDataObjects(OrderedDict):
 
    """
 
-  def __init__(self, application_node_types, application_arc_types):
+  def __init__(self, dict_application_node_types,
+                          application_arc_types):
 
+    print("debugging")
     for phase in PHASES:
       self[phase] = {}
       for graphics_object in GRAPHICS_OBJECTS:
@@ -489,30 +496,49 @@ class GraphDataObjects(OrderedDict):
           self[phase][graphics_object][decoration] = {}
           # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
           if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
-            if graphics_object in NODES:
-              # RULE : constrain once more
-              if graphics_object in OBJECTS_with_application:
-                applications = application_node_types
-              else:
-                applications = M_None
+            print("debugging -- object with state", graphics_object, decoration)
+            pass
+            if graphics_object != NAMES["connection"]:
+              applications = dict_application_node_types[graphics_object]
               for application in applications:
-                self[phase][graphics_object][decoration][application] = {}
-
+                self[phase][graphics_object][decoration][application]={}
                 states = STATES[phase]["nodes"]
                 for state in states:
                   self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
             else:
-              # RULE : constrain once more
-              if graphics_object in OBJECTS_with_application:
-                applications = application_arc_types
-              else:
-                applications = M_None
-              for application in applications:
+              for application in application_arc_types:
                 self[phase][graphics_object][decoration][application] = {}
                 states = STATES[phase]["arcs"]
 
                 for state in states:
                   self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
+
+
+
+            # if graphics_object == NAMES["node"]:
+              # RULE : constrain once more
+            #   if graphics_object in OBJECTS_with_application:
+            #     # applications = application_node_types
+            #   else:
+            #     applications = M_None
+            #   for application in applications:
+            #     self[phase][graphics_object][decoration][application] = {}
+            #
+            #     states = STATES[phase]["nodes"]
+            #     for state in states:
+            #       self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
+            # else:
+            #   # RULE : constrain once more
+            #   if graphics_object in OBJECTS_with_application:
+            #     applications = application_arc_types
+            #   else:
+            #     applications = M_None
+            #   for application in applications:
+            #     self[phase][graphics_object][decoration][application] = {}
+            #     states = STATES[phase]["arcs"]
+            #
+            #     for state in states:
+            #       self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
           else:
             application = M_None
             state = M_None
@@ -520,7 +546,6 @@ class GraphDataObjects(OrderedDict):
             self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
 
             # print(self)
-
 
     # super().__init__()
     # for phase in PHASES:
@@ -566,14 +591,19 @@ class GraphDataObjects(OrderedDict):
     #         # print(self)
 
   def setData(self, what, value, phase, root_object, decoration, application, state):
+    if what != "actioon":
+      state = STATE_OBJECT_COLOURED  #RULE: only one state indicates the state
     print(
-      "put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, value : %s"
-      % (phase, root_object, decoration, application, state, what, value))
+            "put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
+            "value : %s"
+            % (phase, root_object, decoration, application, state, what, value))
     self[phase][root_object][decoration][application][state][what] = value
     print(
-      "did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
-      "value: %s"
-      % (phase, root_object, decoration, application, state, what, value))
+            "did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
+            "value: %s"
+            % (phase, root_object, decoration, application, state, what, value))
+    if what == "action":
+      print("debugging seting actions")
 
   def getData(self, phase, root_object, decoration, application, state):
     # if phase == "topology":
@@ -600,9 +630,11 @@ class GraphDataObjects(OrderedDict):
     #   except:
     #     print("fixing") #event|distributed
     #     if application == "event|distributed":
-    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration]["event|lumped"])
+    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration][
+    #       "event|lumped"])
     #     elif application == "event|lumped":
-    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration]["event|distributed"])
+    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration][
+    #       "event|distributed"])
     #
     #   try:
     #     print("state       : ", state)
@@ -625,8 +657,8 @@ class GraphDataObjects(OrderedDict):
 
     if phase == M_any:
       phase = DEFAULT_PHASE
-    if application not in self[phase][root_object][decoration]:
-      application = M_None
+    # if application not in self[phase][root_object][decoration]:
+    #   application = M_None
     if state not in self[phase][root_object][decoration][application]:
       state = M_None
 
@@ -757,11 +789,24 @@ class GraphDataObjects(OrderedDict):
     return graphics_root_object, decoration, a, s
 
 
-def getGraphData(networks, connection_networks, application_node_types, application_arcs_types, tokens,
+def getGraphData(networks,
+                 list_interconnection_networks,
+                 list_intraconnection_networks,
+                 list_NetworkNodeObjects,
+                 list_IntraNodeObjects,
+                 list_InterNodeObjects,
+                 list_arcObjects,
+                 tokens,
                  graph_resource_file_spec):
   # get graph data
-  DATA = GraphDataObjects(application_node_types, application_arcs_types)
-  NETWORK = NetworkDataObjects(networks, connection_networks)
+  dict_application_node_types = {NAMES["node"] : list_NetworkNodeObjects,
+          NAMES["intraface"] : list_IntraNodeObjects,
+          NAMES["interface"] : list_InterNodeObjects}
+
+  application_arc_types = list_arcObjects
+  DATA = GraphDataObjects(dict_application_node_types,
+                          application_arc_types)
+  NETWORK = NetworkDataObjects(networks, list_interconnection_networks)
   TOKENS = TokenDataObjects(tokens)
   STATE_colours_set = set()
   for phase in STATES:
@@ -798,7 +843,7 @@ def getGraphData(networks, connection_networks, application_node_types, applicat
       NETWORK.update(data_dict["networks"])
     delete_me = set()
     for nw in NETWORK:
-      if (nw in networks) or (nw in connection_networks):
+      if (nw in networks) or (nw in list_interconnection_networks):
         pass
       else:
         delete_me.add(nw)

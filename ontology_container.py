@@ -269,11 +269,12 @@ class OntologyContainer():
     self.ontology_hiearchy = self.__makeOntologyHierarchy()  # ...................constructs hierarchy network labels
     self.networks = walkBreathFirstFnc(self.ontology_tree, "root")
 
-    self.leave_networks_list = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
+    self.list_leave_networks = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
     self.interconnection_network_dictionary, \
     self.intraconnection_network_dictionary = self.__makeConnectionNetworks()  # ...... dict(connection network) of dict
-    self.interconnection_networks = sorted(self.interconnection_network_dictionary.keys())
-    self.intraconnection_networks = sorted(self.intraconnection_network_dictionary.keys())
+
+    self.list_interconnection_networks = sorted(self.interconnection_network_dictionary.keys())
+    self.list_intraconnection_networks = sorted(self.intraconnection_network_dictionary.keys())
     """ 
        variable_types_on_networks: dict
          #<networks>
@@ -325,9 +326,9 @@ class OntologyContainer():
     self.list_nodeObjects_in_networks, \
     self.list_nodeObjects_in_intra_networks, \
     self.list_nodeObjects_in_inter_networks, \
-    self.listNetworkNodeObjects, \
-    self.listIntraNodeObjects, \
-    self.listInterNodeObjects, \
+    self.list_NetworkNodeObjects, \
+    self.list_IntraNodeObjects, \
+    self.list_InterNodeObjects, \
     self.list_arcObjects = self.__makeNodeObjectList()
 
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
@@ -429,11 +430,11 @@ class OntologyContainer():
       nodeObjects_on_networks[nw] = set()
       arcObjects_on_networks[nw] = set()
 
-    for nw in self.intraconnection_networks:
+    for nw in self.list_intraconnection_networks:
       nodeObjects_on_intra_networks[nw] = set()
       arcObjects_on_networks[nw] = set()
 
-    for nw in self.interconnection_networks:
+    for nw in self.list_interconnection_networks:
       nodeObjects_on_inter_networks[nw] = set()
       arcObjects_on_networks[nw] = set()
 
@@ -528,7 +529,7 @@ class OntologyContainer():
 
     intraconnectionNetworks = {}  # OrderedDict()
     interconnectionNetworks = {}  # OrderedDict()
-    network_leaves = self.leave_networks_list
+    network_leaves = self.list_leave_networks
     n_leaves = len(network_leaves)
     for i in range(0, n_leaves):
       for j in range(i + 1, n_leaves):
@@ -691,7 +692,7 @@ class OntologyContainer():
     :return: list of node types
     """
     s = []
-    for nw in self.leave_networks_list:
+    for nw in self.list_leave_networks:
       s.extend(list(self.ontology_tree[nw]["structure"]["node"].keys()))
     node_type_list = list(set(s))
     node_type_list.sort()
@@ -699,7 +700,7 @@ class OntologyContainer():
 
   def __makeArcTypesList(self):
     arcs = self.__makeArcTypesInLeaveNetworksDictCoded()
-    leave_nws = self.leave_networks_list
+    leave_nws = self.list_leave_networks
     all_arcs = []
     for nw in leave_nws:
       all_arcs.extend(arcs[nw])
@@ -709,7 +710,7 @@ class OntologyContainer():
 
   def __makeNodeTypesInNetworksDict(self):
     # RULE: this is a generation rule for graph objects nodes
-    leave_nws = self.leave_networks_list
+    leave_nws = self.list_leave_networks
     nodetypes = OrderedDict()
     for nw in leave_nws:
       nodetypes[nw] = list(self.ontology_tree[nw]["structure"]["node"].keys())
@@ -721,7 +722,7 @@ class OntologyContainer():
     # RULE: continue -- current approach hard wired the term 'transport'
 
     arcs = {}
-    for nw in self.leave_networks_list:
+    for nw in self.list_leave_networks:
       arcs_in_network = []
       for token in self.ontology_tree[nw]["structure"]["arc"]:
         for mechanism in self.ontology_tree[nw]["structure"]["arc"][token]:
@@ -765,7 +766,7 @@ class OntologyContainer():
 
   def __makeArcTypeDictionary(self):
     arc_type_dict = {}
-    for nw in self.leave_networks_list:
+    for nw in self.list_leave_networks:
       arc_type_dict[nw] = {}
       for token in list(self.ontology_tree[nw]["structure"]["arc"].keys()):
         arc_type_dict[nw][token] = {}
