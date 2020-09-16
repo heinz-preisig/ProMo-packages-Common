@@ -591,8 +591,9 @@ class GraphDataObjects(OrderedDict):
     #         # print(self)
 
   def setData(self, what, value, phase, root_object, decoration, application, state):
-    if what != "actioon":
-      state = STATE_OBJECT_COLOURED  #RULE: only one state indicates the state
+    if what != "action":
+      if state != M_None:
+        state = STATE_OBJECT_COLOURED  #RULE: only one state indicates the state
     print(
             "put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
             "value : %s"
@@ -657,8 +658,8 @@ class GraphDataObjects(OrderedDict):
 
     if phase == M_any:
       phase = DEFAULT_PHASE
-    # if application not in self[phase][root_object][decoration]:
-    #   application = M_None
+    if application not in self[phase][root_object][decoration]:
+      application = M_None
     if state not in self[phase][root_object][decoration][application]:
       state = M_None
 
