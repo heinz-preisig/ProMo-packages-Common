@@ -34,7 +34,7 @@ ICONS["save"] = "save_button_hap.png"
 ICONS["port"] = "port_button_hap.png"
 ICONS["dependent_variable"] = "dependent_new_button.svg"
 
-size = 60
+size = 52
 BUTTON_ICON_SIZE = QtCore.QSize(size, size)
 round = 'border-radius: %spx; ' % (size / 2)
 BUTTON_ICON_STYLE_ROUND = 'background-color: white; '
