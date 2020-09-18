@@ -432,6 +432,8 @@ DECORATIONS_with_state = ["root",
                           # "head",
                           # "tail"
                           ]
+DECORATIONS_with_application = ["root"]
+
 OBJECTS_with_application = [NAMES["node"],
                             NAMES["connection"],
                             NAMES["interface"],
@@ -496,7 +498,7 @@ class GraphDataObjects(OrderedDict):
           self[phase][graphics_object][decoration] = {}
           # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
           if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
-            print("debugging -- object with state", graphics_object, decoration)
+            # print("debugging -- object with state", graphics_object, decoration)
             pass
             if graphics_object != NAMES["connection"]:
               applications = dict_application_node_types[graphics_object]
@@ -545,7 +547,7 @@ class GraphDataObjects(OrderedDict):
             self[phase][graphics_object][decoration][application] = {}
             self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
 
-            # print(self)
+    # print("active objects", self)
 
     # super().__init__()
     # for phase in PHASES:
@@ -656,12 +658,24 @@ class GraphDataObjects(OrderedDict):
       data = IndicatorText()
       return data
 
+
     if phase == M_any:
       phase = DEFAULT_PHASE
+
+    # if root_object not in OBJECTS_with_application:
+    #   application = M_None
+    # elif decoration not in DECORATIONS_with_application:
+    #   application = M_None
+    if root_object not in OBJECTS_with_state:
+      state = M_None
+    elif decoration not in DECORATIONS_with_state:
+        state = M_None
+
+
     if application not in self[phase][root_object][decoration]:
       application = M_None
-    if state not in self[phase][root_object][decoration][application]:
-      state = M_None
+    # if state not in self[phase][root_object][decoration][application]:
+    #   state = M_None
 
     return self[phase][root_object][decoration][application][state]
 
@@ -762,6 +776,9 @@ class GraphDataObjects(OrderedDict):
     active_objects = self[phase]
     a = M_None
     s = M_None
+
+    if graphics_root_object == "node_intraface":
+      print("debugging -- intraface")
 
     if graphics_root_object in active_objects:
       if decoration in active_objects[graphics_root_object]:

@@ -148,7 +148,7 @@ def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit
   model_names = __getSortedDirList(model_library_location)
 
   model_name, status = selectFromList("choose model", model_names, left_icon=left_icon, right_icon=right_icon)
-  print("debugging -- ask for model name", model_name, status)
+  # print("debugging -- ask for model name", model_name, status)
 
   if (not model_name) and (not status):
     sys.exit()
