@@ -671,11 +671,19 @@ class GraphDataObjects(OrderedDict):
     elif decoration not in DECORATIONS_with_state:
         state = M_None
 
-
-    if application not in self[phase][root_object][decoration]:
-      application = M_None
     # if state not in self[phase][root_object][decoration][application]:
     #   state = M_None
+
+    if root_object not in OBJECTS_with_application:
+      application = M_None
+    else:
+      if decoration not in DECORATIONS_with_application:
+        application = M_None
+
+    #Note: safety valve:
+    if application not in self[phase][root_object][decoration]:
+      application = M_None
+      print(" warning >>> should not come here")
 
     return self[phase][root_object][decoration][application][state]
 

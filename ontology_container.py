@@ -460,11 +460,15 @@ class OntologyContainer():
       setNodeObjects_on_intra_networks.add(dummy)
       pass
 
+    print("debugging")
 
     for nw, nature, token in self.object_key_list_inter:
-      dummy = TEMPLATE_INTER_NODE_OBJECT % (nature, token)
+      dummy = TEMPLATE_INTER_NODE_OBJECT % (nature)
       nodeObjects_on_inter_networks[nw].add(dummy)
       setNodeObjects_on_inter_networks.add(dummy)
+      mechanism = self.interfaces[nw]["mechanism"]
+      nature = self.interfaces[nw]["nature"]
+      dummy = TEMPLATE_ARC_APPLICATION % (token, mechanism, nature)
       setArcObjects.add(dummy)
       pass
 
@@ -738,9 +742,11 @@ class OntologyContainer():
 
     for cnw in self.interconnection_network_dictionary:  # NOTE: the token is the same for all interfaces
       arcs_in_network = []
-      inter_token = self.interfaces[cnw]["token"]
       # RULE: fixed wired connection from and to interface
-      arcs_in_network.append(TEMPLATE_ARC_APPLICATION % (inter_token, "auto", "unidirectional"))
+      inter_token = self.interfaces[cnw]["token"]
+      mechanism = self.interfaces[cnw]["mechanism"]
+      nature = self.interfaces[cnw]["nature"]
+      arcs_in_network.append(TEMPLATE_ARC_APPLICATION % (inter_token, mechanism, nature))
       arcs[cnw] = sorted(set(arcs_in_network))
 
     return arcs  # arc_type_list
