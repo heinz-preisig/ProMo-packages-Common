@@ -41,12 +41,15 @@ class UI_RadioSelector(QtWidgets.QDialog):
     self.ui = Ui_Form()
     self.ui.setupUi(self)
     self.radioButton = {}
-    self.setup()
 
-  def setup(self):
-    active_radios = self.checked
-    if len(active_radios) < self.allowed:
-      active_radios = self.radios
+    self.setup(initialise=True)
+
+  def setup(self, initialise=False):
+    active_radios = self.radios #checked
+    if not initialise:
+      active_radios = self.checked
+      if len(active_radios) < self.allowed:
+        active_radios = self.radios
 
     max_width = 0
     height_offset = 40  # offset for bar etc
