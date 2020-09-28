@@ -31,7 +31,7 @@ class UI_RadioSelector(QtWidgets.QDialog):
     '''
     Constructor
     '''
-    print(radios)
+    # print("debugging -- radios", radios)
     self.radios = radios
     self.checked = checked
     self.allowed = allowed

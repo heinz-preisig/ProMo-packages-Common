@@ -487,7 +487,7 @@ class GraphDataObjects(OrderedDict):
   def __init__(self, dict_application_node_types,
                           application_arc_types):
 
-    print("debugging")
+    # print("debugging")
     for phase in PHASES:
       self[phase] = {}
       for graphics_object in GRAPHICS_OBJECTS:

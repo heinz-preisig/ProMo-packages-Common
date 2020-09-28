@@ -484,7 +484,7 @@ class OntologyContainer():
 
       pass
 
-    print("debugging")
+    # print("debugging")
 
     for nw, nature, token in self.object_key_list_inter:
       dummy = TEMPLATE_INTER_NODE_OBJECT % (nature)
@@ -621,7 +621,7 @@ class OntologyContainer():
     nodes = walkBreathFirstFnc(self.ontology_tree, "root")
 
     for n in nodes:
-      print("debugging -- node", n)
+      # print("debugging -- node", n)
       last = n
       if self.ontology_tree[n]["type"] == "inter":
         children = self.ontology_tree[n]["children"]
@@ -642,7 +642,7 @@ class OntologyContainer():
       elif self.ontology_tree[last]["type"] == "inter":
         interbranches.append(last)
 
-    print("debugging -- end interbranches", interbranches)
+    # print("debugging -- end interbranches", interbranches)
     return interbranches
 
 
