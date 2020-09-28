@@ -270,11 +270,16 @@ class OntologyContainer():
     self.networks = walkBreathFirstFnc(self.ontology_tree, "root")
 
     self.list_leave_networks = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
+
+    self.list_inter_branches = self.__makeListInterBranches()
+
     self.interconnection_network_dictionary, \
     self.intraconnection_network_dictionary = self.__makeConnectionNetworks()  # ...... dict(connection network) of dict
 
     self.list_interconnection_networks = sorted(self.interconnection_network_dictionary.keys())
     self.list_intraconnection_networks = sorted(self.intraconnection_network_dictionary.keys())
+
+
     """ 
        variable_types_on_networks: dict
          #<networks>
@@ -293,7 +298,7 @@ class OntologyContainer():
     """
 
     self.variable_types_on_networks, \
-    self.variable_types_on_networks_per_component = self.__makeVariableTypeLists()  # TODO: per_component is not used
+    self.variable_types_on_networks_per_component = self.__makeVariableTypeListsNetworks()  # TODO: per_component is not used
 
     self.__setupInterfaces()
 
@@ -323,10 +328,11 @@ class OntologyContainer():
     # self.node_types_in_leave_networks_list_coded = self.__makeNodeTypesInLeaveNetworksDictCoded()
 
     self.list_node_objects_on_networks, \
-    self.list_node_objects_on_intra_networks_with_token, \
+    self.list_node_objects_on_networks_with_tokens, \
     self.list_node_objects_on_intra_networks, \
     self.list_node_objects_on_intra_networks_with_token, \
     self.list_node_objects_on_inter_networks, \
+    self.list_arc_objects_on_networks,\
     self.list_network_node_objects, \
     self.list_network_node_objects_with_token, \
     self.list_intra_node_objects, \
@@ -491,10 +497,10 @@ class OntologyContainer():
       pass
 
     list_node_objects_on_networks = {}
-    listNodeObjects_on_networks_with_tokens = {}
+    list_node_objects_on_networks_with_tokens = {}
     for nw in nodeObjects_on_networks:
       list_node_objects_on_networks[nw] = sorted(nodeObjects_on_networks[nw])
-      listNodeObjects_on_networks_with_tokens[nw] = sorted(nodeObjects_on_networks_with_token[nw])
+      list_node_objects_on_networks_with_tokens[nw] = sorted(nodeObjects_on_networks_with_token[nw])
 
     list_node_objects_on_intra_networks = {}
     list_node_objects_on_intra_networks_with_token = {}
@@ -506,16 +512,17 @@ class OntologyContainer():
     for nw in nodeObjects_on_inter_networks:
       list_node_objects_on_inter_networks[nw] = sorted(nodeObjects_on_inter_networks[nw])
 
-    listArcObjects_on_networks = {}
+    list_arc_objects_on_networks = {}
     for nw in arcObjects_on_networks:
-      listArcObjects_on_networks[nw] = sorted(arcObjects_on_networks[nw])
+      list_arc_objects_on_networks[nw] = sorted(arcObjects_on_networks[nw])
 
     return \
       list_node_objects_on_networks, \
-      list_node_objects_on_intra_networks_with_token, \
+      list_node_objects_on_networks_with_tokens, \
       list_node_objects_on_intra_networks, \
       list_node_objects_on_intra_networks_with_token, \
       list_node_objects_on_inter_networks, \
+      list_arc_objects_on_networks,\
       sorted(set_node_objects_on_networks), \
       sorted(set_node_objects_on_networks_with_token), \
       sorted(set_node_objects_on_intra_networks), \
@@ -606,7 +613,40 @@ class OntologyContainer():
         leaves.append(self.ontology_tree[domain]["name"])
     return sorted(leaves)
 
-  def __makeVariableTypeLists(self):
+  def __makeListInterBranches(self):
+    """
+    extracts the inter branches from the tree
+    """
+    interbranches = []
+    nodes = walkBreathFirstFnc(self.ontology_tree, "root")
+
+    for n in nodes:
+      print("debugging -- node", n)
+      last = n
+      if self.ontology_tree[n]["type"] == "inter":
+        children = self.ontology_tree[n]["children"]
+        if not children:
+          interbranches.append(n)
+        else:
+          inter = []
+          for c in children:
+            if self.ontology_tree[c]["type"] == "inter":
+              inter.append(1)
+            else:
+              inter.append(0)
+          if 0 in inter:
+            if 1 in inter:
+              print("error -- problems with inter definitions -- mixed branches")
+            else:
+              interbranches.append(last)
+      elif self.ontology_tree[last]["type"] == "inter":
+        interbranches.append(last)
+
+    print("debugging -- end interbranches", interbranches)
+    return interbranches
+
+
+  def __makeVariableTypeListsNetworks(self):
     variable_types_on_networks = {}
     variable_types_on_networks_per_component = {}
 

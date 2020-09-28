@@ -3,32 +3,52 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<title></title>
-	<meta name="generator" content="LibreOffice 6.0.7.3 (Linux)"/>
+	<meta name="generator" content="LibreOffice 6.4.5.2 (Linux)"/>
 	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="2019-05-02T16:21:43.528789217"/>
+	<meta name="changed" content="2020-09-28T09:00:01.380284181"/>
+	<meta name="created" content="00:00:00">
+	<meta name="created" content="00:00:00">
 	<meta name="created" content="00:00:00">
 	<meta name="created" content="00:00:00">
 	<style type="text/css">
-		@page { margin: 0.79in }
-		p { margin-bottom: 0in; line-height: 0.2in; page-break-before: auto; page-break-after: auto }
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { margin-bottom: 0in; background: transparent; line-height: 0.2in; background: transparent; page-break-before: auto; page-break-after: auto }
 		p.cjk { font-size: 10pt }
-		h3.western { font-family: "Albany", sans-serif }
-		h3.cjk { font-family: "AR PL SungtiL GB" }
-		h3.ctl { font-family: "Lohit Devanagari" }
-		a:link { so-language: zxx }
+		h3 { margin-top: 0.1in; margin-bottom: 0.08in; background: transparent; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Albany", sans-serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "AR PL SungtiL GB"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Lohit Devanagari"; font-size: 14pt; font-weight: bold }
+		a:link { color: #000080; so-language: zxx; text-decoration: underline }
+		a:visited { color: #800000; so-language: zxx; text-decoration: underline }
 	</style>
 </head>
-<body lang="en-US" dir="ltr">
-<p class="western" style="margin-bottom: 0.2in; line-height: 100%">This
-editor is in an <b>experimental</b> state</p>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p class="western" style="margin-bottom: 0.2in; line-height: 100%">
+This editor is in an <b>experimental</b> state</p>
 <p class="western" style="margin-bottom: 0.2in; line-height: 100%">When
-started defining a new ontology, the required directory is generated
-and a basic ontology file is loaded. The elements defined in this
-skeleton ontology are used later in the program set. These fixed
-parts are currently <b>not protected</b>.</p>
+started and defining a new ontology, the required directory is
+generated and a basic ontology file is loaded. The elements defined
+in this skeleton ontology are used later in the program set. These
+fixed parts are currently <b>not protected</b>.</p>
+<p class="western" style="margin-bottom: 0.2in; line-height: 100%"><br/>
+<br/>
+
+</p>
+<h3 class="western">Tree structure</h3>
+<p class="western" style="margin-bottom: 0.2in">Branches can be
+related via inter or intra. 
+</p>
+<p class="western" style="margin-bottom: 0.2in">Inter defines the two
+branches to be connected over <b>inter</b><span style="font-weight: normal">faces
+not transferring tokens but information, while intra imposes
+</span><b>intra</b><span style="font-weight: normal">faces
+transferring tokens.</span></p>
+<p class="western" style="margin-bottom: 0.2in"><br/>
+<br/>
+
+</p>
 <h3 class="western" style="line-height: 100%">Section structure</h3>
 <p class="western" style="margin-bottom: 0.2in; line-height: 100%"><b>nodes</b>:
-</p>
+(currently in the initial file)</p>
 <p class="western" style="margin-left: 0.49in; margin-bottom: 0.2in; line-height: 100%">
 root &gt; node &gt; constant &gt; lumped<br/>
 root &gt; node &gt;
@@ -40,9 +60,12 @@ root &gt;
 node &gt; event &gt; distributed</p>
 <p class="western" style="margin-bottom: 0.2in; line-height: 100%"><b>tokens</b>
 :</p>
-<p class="western" style="margin-bottom: 0.2in; line-height: 100%">	for
+<p class="western" style="margin-bottom: 0.2in; line-height: 100%">for
 each token transport a mechanism and a nature <b>must</b> be defined</p>
-<p class="western" style="margin-bottom: 0.2in; line-height: 100%"><b>arcs</b>:</p>
+<p class="western" style="margin-bottom: 0.2in; line-height: 100%"><br/>
+<br/>
+
+</p>
 <h3 class="western" style="line-height: 100%">Section Behaviour</h3>
 <p class="western" style="margin-left: 0.49in; margin-bottom: 0.2in; line-height: 100%">
 <span style="font-weight: normal">graph &gt; network<br/>
@@ -55,10 +78,15 @@ node &gt; state</span></p>
 control defines not only state but also differential state
 (differential_state) 
 </p>
-<h3 class="western">Interface: <span style="font-weight: normal">generic
-behaviour</span></h3>
-<p class="western" style="margin-bottom: 0.2in">behaviour : transform
+<p class="western" style="margin-left: 0.49in; margin-bottom: 0.2in; font-weight: normal; line-height: 100%">
+<br/>
+<br/>
+
 </p>
+<h3 class="western">Interface: 
+</h3>
+<p class="western" style="margin-bottom: 0.2in">behaviour : transform
+– fixed can currently not changed</p>
 <p class="western" style="margin-bottom: 0.2in"><br/>
 <br/>
 

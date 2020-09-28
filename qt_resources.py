@@ -415,4 +415,7 @@ def cleanLayout(layout):
       layout.removeWidget(widgetToRemove)
       # print("remove", widgetToRemove)
       # remove it from the gui
-      widgetToRemove.setParent(None)
+      try:
+        widgetToRemove.setParent(None)
+      except:
+        pass
