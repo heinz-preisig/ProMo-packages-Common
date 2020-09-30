@@ -45,11 +45,16 @@ class UI_RadioSelector(QtWidgets.QDialog):
     self.setup(initialise=True)
 
   def setup(self, initialise=False):
+
     active_radios = self.radios #checked
     if not initialise:
-      active_radios = self.checked
+      # active_radios = self.checked
       if len(active_radios) < self.allowed:
         active_radios = self.radios
+    # else:                                  # Note: cannot get it to fit at the beginning
+    #   s = QtCore.QSize(0,0)
+    #   self.resize(s)
+    #   print("debugging -- resizing 0,0")
 
     max_width = 0
     height_offset = 40  # offset for bar etc
@@ -68,6 +73,7 @@ class UI_RadioSelector(QtWidgets.QDialog):
 
     s = QtCore.QSize(max_width + width_offset, height)
     self.resize(s)
+    # print("debugging -- resizing",max_width + width_offset, height)
 
     self.radioButton = OrderedDict()
 
@@ -85,6 +91,7 @@ class UI_RadioSelector(QtWidgets.QDialog):
       self.radioButton[name].toggle()
     self.radioButton[name].clicked.connect(self.gotClick)
     self.ui.verticalLayout.addWidget(self.radioButton[name])
+
 
   def gotClick(self):
     self.checked = []

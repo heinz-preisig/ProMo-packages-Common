@@ -7,33 +7,33 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Form(object):
-  def setupUi(self, Form):
-    Form.setObjectName("Form")
-    Form.setEnabled(True)
-    Form.resize(676, 1284)
-    self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
-    self.verticalLayout_2.setObjectName("verticalLayout_2")
-    self.scrollArea = QtWidgets.QScrollArea(Form)
-    self.scrollArea.setMinimumSize(QtCore.QSize(10, 30))
-    self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-    self.scrollArea.setWidgetResizable(True)
-    self.scrollArea.setObjectName("scrollArea")
-    self.scrollAreaWidgetContents = QtWidgets.QWidget()
-    self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 656, 1264))
-    self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-    self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
-    self.verticalLayout.setObjectName("verticalLayout")
-    self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-    self.verticalLayout_2.addWidget(self.scrollArea)
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.setEnabled(True)
+        Form.resize(676, 1284)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.scrollArea = QtWidgets.QScrollArea(Form)
+        self.scrollArea.setMinimumSize(QtCore.QSize(10, 30))
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.scrollArea.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 656, 1264))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.addWidget(self.scrollArea)
 
-    self.retranslateUi(Form)
-    QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
-  def retranslateUi(self, Form):
-    _translate = QtCore.QCoreApplication.translate
-    Form.setWindowTitle(_translate("Form", "Form"))
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
