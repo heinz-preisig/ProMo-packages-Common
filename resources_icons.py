@@ -33,6 +33,7 @@ ICONS["dot_graph"] = "dot_graph_button_hap.png"
 ICONS["save"] = "save_button_hap.png"
 ICONS["port"] = "port_button_hap.png"
 ICONS["dependent_variable"] = "dependent_new_button.svg"
+ICONS["variable_show"] = "variable_show_button.svg"
 
 size = 52
 BUTTON_ICON_SIZE = QtCore.QSize(size, size)
