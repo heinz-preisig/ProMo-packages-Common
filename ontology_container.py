@@ -357,6 +357,8 @@ class OntologyContainer():
         def_network = self.indices[i]["network"][0]
         self.indices[i]["network"] = self.heirs_network_dictionary[def_network]
 
+    self.equation_dictionary = self.__makeEquationDictionary()
+
   def __setupInterfaces(self):
     # RULE: by default all variable classes from the left network are available
 
@@ -906,6 +908,15 @@ class OntologyContainer():
                 # print("debugging - found first location of typed token %s in token %s in network %s"%(typed_token,
                 # token, nw))
     return token_definition_nw, typed_token_definition_nw
+
+
+  def __makeEquationDictionary(self):
+    equation_dictionary = {}
+    for var_ID in self.variables:
+      for eq_ID in self.variables[var_ID]["equations"]:
+        equation_dictionary[eq_ID] = self.variables[var_ID]["equations"][eq_ID]
+    return equation_dictionary
+
 
   def writeMe(self):
 
