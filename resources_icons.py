@@ -36,6 +36,7 @@ ICONS["dependent_variable"] = "dependent_new_button.svg"
 ICONS["variable_show"] = "variable_show_button.svg"
 ICONS["delete"] = "delete_button_hap.svg"
 ICONS["reset"] = "reset_button_hap.svg"
+ICONS["equation"] = "quation_button_hap.svg"
 
 size = 52
 BUTTON_ICON_SIZE = QtCore.QSize(size, size)
