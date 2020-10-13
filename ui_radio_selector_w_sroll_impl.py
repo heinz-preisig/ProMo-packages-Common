@@ -48,7 +48,7 @@ class UI_RadioSelector(QtWidgets.QDialog):
 
     active_radios = self.radios #checked
     if not initialise:
-      # active_radios = self.checked
+      active_radios = self.checked
       if len(active_radios) < self.allowed:
         active_radios = self.radios
     # else:                                  # Note: cannot get it to fit at the beginning
