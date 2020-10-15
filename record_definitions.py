@@ -42,7 +42,7 @@ class OntologyContainerFile(dict):  # TODO: integrate typed token conversion int
     super()
     self["version"] = version  # ...................................................................... ontology version
     self["ontology_tree"] = OrderedDict()  # ........domain tree RULE: hand defined should correspond to subtree of EMMO
-    self["interfaces"] = {}  # ................................................................... interface defintions
+    self["interfaces"] = {}  # ................................................................... interface definitions
     self["equation_assignment"] = EquationAssignment()  # ....... object "entity" link to equations - defines behaviour
     self["rules"] = Rules()  # ....................  variable class rules -- port variables
 

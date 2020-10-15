@@ -36,7 +36,7 @@ from Common.common_resources import putData
 from Common.common_resources import putDataOrdered
 from Common.common_resources import saveBackupFile
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
-from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
+from Common.common_resources import TEMPLATE_CONNECTION_NETWORK, CONNECTION_NETWORK_SEPARATOR
 from Common.common_resources import TEMPLATE_INTER_NODE_OBJECT
 from Common.common_resources import TEMPLATE_INTRA_NODE_OBJECT
 from Common.common_resources import TEMPLATE_NODE_OBJECT, TEMPLATE_NODE_OBJECT_WITH_TOKEN, TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN
@@ -245,7 +245,7 @@ class OntologyContainer():
     # NOTE: here we can check for older versions
 
     self.ontology_tree = self.ontology_container["ontology_tree"]
-    self.interfaces = self.ontology_container["interfaces"]
+    # self.interfaces = self.ontology_container["interfaces"]
 
     #
     # if "equation_assignment" in self.ontology_container:
@@ -271,7 +271,7 @@ class OntologyContainer():
 
     self.list_leave_networks = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
 
-    self.list_inter_branches = self.__makeListInterBranches()
+    self.list_inter_branches, self.list_inter_branches_pairs = self.__makeListInterBranches()
 
     self.interconnection_network_dictionary, \
     self.intraconnection_network_dictionary = self.__makeConnectionNetworks()  # ...... dict(connection network) of dict
@@ -362,14 +362,17 @@ class OntologyContainer():
   def __setupInterfaces(self):
     # RULE: by default all variable classes from the left network are available
 
-    for network in self.interconnection_network_dictionary:
+    list_networks = self.list_inter_branches_pairs
+    for network in list_networks:
       if network not in self.interfaces:
-        left_nw = self.interconnection_network_dictionary[network]["left"]
-        right_nw = self.interconnection_network_dictionary[network]["right"]
+        left_nw,right_nw = network.split(CONNECTION_NETWORK_SEPARATOR)
+        # left_nw = list_networks[network]["left"]
+        # right_nw = list_networks[network]["right"]
         left_variable_types = self.variable_types_on_networks[left_nw]
 
         interface = Interface(network, left_nw, right_nw, left_variable_types)
         self.interfaces[network] = interface
+    print("debugging -- interface definitions")
 
   #####################
   def __makeObjectKeyLists(self):
@@ -644,8 +647,20 @@ class OntologyContainer():
       elif self.ontology_tree[last]["type"] == "inter":
         interbranches.append(last)
 
-    # print("debugging -- end interbranches", interbranches)
-    return interbranches
+    interbranch_pairs=[]
+    l = len(interbranches)
+    for i in range(0,l):
+      for j in range(i,l):
+        if i != j:   # Note: interconnections are unidirectional thus we need both ways
+          pair = TEMPLATE_CONNECTION_NETWORK%(interbranches[i], interbranches[j])
+          interbranch_pairs.append(pair)
+          pair = TEMPLATE_CONNECTION_NETWORK%(interbranches[j], interbranches[i])
+          interbranch_pairs.append(pair)
+
+
+    print("debugging -- end interbranches", interbranches)
+    print("debugging -- end interbranch_pairs", interbranch_pairs)
+    return interbranches, interbranch_pairs
 
 
   def __makeVariableTypeListsNetworks(self):
