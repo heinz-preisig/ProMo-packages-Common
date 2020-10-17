@@ -771,11 +771,10 @@ class OntologyContainer():
     d = {}
     for nw in self.networks:
       d[nw] = []
-      for i_nw in self.heirs_network_dictionary[nw]:
-        for inter_nw in self.interfaces: #interconnection_network_dictionary:
-          # if self.interconnection_network_dictionary[inter_nw]["right"] == i_nw:
-          if self.interfaces[inter_nw]["right_network"] == i_nw:
-            d[nw].append(inter_nw)
+      for inter_nw in self.interfaces:
+        right_network = self.interfaces[inter_nw]["right_network"]
+        if nw in self.heirs_network_dictionary[right_network]:
+          d[nw].append(inter_nw)
     return d
 
   def __makeNodeTypesList(self):
