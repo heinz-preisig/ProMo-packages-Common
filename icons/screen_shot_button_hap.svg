@@ -11,9 +11,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:export-ydpi="96"
    inkscape:export-xdpi="96"
-   inkscape:export-filename="/home/heinz/1_Gits/CAM-projects_v8/ProMo/packages/Common/icons/save_button_hap.png"
+   inkscape:export-filename="/home/heinz/1_Gits/CAM-projects_v8/ProMo/packages/Common/icons/port_button.png"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="save_button_hap.svg"
+   sodipodi:docname="screen_shot_button_hap.svg"
    id="svg8"
    version="1.1"
    viewBox="0 0 135.23782 131.40878"
@@ -95,10 +95,13 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:object-nodes="false"
+     inkscape:object-nodes="true"
      inkscape:snap-intersection-paths="true"
      inkscape:snap-global="true"
-     showguides="true">
+     showguides="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-others="false">
     <inkscape:grid
        type="xygrid"
        id="grid911" />
@@ -151,28 +154,22 @@
        id="path833"
        style="opacity:1;vector-effect:none;fill:url(#linearGradient1482);fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:4.31200027;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
     <path
-       style="fill:#97ebff;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 49.885059,168.72084 21.460798,-34.39583 63.526863,34.9035 -21.19353,33.88816 -62.992322,-34.39583 h -0.507677"
-       id="path1445"
+       style="fill:none;stroke:#053f7a;stroke-width:1.96638417;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.96078431;paint-order:markers fill stroke"
+       d="m 60.702052,134.91327 h 20.461111 l 5.321705,-8.20477 25.369952,0.26727 5.5541,7.67023 20.0223,0.26727 V 185.1841 H 60.702052 v -50.27083"
+       id="path827"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="ccccccccc" />
+    <circle
+       style="opacity:1;fill:#fff5f5;fill-opacity:1;fill-rule:nonzero;stroke:#053f7a;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.96078431;paint-order:stroke fill markers"
+       id="path829"
+       cx="99.066635"
+       cy="157.40285"
+       r="14.552083" />
     <path
-       style="fill:#fffdfd;fill-opacity:1;stroke:#000000;stroke-width:0.19049999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 91.822176,162.06099 24.301404,1.38807 -7.98718,-7.98718 29.63484,-29.63484 -9.42927,-9.42927 -29.634844,29.63484 -7.71505,-7.98718 z"
-       id="path863"
+       style="fill:none;stroke:#0a447f;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 71.285385,129.6216 -7.9375,0"
+       id="path831"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccc" />
-    <path
-       style="fill:#098baa;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 50.179191,168.72084 29.104166,-18.52083 63.259593,34.4227 -28.86376,18.49396 z"
-       id="path1443"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
-    <path
-       style="fill:#098baa;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 79.321061,150.21479 5.820833,-3.70417 12.65192,6.88454 -5.772753,3.69879 z"
-       id="path1443-5"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>

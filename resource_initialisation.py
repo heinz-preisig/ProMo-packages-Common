@@ -30,38 +30,39 @@ from Common.pop_up_message_box import makeMessageBox
 # from Common.ui_message_popup_impl import UI_MessagePopUp
 
 FILE_NAMES = {
-      "ontology_file"                   : "ontology.json",
-      "model_file"                      : "model.json",
-      "indices_file"                    : "indices.json",
-      # "rules_file"                      : "rules.json",
-      "variables_file"                  : "variables_v8.json",
-      "variables_file_v6"               : "variables_v6.json",
-      "variables_file_v7"               : "variables_v7.json",
-      "variables_file_v8"               : "variables_v8.json",
-      "variables_initial"               : "variables_initial.json",
-      "equations_file"                  : "equations.json",
-      "typed_tokens_file"               : "typed_tokens.json",
-      "converting_tokens_file"          : "converting_tokens.json",
-      "automata_working"                : "automata_working.json",
-      "automata"                        : "automata_working.json",
-      "graph_objects"                   : "graph_objects.json",
-      "latex_shell_var_equ_doc_command" : "make_documentation.sh",
-      "latex_shell_automata_doc_command": "make_automata_table.sh",
-      "latex_automaton"                 : "automata_tables.tex",
-      "init_nodes"                      : "nodes.json",
-      "init_arcs"                       : "arcs.json",
-      "init_globals"                    : "globals.json",
-      "calculation_sequence"            : "sequence.json",
-      "constants_init_python"           : "constants.py",
-      "networks_python"                 : "networks.py",
-      "simulation_main_python"          : "main.py",
-      "selections_variables"            : "selections.py",
-      "global_variable_identifier"      : "global_variable_identifier.txt",
-      "global_index_identifier"         : "global_index_identifier.txt",
-      "global_equation_identifier"      : "global_equation_identifier.txt",
-      "template_variable"               : "template_variable",
-      "dot_graph_shell"                 : "show_dot_graphs.sh"
-      }
+        "ontology_file"                       : "ontology.json",
+        "model_file"                          : "model.json",
+        "indices_file"                        : "indices.json",
+        # "rules_file"                      : "rules.json",
+        "variables_file"                      : "variables_v8.json",
+        "variables_file_v6"                   : "variables_v6.json",
+        "variables_file_v7"                   : "variables_v7.json",
+        "variables_file_v8"                   : "variables_v8.json",
+        "variables_initial"                   : "variables_initial.json",
+        "equations_file"                      : "equations.json",
+        "typed_tokens_file"                   : "typed_tokens.json",
+        "converting_tokens_file"              : "converting_tokens.json",
+        "automata_working"                    : "automata_working.json",
+        "automata"                            : "automata_working.json",
+        "graph_objects"                       : "graph_objects.json",
+        "latex_shell_var_equ_doc_command"     : "make_documentation.sh",
+        "latex_shell_automata_doc_command"    : "make_automata_table.sh",
+        "latex_automaton"                     : "automata_tables.tex",
+        "init_nodes"                          : "nodes.json",
+        "init_arcs"                           : "arcs.json",
+        "init_globals"                        : "globals.json",
+        "calculation_sequence"                : "sequence.json",
+        "constants_init_python"               : "constants.py",
+        "networks_python"                     : "networks.py",
+        "simulation_main_python"              : "main.py",
+        "selections_variables"                : "selections.py",
+        "global_variable_identifier"          : "global_variable_identifier.txt",
+        "global_index_identifier"             : "global_index_identifier.txt",
+        "global_equation_identifier"          : "global_equation_identifier.txt",
+        "template_variable"                   : "template_variable",
+        "dot_graph_shell"                     : "show_dot_graphs.sh",
+        "variable_assignment_to_entity_object": "variable_assignment_to_entity_object.json"
+        }
 
 EXTENSION_GRAPH_DATA = ".json"
 EXTENSION_AUTOMATA_DATA = ".json"
@@ -73,7 +74,7 @@ DEFAULT_TEMP_MODEL_FILE = "temp"
 JOIN = OS.path.join
 
 DIRECTORIES = {}
-DIRECTORIES["packages"] = JOIN(OS.path.abspath("../packages")) #OS.getcwd()      #OS.path.abspath()
+DIRECTORIES["packages"] = JOIN(OS.path.abspath("../packages"))  # OS.getcwd()      #OS.path.abspath()
 DIRECTORIES["repository_infrastructure"] = JOIN("..", DIRECTORIES["packages"], "Common", "RepositoryInfrastructure")
 DIRECTORIES["ProMo_root"] = OS.path.abspath(JOIN("..", ".."))
 DIRECTORIES["common"] = JOIN(DIRECTORIES["packages"], "Common")
@@ -137,11 +138,11 @@ FILES["ontology_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAM
 FILES["indices_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["indices_file"])  # %ontolgy_name
 # FILES["rules_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["rules_file"])  # %ontology_name
 FILES["global_variable_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                                           FILE_NAMES["global_variable_identifier"]) # %ontology_name
-FILES["global_index_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s" ,
+                                           FILE_NAMES["global_variable_identifier"])  # %ontology_name
+FILES["global_index_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                         FILE_NAMES["global_index_identifier"])  # %ontology_name
-FILES["global_equation_identifier"] = JOIN(DIRECTORIES["ontology_repository"],"%s",
-                                           FILE_NAMES["global_equation_identifier"])# %ontology_name
+FILES["global_equation_identifier"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                           FILE_NAMES["global_equation_identifier"])  # %ontology_name
 
 FILES["variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                FILE_NAMES["variables_file"])  # %ontology_name
@@ -150,11 +151,10 @@ FILES["variables_file_v6"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v6"])  # %ontology_name
 
 FILES["variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                                  FILE_NAMES["variables_file"])  # %ontology_name
+                               FILE_NAMES["variables_file"])  # %ontology_name
 
 FILES["variables_file_v7"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v7"])  # %ontology_name
-
 
 FILES["initial_variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                        FILE_NAMES["variables_initial"])  # %ontology_name
@@ -185,15 +185,18 @@ FILES["automata_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
 FILES["graph_resource_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s", DIRECTORIES["graphobject_resources"],
                                          FILE_NAMES["graph_objects"])  # %ontology_name
 
+FILES["variable_assignment_to_entity_object"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                                     FILE_NAMES["variable_assignment_to_entity_object"])  # %ontology_name
+
 FILES["template_variable"] = JOIN(DIRECTORIES["equation_templates"], FILE_NAMES["template_variable"])
 
 FILES["latex_shell_var_equ_doc_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                                 DIRECTORIES["latex"],
                                                 FILE_NAMES["latex_shell_var_equ_doc_command"])
-FILES["latex_shell_var_equ_doc_command_exec"] = JOIN(DIRECTORIES["latex_resource_location_exec"]%"%s",
+FILES["latex_shell_var_equ_doc_command_exec"] = JOIN(DIRECTORIES["latex_resource_location_exec"] % "%s",
                                                      FILE_NAMES["latex_shell_var_equ_doc_command"])
-FILES["latex_shell_ontology_view_exec"] = JOIN(DIRECTORIES["resource_location"]%"%s",
-                                                     FILE_NAMES["dot_graph_shell"])
+FILES["latex_shell_ontology_view_exec"] = JOIN(DIRECTORIES["resource_location"] % "%s",
+                                               FILE_NAMES["dot_graph_shell"])
 FILES["latex_shell_automata_doc_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                                  DIRECTORIES["latex"],
                                                  FILE_NAMES["latex_shell_automata_doc_command"])
@@ -204,7 +207,7 @@ FILES["OWL_template"] = "template_variables.owl"
 FILES["latex_main"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                            DIRECTORIES["latex"], "main.tex")
 FILES["latex_documentation"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                           DIRECTORIES["latex"], "main.pdf")
+                                    DIRECTORIES["latex"], "main.pdf")
 
 FILES["latex_automaton_resource"] = JOIN(DIRECTORIES["ontology_repository"], "%s", DIRECTORIES["latex"],
                                          "resources", "automata_tables.tex")
@@ -225,7 +228,7 @@ FILES["info_ontology_foundation_second_stage_editor"] = JOIN(DIRECTORIES["common
                                                              "info_ontology_foundation_second_stage_editor.html")
 FILES["info_ontology_design_editor"] = JOIN(DIRECTORIES["common"], "info_ontology_design_editor.html")
 FILES["info_ontology_variable_table"] = JOIN(DIRECTORIES["common"], "info_ontology_variable_table.html")
-FILES["info_index_alias_table"] = JOIN(DIRECTORIES["common"], "info_index_alias_table.html" )
+FILES["info_index_alias_table"] = JOIN(DIRECTORIES["common"], "info_index_alias_table.html")
 FILES["info_variable_alias_table"] = JOIN(DIRECTORIES["common"], "info_variable_alias_table.html")
 
 FILES["ontology_graphs_ps"] = JOIN("%s", DIRECTORIES["ontology_graphs_location"], 'graph__%s.ps')
@@ -275,63 +278,68 @@ FILES["selections_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                      FILE_NAMES[
                                        "selections_variables"])  # %ontology_name, model_name, case_name, language
 
-FILES["coded_equations"] = JOIN("%s", "equations_%s.json") # ontology_location, language
+FILES["coded_equations"] = JOIN("%s", "equations_%s.json")  # ontology_location, language
 
 FILES["icons"] = {
-      "info": JOIN(DIRECTORIES["icon_location"], "info_icon.png")
-      }
+        "info": JOIN(DIRECTORIES["icon_location"], "info_icon.png")
+        }
+
 
 # compilation of rst to html  NOTE: not a good way of doing things -- generate HTML directly with normal editor
 # import docutils.core
 
 # docutils.core.publish_file(
-#       source_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/info_ontology_design_editor.rst",
-#       destination_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/info_ontology_design_editor.html",
+#       source_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common
+#       /info_ontology_design_editor.rst",
+#       destination_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common
+#       /info_ontology_design_editor.html",
 #       writer_name="html")
 
 # docutils.core.publish_file(
-#       source_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/info_ontology_design_editor.rst",
-#       destination_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common/info_ontology_design_editor.tex",
+#       source_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common
+#       /info_ontology_design_editor.rst",
+#       destination_path="/home/heinz/1_Gits/ProcessModeller/ProcessModeller_v7_04/packages/Common
+#       /info_ontology_design_editor.tex",
 #       writer_name="latex")
 
 
 def checkAndFixResources(ontology_name, stage="ontology_stage_1"):
   REQUIRED_DIRECTORIES = [DIRECTORIES["ontology_repository"],
-                          DIRECTORIES["ontology_location"]%ontology_name,
-                          DIRECTORIES["model_library_location"]%ontology_name,
-                          DIRECTORIES["resource_location"]%ontology_name,
-                          DIRECTORIES["automata_location"]%ontology_name,
-                          DIRECTORIES["latex_doc_location"]%ontology_name,
-                          DIRECTORIES["latex_resource_location"]%ontology_name
+                          DIRECTORIES["ontology_location"] % ontology_name,
+                          DIRECTORIES["model_library_location"] % ontology_name,
+                          DIRECTORIES["resource_location"] % ontology_name,
+                          DIRECTORIES["automata_location"] % ontology_name,
+                          DIRECTORIES["latex_doc_location"] % ontology_name,
+                          DIRECTORIES["latex_resource_location"] % ontology_name
                           ]
 
   # touples        #TODO: include all files
   # - first the required file
   # - second the source
   RESOURCE_FILES = {
-        "ontology_stage_1": [(FILES["ontology_file"]%ontology_name,
-                              JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["ontology_file"])
-                              ),
-                             # (FILES["rules_file"]%ontology_name,
-                             #  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
-                             #  ),
-                             ],
-        "ontology_stage_2": [(FILES["converting_tokens_file"]%ontology_name,
-                              JOIN(DIRECTORIES["repository_infrastructure"],
-                                   FILE_NAMES["converting_tokens_file"])
-                              ),
-                             ],
-        }
+          "ontology_stage_1": [(FILES["ontology_file"] % ontology_name,
+                                JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["ontology_file"])
+                                ),
+                               # (FILES["rules_file"]%ontology_name,
+                               #  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
+                               #  ),
+                               ],
+          "ontology_stage_2": [(FILES["converting_tokens_file"] % ontology_name,
+                                JOIN(DIRECTORIES["repository_infrastructure"],
+                                     FILE_NAMES["converting_tokens_file"])
+                                ),
+                               ],
+          }
 
   MUST_HAVE_FILES = {
-        "ontology_stage_1": [],
-        "ontology_stage_2": [FILES["ontology_file"]%ontology_name,
-                             ],
-        "ontology_stage_2": [FILES["ontology_file"]%ontology_name
-                             ],
-        "model_composer"  : [FILES["typed_token_file"]%ontology_name,
-                             ],
-        }
+          "ontology_stage_1": [],
+          "ontology_stage_2": [FILES["ontology_file"] % ontology_name,
+                               ],
+          "ontology_stage_2": [FILES["ontology_file"] % ontology_name
+                               ],
+          "model_composer"  : [FILES["typed_token_file"] % ontology_name,
+                               ],
+          }
 
   if stage == "ontology_stage_1":
 
@@ -342,7 +350,7 @@ def checkAndFixResources(ontology_name, stage="ontology_stage_1"):
 
   for f in MUST_HAVE_FILES[stage]:
     if not OS.path.exists(f):
-      gugus = makeMessageBox("no such file : %s"%f, buttons=[])
+      gugus = makeMessageBox("no such file : %s" % f, buttons=[])
       pass
 
   for r in range(len(RESOURCE_FILES[stage])):

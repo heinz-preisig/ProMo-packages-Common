@@ -786,7 +786,8 @@ class GraphDataObjects(OrderedDict):
     s = M_None
 
     if graphics_root_object == "node_intraface":
-      print("debugging -- intraface")
+      # print("debugging -- intraface")
+      pass
 
     if graphics_root_object in active_objects:
       if decoration in active_objects[graphics_root_object]:

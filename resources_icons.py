@@ -23,20 +23,23 @@ ICONS["task_model_composer"] = "task_model_composer.svg"
 ICONS["task_graphic_objects"] = "task_graphic_objects.svg"
 ICONS["task_entity_generation"] = "task_entity_generation.svg"
 ICONS["task_automata"] = "task_automata.svg"
-ICONS["info"] = "info_button_hap.png"
-ICONS["accept"] = "accept_button_hap.png"
-ICONS["reject"] = "reject_button_hap.png"
-ICONS["back"] = "back_button_hap.png"
-ICONS["new"] = "new_button_hap.png"
-ICONS["compile"] = "compile_button_hap.png"
-ICONS["dot_graph"] = "dot_graph_button_hap.png"
-ICONS["save"] = "save_button_hap.png"
-ICONS["port"] = "port_button_hap.png"
+ICONS["info"] = "info_button_hap.svg"
+ICONS["accept"] = "accept_button_hap.svg"
+ICONS["reject"] = "reject_button_hap.svg"
+ICONS["back"] = "back_button_hap.svg"
+ICONS["new"] = "new_button_hap.svg"
+ICONS["compile"] = "compile_button_hap.svg"
+ICONS["dot_graph"] = "dot_graph_button_hap.svg"
+ICONS["save"] = "save_button_hap.svg"
+ICONS["port"] = "port_button_hap.svg"
 ICONS["dependent_variable"] = "dependent_new_button.svg"
 ICONS["variable_show"] = "variable_show_button.svg"
 ICONS["delete"] = "delete_button_hap.svg"
 ICONS["reset"] = "reset_button_hap.svg"
 ICONS["equation"] = "quation_button_hap.svg"
+ICONS["schnipsel"] = "schnipsel_button_hap.svg"
+ICONS["screen_shot"] = "screen_shot_button_hap.svg"
+ICONS["save_as"] = "save_as_button_hap.svg"
 
 size = 52
 BUTTON_ICON_SIZE = QtCore.QSize(size, size)
@@ -51,6 +54,7 @@ BUTTON_ICON_STYLE_ROUND += 'padding: 6px;'
 
 
 def roundButton(button, what, tooltip=None):
+  button.setText("")
   button.setFixedSize(BUTTON_ICON_SIZE)
   button.setIcon(getIcon(what))
   button.setStyleSheet(BUTTON_ICON_STYLE_ROUND)

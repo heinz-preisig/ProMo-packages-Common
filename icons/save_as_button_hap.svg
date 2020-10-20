@@ -13,7 +13,7 @@
    inkscape:export-xdpi="96"
    inkscape:export-filename="/home/heinz/1_Gits/CAM-projects_v8/ProMo/packages/Common/icons/save_button_hap.png"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="save_button_hap.svg"
+   sodipodi:docname="save_as_button_hap.svg"
    id="svg8"
    version="1.1"
    viewBox="0 0 135.23782 131.40878"
@@ -86,8 +86,8 @@
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="120.73289"
-     inkscape:cx="7.5719475"
+     inkscape:cy="209.44798"
+     inkscape:cx="165.54405"
      inkscape:zoom="0.98994951"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -169,10 +169,70 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:#098baa;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#098baa;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 79.321061,150.21479 5.820833,-3.70417 12.65192,6.88454 -5.772753,3.69879 z"
        id="path1443-5"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
+    <g
+       id="g915"
+       transform="matrix(0.2592829,0.14969705,-0.11829819,0.20489848,72.169715,120.11246)">
+      <rect
+         transform="matrix(0.5,-0.8660254,0.38146678,0.92438255,0,0)"
+         y="209.7392"
+         x="22.235643"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+      <rect
+         transform="matrix(-0.5,-0.8660254,-0.38146678,0.92438255,0,0)"
+         y="-29.863777"
+         x="-233.11131"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       id="g915-1"
+       transform="matrix(0.2592829,0.14969705,-0.11829819,0.20489848,87.69821,129.19962)">
+      <rect
+         transform="matrix(0.5,-0.8660254,0.38146678,0.92438255,0,0)"
+         y="209.7392"
+         x="22.235643"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8-7"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+      <rect
+         transform="matrix(-0.5,-0.8660254,-0.38146678,0.92438255,0,0)"
+         y="-29.863777"
+         x="-233.11131"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8-1-5"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       id="g915-4"
+       transform="matrix(0.2592829,0.14969705,-0.11829819,0.20489848,102.21,137.61794)">
+      <rect
+         transform="matrix(0.5,-0.8660254,0.38146678,0.92438255,0,0)"
+         y="209.7392"
+         x="22.235643"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8-17"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+      <rect
+         transform="matrix(-0.5,-0.8660254,-0.38146678,0.92438255,0,0)"
+         y="-29.863777"
+         x="-233.11131"
+         height="16.691875"
+         width="60.854164"
+         id="rect856-8-1-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#022872;stroke-width:2.88120198;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
   </g>
 </svg>
