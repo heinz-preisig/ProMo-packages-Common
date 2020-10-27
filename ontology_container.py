@@ -358,6 +358,7 @@ class OntologyContainer():
         self.indices[i]["network"] = self.heirs_network_dictionary[def_network]
 
     self.equation_dictionary = self.__makeEquationDictionary()
+    self.equation_variable_dictionary = self.__makeEquationVariableDictionary()
 
   def __setupInterfaces(self):
     # RULE: by default all variable classes from the left network are available
@@ -936,6 +937,13 @@ class OntologyContainer():
         equation_dictionary[eq_ID] = self.variables[var_ID]["equations"][eq_ID]
     return equation_dictionary
 
+
+  def __makeEquationVariableDictionary(self):
+    equation_variable_dictionary ={}
+    for var_ID in self.variables:
+      for eq_ID in self.variables[var_ID]["equations"]:
+        equation_variable_dictionary[eq_ID] = (var_ID, self.variables[var_ID]["equations"][eq_ID])
+    return equation_variable_dictionary
 
   def writeMe(self):
 
