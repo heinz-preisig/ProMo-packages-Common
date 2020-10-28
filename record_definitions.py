@@ -42,8 +42,7 @@ class OntologyContainerFile(dict):  # TODO: integrate typed token conversion int
     super()
     self["version"] = version  # ...................................................................... ontology version
     self["ontology_tree"] = OrderedDict()  # ........domain tree RULE: hand defined should correspond to subtree of EMMO
-    self["interfaces"] = {}  # ................................................................... interface definitions
-    self["equation_assignment"] = EquationAssignment()  # ....... object "entity" link to equations - defines behaviour
+    self["interfaces"] = {}
     self["rules"] = Rules()  # ....................  variable class rules -- port variables
 
 
@@ -111,7 +110,18 @@ class RecordEquation_6(dict):  # TODO: obsolete once Tobias is finished
 
 
 class EquationAssignment(dict):  # defines / controls entity definition
-  pass
+  def __init__(self, tree=None, buddies=None):
+    super().__init__()
+    self = {
+          "tree"   : tree,  # ObjectTree dict
+                              # keys: IDs  : list of variable_# and equation_#
+                                    # nodes: dictionary
+                                   # keys:
+                                              # IDs to entry in tree
+                                #
+          "buddies": buddies,  # buddies
+          }
+    print("gotten here", self)
 
 
 class Rules(dict):

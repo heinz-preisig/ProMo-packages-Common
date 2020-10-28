@@ -256,7 +256,6 @@ class OntologyContainer():
     #         "arc"      : {},
     #         "interface": {},
     #         }
-    self.equation_assignment = self.ontology_container["equation_assignment"]
 
     # file = FILES["rules_file"] % ontology_name
     self.rules = self.ontology_container["rules"]  #
