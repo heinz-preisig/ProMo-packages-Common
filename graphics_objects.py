@@ -56,7 +56,7 @@ NAMES = {
         "head"                 : "head",
         "token"                : "token",
         "indicator token"      : "indicator_dot",  # indicators for tokens
-        "indicator typed token": "indicator_text"  # indicators for typed_tokens
+        "indicator typed token": "indicator_text",  # indicators for typed_tokens
         }
 
 LOCATION_PARAMETERS = {
