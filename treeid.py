@@ -85,7 +85,7 @@ def invertDict(dictionary):
 #   return nodes
 
 
-class ObjectTree:
+class ObjectTree(dict):
   """
   requires unique tags
   """
@@ -95,12 +95,13 @@ class ObjectTree:
     starts a tagged tree
     :param root: name of the root -- string
     """
+    super().__init__()
     _nodeID = 0
-    self.tree = Tree(_nodeID)
-    self.nodes = {
+    self["tree"] = Tree(_nodeID)
+    self["nodes"] = {
             _nodeID: root
             }
-    self.IDs = {
+    self["IDs"] = {
             root: _nodeID
             }
 
@@ -111,10 +112,10 @@ class ObjectTree:
     :param parent: tag of parent
     :return: 
     """
-    id_parent = self.IDs[parent]
-    i = self.tree.addChild(id_parent)
-    self.nodes[i] = child
-    self.IDs[child] = i
+    id_parent = self["IDs"][parent]
+    i = self["tree"].addChild(id_parent)
+    self["nodes"][i] = child
+    self["IDs"][child] = i
 
   def getLeaves(self, node_ID_or_tag):
     """
@@ -125,15 +126,15 @@ class ObjectTree:
     # TODO: incosistent change to node_tag
     dummy = 'dummy'
     if isinstance(node_ID_or_tag, dummy.__class__):
-      node_ID = self.IDs(node_ID_or_tag)
+      node_ID = self["IDs"](node_ID_or_tag)
     else:
       node_ID = node_ID_or_tag
     leave_tags = []
     leave_IDs = []
-    for i in self.tree.walkDepthFirst(node_ID):
+    for i in self["tree"].walkDepthFirst(node_ID):
 
-      if self.tree.isLeave(i):
-        leave_tags.append(self.nodes[i])
+      if self["tree"].isLeave(i):
+        leave_tags.append(self["nodes"][i])
         leave_IDs.append(i)
         # print(i, '  -  ', l)
 
@@ -141,26 +142,26 @@ class ObjectTree:
 
   def getAncestors(self, node_tag):
     ancestor_tags = []
-    for i in self.tree.getAncestors(self.IDs[node_tag]):
-      ancestor_tags.append(self.nodes[i])
+    for i in self["tree"].getAncestors(self["IDs"][node_tag]):
+      ancestor_tags.append(self["nodes"][i])
     return ancestor_tags
 
   def getCommonAncestor(self, node1, node2):
-    inverted = invertDict((self.nodes))
-    r = self.tree.getCommonAncestor(inverted[node1], inverted[node2])
-    return self.nodes[r]
+    inverted = invertDict((self["nodes"]))
+    r = self["tree"].getCommonAncestor(inverted[node1], inverted[node2])
+    return self["nodes"][r]
 
   def makeTaggedTree(self):
     taggedTree = {}
-    for i in self.tree.walkDepthFirst(0):
+    for i in self["tree"].walkDepthFirst(0):
       children = []
-      [children.append(self.nodes[child]) for child in self.tree[i]["children"]]
+      [children.append(self["nodes"][child]) for child in self["tree"][i]["children"]]
       ancestors = []
-      [ancestors.append(self.nodes[ancestor]) for ancestor in self.tree[i]["ancestors"]]
+      [ancestors.append(self["nodes"][ancestor]) for ancestor in self["tree"][i]["ancestors"]]
 
-      taggedTree[self.nodes[i]] = {}
-      taggedTree[self.nodes[i]]["children"] = children
-      taggedTree[self.nodes[i]]["ancestors"] = ancestors
+      taggedTree[self["nodes"][i]] = {}
+      taggedTree[self["nodes"][i]]["children"] = children
+      taggedTree[self["nodes"][i]]["ancestors"] = ancestors
     return taggedTree
 
 
