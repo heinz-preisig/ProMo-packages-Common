@@ -558,6 +558,10 @@ class Tree(dict):
       except:
         print(('fix : no action', id, self[id]))
 
+  def getBareTree(self):
+    bare_tree = [self[i] for i in self]
+    return bare_tree
+
 
 # #testing
 #
