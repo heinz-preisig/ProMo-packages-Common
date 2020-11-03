@@ -39,7 +39,8 @@ from Common.common_resources import TEMPLATE_ARC_APPLICATION
 from Common.common_resources import TEMPLATE_CONNECTION_NETWORK, CONNECTION_NETWORK_SEPARATOR
 from Common.common_resources import TEMPLATE_INTER_NODE_OBJECT
 from Common.common_resources import TEMPLATE_INTRA_NODE_OBJECT
-from Common.common_resources import TEMPLATE_NODE_OBJECT, TEMPLATE_NODE_OBJECT_WITH_TOKEN, TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN
+from Common.common_resources import TEMPLATE_NODE_OBJECT, TEMPLATE_NODE_OBJECT_WITH_TOKEN, \
+  TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN
 from Common.common_resources import walkBreathFirstFnc
 from Common.common_resources import walkDepthFirstFnc
 from Common.qt_resources import OK
@@ -278,7 +279,6 @@ class OntologyContainer():
     self.list_interconnection_networks = sorted(self.interconnection_network_dictionary.keys())
     self.list_intraconnection_networks = sorted(self.intraconnection_network_dictionary.keys())
 
-
     """ 
        variable_types_on_networks: dict
          #<networks>
@@ -297,7 +297,8 @@ class OntologyContainer():
     """
 
     self.variable_types_on_networks, \
-    self.variable_types_on_networks_per_component = self.__makeVariableTypeListsNetworks()  # TODO: per_component is not used
+    self.variable_types_on_networks_per_component = self.__makeVariableTypeListsNetworks()  # TODO: per_component is
+    # not used
 
     self.interfaces = self.__setupInterfaces()
 
@@ -331,13 +332,15 @@ class OntologyContainer():
     self.list_node_objects_on_intra_networks, \
     self.list_node_objects_on_intra_networks_with_token, \
     self.list_node_objects_on_inter_networks, \
-    self.list_arc_objects_on_networks,\
+    self.list_arc_objects_on_networks, \
     self.list_network_node_objects, \
     self.list_network_node_objects_with_token, \
     self.list_intra_node_objects, \
     self.list_intra_node_objects_with_token, \
     self.list_inter_node_objects, \
-    self.list_arc_objects = self.__makeNodeObjectList()
+    self.list_arc_objects, \
+    self.list_reduced_network_node_objects, \
+    self.list_reduced_network_arc_objects = self.__makeNodeObjectList()
 
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
     self.arc_info_dictionary = self.__makeArcTypeDictionary()  # TODO check usage  -->  done is used check structure
@@ -366,12 +369,12 @@ class OntologyContainer():
     interfaces = {}
     for network in list_networks:
       # if network not in self.list_inter_branches_pairs: #self.interfaces:
-        left_nw,right_nw = network.split(CONNECTION_NETWORK_SEPARATOR)
-        # left_nw = list_networks[network]["left"]
-        # right_nw = list_networks[network]["right"]
-        left_variable_types = self.variable_types_on_networks[left_nw]
+      left_nw, right_nw = network.split(CONNECTION_NETWORK_SEPARATOR)
+      # left_nw = list_networks[network]["left"]
+      # right_nw = list_networks[network]["right"]
+      left_variable_types = self.variable_types_on_networks[left_nw]
 
-        interfaces[network] = Interface(network, left_nw, right_nw, left_variable_types)
+      interfaces[network] = Interface(network, left_nw, right_nw, left_variable_types)
 
     print("debugging -- interface definitions")
     return interfaces
@@ -417,13 +420,12 @@ class OntologyContainer():
         keys_intra.append((intra_nw, "intra", token))
 
     keys_inter = []
-    for inter_nw in self.list_inter_branches_pairs: #interconnection_network_dictionary:
+    for inter_nw in self.list_inter_branches_pairs:  # interconnection_network_dictionary:
       # left = self.interconnection_network_dictionary[inter_nw]["left"]
       # right = self.interconnection_network_dictionary[inter_nw]["right"]
       # keys_inter.append((inter_nw, "inter", left, right))
       inter_token = self.interfaces[inter_nw]["token"]
       keys_inter.append((inter_nw, "inter", inter_token))
-
 
     return keys_networks, keys_intra, keys_inter
 
@@ -456,12 +458,9 @@ class OntologyContainer():
       nodeObjects_on_intra_networks_with_token[nw] = set()
       arcObjects_on_networks[nw] = set()
 
-    for nw in self.list_inter_branches_pairs: #list_interconnection_networks:
+    for nw in self.list_inter_branches_pairs:  # list_interconnection_networks:
       nodeObjects_on_inter_networks[nw] = set()
       arcObjects_on_networks[nw] = set()
-
-
-
 
     for nw, component, a, nature, token in self.object_key_list_networks:
       if component == "node":
@@ -470,7 +469,7 @@ class OntologyContainer():
         nodeObjects_on_networks[nw].add(dummy)
         set_node_objects_on_networks.add(dummy)
 
-        dummy = TEMPLATE_NODE_OBJECT_WITH_TOKEN %(dynamics, nature, token)
+        dummy = TEMPLATE_NODE_OBJECT_WITH_TOKEN % (dynamics, nature, token)
         nodeObjects_on_networks_with_token[nw].add(dummy)
         set_node_objects_on_networks_with_token.add(dummy)
 
@@ -485,7 +484,7 @@ class OntologyContainer():
       dummy = TEMPLATE_INTRA_NODE_OBJECT % (nature)
       nodeObjects_on_intra_networks[nw].add(dummy)
       set_node_objects_on_intra_networks.add(dummy)
-      dummy = TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN%(nature, token)
+      dummy = TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN % (nature, token)
       nodeObjects_on_intra_networks_with_token[nw].add(dummy)
       set_node_objects_on_intra_networks_with_token.add(dummy)
 
@@ -523,19 +522,43 @@ class OntologyContainer():
     for nw in arcObjects_on_networks:
       list_arc_objects_on_networks[nw] = sorted(arcObjects_on_networks[nw])
 
+    list_network_node_objects = sorted(set_node_objects_on_networks)
+    list_network_node_objects_with_token =sorted(set_node_objects_on_networks_with_token)
+    list_intra_node_objects =sorted(set_node_objects_on_intra_networks)
+    list_intra_node_objects_with_token =sorted(set_node_objects_on_intra_networks_with_token)
+    list_inter_node_objects =sorted(set_node_objects_on_inter_networks)
+    list_arc_objects = sorted(set_arc_objects)
+
+    list_reduced_network_node_objects = {}
+    for nw in self.list_inter_branches:
+      network_node_list = list_node_objects_on_networks[nw]
+      list_reduced_network_node_objects[nw] = []
+      for i in network_node_list:
+        if "constant" not in i:  # RULE: reservoirs (time-scale constant) have no state
+          list_reduced_network_node_objects[nw].append(i)
+
+    list_reduced_network_arc_objects = {}
+    for nw in self.list_inter_branches:
+      network_arc_list = list_arc_objects_on_networks[nw]
+      list_reduced_network_arc_objects[nw] = []
+      for i in network_arc_list:
+        list_reduced_network_arc_objects[nw].append(i)
+
     return \
       list_node_objects_on_networks, \
       list_node_objects_on_networks_with_tokens, \
       list_node_objects_on_intra_networks, \
       list_node_objects_on_intra_networks_with_token, \
       list_node_objects_on_inter_networks, \
-      list_arc_objects_on_networks,\
-      sorted(set_node_objects_on_networks), \
-      sorted(set_node_objects_on_networks_with_token), \
-      sorted(set_node_objects_on_intra_networks), \
-      sorted(set_node_objects_on_intra_networks_with_token), \
-      sorted(set_node_objects_on_inter_networks), \
-      sorted(set_arc_objects)
+      list_arc_objects_on_networks, \
+      list_network_node_objects, \
+      list_network_node_objects_with_token, \
+      list_intra_node_objects, \
+      list_intra_node_objects_with_token, \
+      list_inter_node_objects, \
+      list_arc_objects, \
+      list_reduced_network_node_objects, \
+      list_reduced_network_arc_objects
 
   ########################
 
@@ -649,21 +672,19 @@ class OntologyContainer():
       elif self.ontology_tree[last]["type"] == "inter":
         interbranches.append(last)
 
-    interbranch_pairs=[]
+    interbranch_pairs = []
     l = len(interbranches)
-    for i in range(0,l):
-      for j in range(i,l):
-        if i != j:   # Note: interconnections are unidirectional thus we need both ways
-          pair = TEMPLATE_CONNECTION_NETWORK%(interbranches[i], interbranches[j])
+    for i in range(0, l):
+      for j in range(i, l):
+        if i != j:  # Note: interconnections are unidirectional thus we need both ways
+          pair = TEMPLATE_CONNECTION_NETWORK % (interbranches[i], interbranches[j])
           interbranch_pairs.append(pair)
-          pair = TEMPLATE_CONNECTION_NETWORK%(interbranches[j], interbranches[i])
+          pair = TEMPLATE_CONNECTION_NETWORK % (interbranches[j], interbranches[i])
           interbranch_pairs.append(pair)
-
 
     print("debugging -- end interbranches", interbranches)
     print("debugging -- end interbranch_pairs", interbranch_pairs)
     return interbranches, interbranch_pairs
-
 
   def __makeVariableTypeListsNetworks(self):
     variable_types_on_networks = {}
@@ -698,7 +719,7 @@ class OntologyContainer():
   def __makeVariableTypeListInterfaces(self):
 
     variable_types_on_interfaces = {}
-    for nw in self.list_inter_branches_pairs: #interfaces:  # ADDED:
+    for nw in self.list_inter_branches_pairs:  # interfaces:  # ADDED:
       variable_types_on_interfaces[nw] = self.interfaces[nw][
         "internal_variable_classes"]  # RULE: interfaces have only one variable class
 
@@ -719,7 +740,7 @@ class OntologyContainer():
 
   def __makeVariableTypeListInterFaces(self, variable_types_on_networks):
     variable_types = {}
-    for cnw in self.interfaces: #interconnection_network_dictionary:
+    for cnw in self.interfaces:  # interconnection_network_dictionary:
       variable_types_on_networks[cnw] = []
       variable_types[cnw] = {}
       # l = self.interconnection_network_dictionary[cnw]["left"]
@@ -795,7 +816,7 @@ class OntologyContainer():
     all_arcs = []
     for nw in leave_nws:
       all_arcs.extend(arcs[nw])
-    for cnw in self.list_inter_branches_pairs: #interconnection_network_dictionary:
+    for cnw in self.list_inter_branches_pairs:  # interconnection_network_dictionary:
       all_arcs.extend(arcs[cnw])
     return sorted(set(all_arcs))
 
@@ -827,7 +848,8 @@ class OntologyContainer():
               arcs_in_network.append(TEMPLATE_ARC_APPLICATION % (token, mechanism, nature))
       arcs[nw] = sorted(set(arcs_in_network))
 
-    for cnw in self.list_inter_branches_pairs: #interconnection_network_dictionary:  # NOTE: the token is the same for all interfaces
+    for cnw in self.list_inter_branches_pairs:  # interconnection_network_dictionary:  # NOTE: the token is the same
+      # for all interfaces
       arcs_in_network = []
       # RULE: fixed wired connection from and to interface
       inter_token = self.interfaces[cnw]["token"]
@@ -928,7 +950,6 @@ class OntologyContainer():
                 # token, nw))
     return token_definition_nw, typed_token_definition_nw
 
-
   def __makeEquationDictionary(self):
     equation_dictionary = {}
     for var_ID in self.variables:
@@ -936,9 +957,8 @@ class OntologyContainer():
         equation_dictionary[eq_ID] = self.variables[var_ID]["equations"][eq_ID]
     return equation_dictionary
 
-
   def __makeEquationVariableDictionary(self):
-    equation_variable_dictionary ={}
+    equation_variable_dictionary = {}
     for var_ID in self.variables:
       for eq_ID in self.variables[var_ID]["equations"]:
         equation_variable_dictionary[eq_ID] = (var_ID, self.variables[var_ID]["equations"][eq_ID])
@@ -1004,6 +1024,7 @@ class OntologyContainer():
 
     else:
       msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty " \
+            "" \
             "" \
             "" \
             "" \
