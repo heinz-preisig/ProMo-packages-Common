@@ -348,10 +348,12 @@ class OntologyContainer():
 
     self.token_definition_nw, self.typed_token_definition_nw = self.__makeDefinitionNetworkDictionaries()
 
-    self.variables, self.indices, \
+    self.variables, \
+    self.indices, \
     self.variable_record_filter, \
     self.version, \
     self.ProMoIRI = self.readVariables()
+
     if self.indices == {}:  # DOC: make indices if they do not yet exist
       self.indices = makeIndices(self)
     else:
