@@ -405,17 +405,28 @@ class StackControl():
     return self.stack.currentIndex()
 
 
-def cleanLayout(layout):
-  """ removes the widgets from the layout """
-  # print("clean layout", layout, layout.count())
-  if layout.count() > 0:
-    for i in reversed(range(layout.count())):
-      widgetToRemove = layout.itemAt(i).widget()
-      # remove it from the layout list
-      layout.removeWidget(widgetToRemove)
-      # print("remove", widgetToRemove)
-      # remove it from the gui
-      try:
-        widgetToRemove.setParent(None)
-      except:
-        pass
+# def clearLayout(layout):
+#   """ removes the widgets from the layout
+#    TODO: this procedure has some issues with memory - use clearLayout
+#    """
+#   # print("clean layout", layout, layout.count())
+#   if layout.count() > 0:
+#     for i in reversed(range(layout.count())):
+#       widgetToRemove = layout.itemAt(i).widget()
+#       # remove it from the layout list
+#       layout.removeWidget(widgetToRemove)
+#       # print("remove", widgetToRemove)
+#       # remove it from the gui
+#       try:
+#         widgetToRemove.setParent(None)
+#       except:
+#         pass
+
+
+def clearLayout(layout):
+  while layout.count():
+    child = layout.takeAt(0)
+    if child.widget() is not None:
+      child.widget().deleteLater()
+    elif child.layout() is not None:
+      clearLayout(child.layout())

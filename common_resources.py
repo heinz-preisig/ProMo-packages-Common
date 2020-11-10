@@ -95,6 +95,20 @@ def invertDict(dictionary):
   return d
   # return dict(zip(dictionary.values(), list(dictionary.keys())))
 
+def indexList(List):
+
+  # index -- hash:enumeration:int - value:label:string
+  # inverse_index -- hash:label:string - value:enumeration:int
+
+  index = {}
+  inverse_index = {}
+  for i in range(len(List)):
+    index[i] = List[i]
+    inverse_index[List[i]] = i
+
+  return index, inverse_index
+
+
 
 def getData(file_spec):
   # print("get data from ", file_spec)
