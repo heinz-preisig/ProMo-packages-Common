@@ -47,7 +47,6 @@ import os
 import sys
 
 from PyQt5 import QtCore
-from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
 from Common.resource_initialisation import DIRECTORIES
@@ -66,25 +65,29 @@ DIALOGUE = {
         }
 
 M_None = "-"  # used in place of None as the latter is not a string.
-M_any  = "*"
+M_any = "*"
 
 # ontology definitions --------------------------------------------------------
 
 NODE_COMPONENT_SEPARATOR = "|"
 ARC_COMPONENT_SEPARATOR = "|"
+ENTITY_OBJECT_SEPARATOR = "."
 EQUATION_COMPONENT_SEPARATOR = "|"
 CONNECTION_NETWORK_SEPARATOR = " >>> "  # RULE: separator is the same for inter and intra networks
 CONVERSION_SEPARATOR = " --> "
 
-TEMPLATE_NODE_OBJECT = "%s"+NODE_COMPONENT_SEPARATOR+"%s"
-TEMPLATE_NODE_OBJECT_WITH_TOKEN = "%s"+NODE_COMPONENT_SEPARATOR+"%s"+NODE_COMPONENT_SEPARATOR+"%s"
-TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN = "%s"+NODE_COMPONENT_SEPARATOR+"%s"
+TEMPLATE_NODE_OBJECT = "%s" + NODE_COMPONENT_SEPARATOR + "%s"
+TEMPLATE_NODE_OBJECT_WITH_TOKEN = "%s" + NODE_COMPONENT_SEPARATOR + "%s" + NODE_COMPONENT_SEPARATOR + "%s"
+TEMPLATE_ENTITY_OBJECT = "%s" + ENTITY_OBJECT_SEPARATOR + "%s" + ENTITY_OBJECT_SEPARATOR + "%s"
+TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN = "%s" + NODE_COMPONENT_SEPARATOR + "%s"
 TEMPLATE_INTRA_NODE_OBJECT = "%s"
 TEMPLATE_INTER_NODE_OBJECT = "%s"
 TEMPLATE_ARC_APPLICATION = "%s" + ARC_COMPONENT_SEPARATOR + "%s" + ARC_COMPONENT_SEPARATOR + "%s"  # %(token,
 # mechanism, nature)
 TEMPLATE_CONNECTION_NETWORK = "%s" + CONNECTION_NETWORK_SEPARATOR + "%s"
 TEMPLATE_EQUATION_ASSIGNMENT_KEY = "%s" + EQUATION_COMPONENT_SEPARATOR + "%s" + EQUATION_COMPONENT_SEPARATOR + "%s"
+
+
 # % (node_type, nature, token)
 
 
@@ -95,8 +98,8 @@ def invertDict(dictionary):
   return d
   # return dict(zip(dictionary.values(), list(dictionary.keys())))
 
-def indexList(List):
 
+def indexList(List):
   # index -- hash:enumeration:int - value:label:string
   # inverse_index -- hash:label:string - value:enumeration:int
 
@@ -107,7 +110,6 @@ def indexList(List):
     inverse_index[List[i]] = i
 
   return index, inverse_index
-
 
 
 def getData(file_spec):
@@ -159,8 +161,8 @@ def __getSortedDirList(location):
   return dirs
 
 
-def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit="exit", left_icon=None, right_icon=None):
-
+def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit="exit", left_icon=None,
+                                         right_icon=None):
   model_names = __getSortedDirList(model_library_location)
 
   model_name, status = selectFromList("choose model", model_names, left_icon=left_icon, right_icon=right_icon)
@@ -178,7 +180,7 @@ def askForModelFileGivenOntologyLocation(model_library_location, new=False, exit
     ui_ask.exec_()
     model_name = ui_ask.getText()
     print("new model name defined", model_name)
-    if not model_name : # == "exit":
+    if not model_name:  # == "exit":
       return model_name, "exit"
   return model_name, "new"
 
@@ -262,9 +264,6 @@ def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", left_ico
     sys.exit(0)
 
 
-
-
-
 def makeTreeView(treeWidget, ontology_tree):
   root = "root"  # RULE: root of tree is called "root"
 
@@ -313,7 +312,6 @@ def __addItemToTreeWidget(treeWidget, parent, nodeID):
 
 
 def selectFromList(title, items, left_icon, right_icon):
-
   items.sort()
   if right_icon:
     if left_icon:

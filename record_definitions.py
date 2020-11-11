@@ -25,6 +25,8 @@ __status__ = "beta"
 
 from collections import OrderedDict
 
+from Common.common_resources import ENTITY_OBJECT_SEPARATOR
+from Common.common_resources import TEMPLATE_ENTITY_OBJECT
 from OntologyBuilder.OntologyEquationEditor.resources import CODE
 from OntologyBuilder.OntologyEquationEditor.resources import LANGUAGES
 from OntologyBuilder.OntologyEquationEditor.variable_framework import Units
@@ -113,14 +115,14 @@ class EquationAssignment(dict):  # defines / controls entity definition
   def __init__(self, tree=None, buddies=None):
     super().__init__()
     self = {
-          "tree"   : tree,  # ObjectTree dict
-                              # keys: IDs  : list of variable_# and equation_#
-                                    # nodes: dictionary
-                                   # keys:
-                                              # IDs to entry in tree
-                                #
-          "buddies": buddies,  # buddies
-          }
+            "tree"   : tree,  # ObjectTree dict
+            # keys: IDs  : list of variable_# and equation_#
+            # nodes: dictionary
+            # keys:
+            # IDs to entry in tree
+            #
+            "buddies": buddies,  # buddies
+            }
     print("gotten here", self)
 
 
@@ -222,6 +224,35 @@ class Interface(dict):  # ......................................................
     self["nature"] = "unidirectional"  # ................................. RULE: hard wired tranfer nature
 
 
+class EntityBehaviour(dict):
+  def __init__(self, networks, entities):
+    super().__init__()
+    for nw in networks:
+      for entity in entities[nw]:
+        entity_str_ID = TEMPLATE_ENTITY_OBJECT % (
+                nw, entity, "base")  # RULE: "base" is used for the base bipartite graph
+        self[entity_str_ID] = None
+
+  def addVariant(self, network, entity, variant, data):
+    entity_str_ID = functionMakeObjectStringID(network, entity, variant)
+    self[entity_str_ID] = data
+
+  def removeVariant(self, network, entity, variant):
+    entity_str_ID = functionMakeObjectStringID(network, entity, variant)
+    del self[entity_str_ID]
+
+  def getRootVariableID(self):
+    pass
+
+
+def functionMakeObjectStringID(network, entity, variant):
+  entity_str_ID = TEMPLATE_ENTITY_OBJECT % (network, entity, variant)
+  return entity_str_ID
+
+def functionGetObjectsFromObjectStringID(entity_str_ID):
+  network, entity, variant = entity_str_ID.split(ENTITY_OBJECT_SEPARATOR)
+  return network, entity, variant
+
 # reading writing masks --> enable easy compatibility when changing structure
 # # TODO implement on reading in ontology_container
 # MASK = {}
@@ -240,7 +271,7 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
                                units=Units(),
                                equations={},
                                aliases={},
-                               port_variable = False,
+                               port_variable=False,
                                ):
   """
   NOTE: there is a problem here with the defaults -- do not use them, but define everthing explicitly.
@@ -267,7 +298,8 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
   self["units"] = units  # ....................................................................
   self["equations"] = equations  # ..................................................... hash is equation ID, an integer
   self["aliases"] = aliases  # .....could be in code - not handy and not quite logical: there is also a compiled version
-  self["port_variable"] = port_variable # ............. port variables are at the bottom of the definition -- foundation
+  self[
+    "port_variable"] = port_variable  # ............. port variables are at the bottom of the definition -- foundation
 
   for language in LANGUAGES["aliasing"]:
     self["aliases"][language] = label
