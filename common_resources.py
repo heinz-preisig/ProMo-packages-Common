@@ -105,6 +105,7 @@ def indexList(List):
 
   index = {}
   inverse_index = {}
+
   for i in range(len(List)):
     index[i] = List[i]
     inverse_index[List[i]] = i
