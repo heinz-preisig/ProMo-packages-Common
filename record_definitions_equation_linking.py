@@ -21,8 +21,7 @@ __version__ = "8.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
-
-from Common.common_resources import TEMPLATE_ENTITY_OBJECT
+from copy import deepcopy
 
 from Common.common_resources import ENTITY_OBJECT_SEPARATOR
 from Common.common_resources import TEMPLATE_ENTITY_OBJECT
@@ -48,7 +47,14 @@ class EntityBehaviour(dict):
 
   def addVariant(self, network, entity, variant, data):
     entity_str_ID = functionMakeObjectStringID(network, entity, variant)
-    self[entity_str_ID] = data
+
+    # self[entity_str_ID] = VariantRecord(tree=data["tree"],
+    #                                     nodes=data["nodes"],
+    #                                     IDs= data["IDs"],
+    #                                     root_variable = data["root_variable"],
+    #                                     blocked_list = data["blocked"],
+    #                                     buddies_list = data["buddies"])
+    self[entity_str_ID] = deepcopy(data)
 
   def removeVariant(self, network, entity, variant):
     entity_str_ID = functionMakeObjectStringID(network, entity, variant)
