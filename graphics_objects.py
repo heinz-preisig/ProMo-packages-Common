@@ -60,7 +60,7 @@ NAMES = {
         }
 
 LOCATION_PARAMETERS = {
-        "arc_node_gap_factor": 1.2,
+        "arc_node_gap_factor": 0.8,
         "token_indicators"   : {
                 "x" : -10,
                 "y" : -15,

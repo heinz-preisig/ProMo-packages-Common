@@ -258,9 +258,11 @@ class OntologyContainer():
     #         "interface": {},
     #         }
 
-    # file = FILES["rules_file"] % ontology_name
     self.rules = self.ontology_container["rules"]  #
-    # a = getData(file)
+    # fixing changing the ontology adding rule "variable_classes_being_state_variables"
+    if "variable_classes_being_state_variables" not in self.rules:
+      self.rules["variable_classes_being_state_variables"] = None
+
 
     #
     file = FILES["converting_tokens_file"] % ontology_name

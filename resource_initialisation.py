@@ -151,13 +151,14 @@ FILES["variables_file_v6"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v6"])  # %ontology_name
 
 FILES["variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                               FILE_NAMES["variables_file"])  # %ontology_name
+                               FILE_NAMES["variables_file_v8"])  # %ontology_name
 
 FILES["variables_file_v7"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                   FILE_NAMES["variables_file_v7"])  # %ontology_name
 
 FILES["initial_variables_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                        FILE_NAMES["variables_initial"])  # %ontology_name
+
 FILES["equations_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                FILE_NAMES["equations_file"])  # %ontology_name
 FILES["typed_token_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
