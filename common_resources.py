@@ -340,12 +340,19 @@ def saveBackupFile(path):
   #  TODO: the access check fails -- not clear why, when removed writing works OK
   if os.path.exists(path):
     _f, ver = getFilesAndVersions(abs_name, ext)
-    old = path
-    new = abs_name + ver_temp % str(ver + 1) + ext
-    os.rename(old, new)
-    return old, new
+    old_path = path
+    new_path = abs_name + ver_temp %str(ver + 1)  + ext
+    next_path = abs_name + ver_temp %str(ver + 2) + ext
+    os.rename(old_path, new_path)
+    return old_path, new_path, next_path
   else:
     print("no such file : ", path)
+    return
+
+def saveWithBackup(data, path):
+  print("saving")
+  old_path, new_path, next_path = saveBackupFile(path)
+  putData(data,next_path)
 
 
 def getFilesAndVersions(abs_name, ext):

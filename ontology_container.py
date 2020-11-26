@@ -34,7 +34,7 @@ from Common.common_resources import getData
 from Common.common_resources import M_None
 from Common.common_resources import putData
 from Common.common_resources import putDataOrdered
-from Common.common_resources import saveBackupFile
+from Common.common_resources import saveBackupFile, saveWithBackup
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
 from Common.common_resources import TEMPLATE_CONNECTION_NETWORK, CONNECTION_NETWORK_SEPARATOR
 from Common.common_resources import TEMPLATE_INTER_NODE_OBJECT
@@ -996,8 +996,10 @@ class OntologyContainer():
     # the time being
 
     data = VariableFile(variables, indices, VARIABLE_EQUATIONS_VERSION, self.ProMoIRI)
-    saveBackupFile(f_name)  # NOTE: every saving generates a backup file -- enables scrolling back
-    putData(data, f_name)
+
+    saveWithBackup(data, f_name)
+    # saveBackupFile(f_name)  # NOTE: every saving generates a backup file -- enables scrolling back
+    # putData(data, f_name)
 
   def readVariables(self):
     """
