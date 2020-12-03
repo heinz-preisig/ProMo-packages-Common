@@ -428,6 +428,7 @@ OBJECTS_without_state = [NAMES["branch"],
                          NAMES["sibling"],
                          NAMES["connector"],
                          NAMES["panel"]]
+
 DECORATIONS_with_state = ["root",
                           # "head",
                           # "tail"

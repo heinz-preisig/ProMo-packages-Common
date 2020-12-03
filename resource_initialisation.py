@@ -29,6 +29,8 @@ from Common.pop_up_message_box import makeMessageBox
 
 # from Common.ui_message_popup_impl import UI_MessagePopUp
 
+#TODO: reloacte all shell commands into one location
+
 FILE_NAMES = {
         "ontology_file"                       : "ontology.json",
         "model_file"                          : "model.json",
@@ -42,12 +44,9 @@ FILE_NAMES = {
         "equations_file"                      : "equations.json",
         "typed_tokens_file"                   : "typed_tokens.json",
         "converting_tokens_file"              : "converting_tokens.json",
-        "automata_working"                    : "automata_working.json",
-        "automata"                            : "automata_working.json",
+        # "automata_working"                    : "automata_working.json",
+        "automata"                            : "automata.json",
         "graph_objects"                       : "graph_objects.json",
-        "latex_shell_var_equ_doc_command"     : "make_documentation.sh",
-        "latex_shell_automata_doc_command"    : "make_automata_table.sh",
-        "latex_automaton"                     : "automata_tables.tex",
         "init_nodes"                          : "nodes.json",
         "init_arcs"                           : "arcs.json",
         "init_globals"                        : "globals.json",
@@ -60,7 +59,10 @@ FILE_NAMES = {
         "global_index_identifier"             : "global_index_identifier.txt",
         "global_equation_identifier"          : "global_equation_identifier.txt",
         "template_variable"                   : "template_variable",
+        "latex_automaton"                     : "automata_tables.tex",
         "dot_graph_shell"                     : "show_dot_graphs.sh",
+        "latex_shell_var_equ_doc_command"     : "make_documentation.sh",
+        "latex_shell_automata_doc_command"    : "make_automata_table.sh",
         "variable_assignment_to_entity_object": "variable_assignment_to_entity_object.json"
         }
 
@@ -176,9 +178,9 @@ FILES["instantiation_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", "in
 FILES["converting_tokens_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                        FILE_NAMES["converting_tokens_file"])  # %ontology_name
 
-FILES["automata_working_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                                           DIRECTORIES["graphobject_resources"],
-                                           FILE_NAMES["automata_working"])  # %ontology_name
+# FILES["automata_working_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+#                                            DIRECTORIES["graphobject_resources"],
+#                                            FILE_NAMES["automata_working"])  # %ontology_name
 FILES["automata_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                    DIRECTORIES["graphobject_resources"],
                                    FILE_NAMES["automata"])  # %ontology_name
