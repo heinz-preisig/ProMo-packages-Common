@@ -43,7 +43,7 @@ class OntologyContainerFile(dict):  # TODO: integrate typed token conversion int
     self["version"] = version  # ...................................................................... ontology version
     self["ontology_tree"] = OrderedDict()  # ........domain tree RULE: hand defined should correspond to subtree of EMMO
     self["interfaces"] = {}
-    self["rules"] = Rules()  # ....................  variable class rules -- port variables
+    self["rules"] = {}   # rules are added in the editor_foundation_ontology_gui_impl as fixed rules
 
 
 class VariableFile(dict):
@@ -124,14 +124,14 @@ class EquationAssignment(dict):  # defines / controls entity definition
     print("gotten here", self)
 
 
-class Rules(dict):
-  def __init__(self):
-    """
-    dict
-    - key "variable_classes_having_port_variables"
-    - value list of variable class names
-    """
-    self["variable_classes_having_port_variables"] = []
+# class Rules(dict):
+#   def __init__(self):
+#     """
+#     dict
+#     - key "variable_classes_having_port_variables"
+#     - value list of variable class names
+#     """
+#     self["variable_classes_having_port_variables"] = []
 
 
 class RecordProMoIRI(dict):
