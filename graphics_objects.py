@@ -490,7 +490,7 @@ class GraphDataObjects(OrderedDict):
   def __init__(self, dict_application_node_types,
                           application_arc_types):
 
-    # print("debugging")
+    print("debugging")
     for phase in PHASES:
       self[phase] = {}
       for graphics_object in GRAPHICS_OBJECTS:
@@ -537,7 +537,7 @@ class GraphDataObjects(OrderedDict):
             % (phase, root_object, decoration, application, state, what, value))
     #
     # NOTE: there is a nasty exception showing when having no inter networks.
-    self.__makeData(phase, root_object, decoration, application, state, what)
+    self.__makeData(phase, root_object, decoration, application, state)
     self[phase][root_object][decoration][application][state][what] = value
     print(
             "did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
@@ -546,7 +546,7 @@ class GraphDataObjects(OrderedDict):
     if what == "action":
       print("debugging seting actions")
 
-  def __makeData(self, phase, root_object, decoration, application, state, what):
+  def __makeData(self, phase, root_object, decoration, application, state):
     if phase not in self:
       self[phase]={}
     if root_object not in self[phase]:
@@ -593,7 +593,7 @@ class GraphDataObjects(OrderedDict):
 
     #Note: safety valve:
     if application not in self[phase][root_object][decoration]:
-      application = M_None
+      # self.__makeData(phase, root_object, decoration, application, state)
       print(" warning >>> should not come here")
 
     return self[phase][root_object][decoration][application][state]
