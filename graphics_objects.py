@@ -441,7 +441,9 @@ OBJECTS_with_application = [NAMES["node"],
                             NAMES["intraface"]
                             ]
 
-OBJECTS_not_move = [NAMES["panel"], NAMES["left panel"], NAMES["right panel"]]
+OBJECTS_not_move = [NAMES["panel"],
+                    NAMES["left panel"],
+                    NAMES["right panel"]]
 
 LAYERS = {
         "mainPanel": 0,
@@ -517,90 +519,25 @@ class GraphDataObjects(OrderedDict):
                   self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
 
 
-
-            # if graphics_object == NAMES["node"]:
-              # RULE : constrain once more
-            #   if graphics_object in OBJECTS_with_application:
-            #     # applications = application_node_types
-            #   else:
-            #     applications = M_None
-            #   for application in applications:
-            #     self[phase][graphics_object][decoration][application] = {}
-            #
-            #     states = STATES[phase]["nodes"]
-            #     for state in states:
-            #       self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
-            # else:
-            #   # RULE : constrain once more
-            #   if graphics_object in OBJECTS_with_application:
-            #     applications = application_arc_types
-            #   else:
-            #     applications = M_None
-            #   for application in applications:
-            #     self[phase][graphics_object][decoration][application] = {}
-            #     states = STATES[phase]["arcs"]
-            #
-            #     for state in states:
-            #       self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
           else:
             application = M_None
             state = M_None
             self[phase][graphics_object][decoration][application] = {}
             self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
 
-    # print("active objects", self)
-
-    # super().__init__()
-    # for phase in PHASES:
-    #   self[phase] = {}
-    #   for graphics_object in GRAPHICS_OBJECTS:
-    #     self[phase][graphics_object] = {}
-    #     decorations = STRUCTURES_Graph_Item[graphics_object]
-    #     for decoration in decorations:
-    #       shape = STRUCTURES_Graph_Item[graphics_object][decoration]
-    #       self[phase][graphics_object][decoration] = {}
-    #       # RULE : only root objects and a selected list of components carry states (nodes, arcs, head, tail)
-    #       if (decoration in DECORATIONS_with_state) and (graphics_object in OBJECTS_with_state):
-    #         if graphics_object in NODES:
-    #           # RULE : constrain once more
-    #           if graphics_object in OBJECTS_with_application:
-    #             applications = application_node_types
-    #           else:
-    #             applications = M_None
-    #           for application in applications:
-    #             self[phase][graphics_object][decoration][application] = {}
-    #
-    #             states = STATES[phase]["nodes"]
-    #             for state in states:
-    #               self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
-    #         else:
-    #           # RULE : constrain once more
-    #           if graphics_object in OBJECTS_with_application:
-    #             applications = application_arc_types
-    #           else:
-    #             applications = M_None
-    #           for application in applications:
-    #             self[phase][graphics_object][decoration][application] = {}
-    #             states = STATES[phase]["arcs"]
-    #
-    #             for state in states:
-    #               self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
-    #       else:
-    #         application = M_None
-    #         state = M_None
-    #         self[phase][graphics_object][decoration][application] = {}
-    #         self[phase][graphics_object][decoration][application][state] = deepcopy(DATA_STRUCTURE[shape])
-    #
-    #         # print(self)
+    print("debugging -- setting up graph objects")
 
   def setData(self, what, value, phase, root_object, decoration, application, state):
     if what != "action":
       if state != M_None:
         state = STATE_OBJECT_COLOURED  #RULE: only one state indicates the state
     print(
-            "put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
+            "put data -- phase : %s ,root_object: %s, decoration: %s, application: %s , state: %s, what: %s, "
             "value : %s"
             % (phase, root_object, decoration, application, state, what, value))
+    #
+    # NOTE: there is a nasty exception showing when having no inter networks.
+    self.__makeData(phase, root_object, decoration, application, state, what)
     self[phase][root_object][decoration][application][state][what] = value
     print(
             "did put data -- phase : %s ,root_object : %s, decoration : %s, application ; %s , state : %s, what : %s, "
@@ -609,47 +546,20 @@ class GraphDataObjects(OrderedDict):
     if what == "action":
       print("debugging seting actions")
 
+  def __makeData(self, phase, root_object, decoration, application, state, what):
+    if phase not in self:
+      self[phase]={}
+    if root_object not in self[phase]:
+      self[phase][root_object]={}
+    if decoration not in self[phase][root_object]:
+      self[phase][root_object][decoration]={}
+    if application not in self[phase][root_object][decoration]:
+      self[phase][root_object][decoration][application] = {}
+    if state not in           self[phase][root_object][decoration][application]:
+      self[phase][root_object][decoration][application][state]= {}
+
   def getData(self, phase, root_object, decoration, application, state):
-    # if phase == "topology":
-    #   print("\n get data -- phase : ", phase)
-    #   try:
-    #     print("root_object : ", root_object)
-    #   except:
-    #     print(" no root_object")
-    #   try:
-    #     print("decoration  : ", decoration)
-    #   except:
-    #     print("no decoration")
-    #   try:
-    #     print("application : ", application)
-    #     if application not in self[phase][root_object][decoration]:
-    #       if "| in application":
-    #         app, distr = application.split("|")
-    #         print(" application split :", app, distr)
-    #         q = self[phase][root_object][decoration][app][state]
-    #         print(" found hopefully ", q)
-    #         self[phase][root_object][decoration][application]= self[phase][root_object][decoration][app]
-    #         del self[phase][root_object][decoration][app]
-    #         print(" done !")
-    #   except:
-    #     print("fixing") #event|distributed
-    #     if application == "event|distributed":
-    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration][
-    #       "event|lumped"])
-    #     elif application == "event|lumped":
-    #       self[phase][root_object][decoration][application] = deepcopy(self[phase][root_object][decoration][
-    #       "event|distributed"])
-    #
-    #   try:
-    #     print("state       : ", state)
-    #     if state == "-":
-    #       print("debugging --  state -")
-    #   except:
-    #     print("no state defined")
-    #   try:
-    #     print("value       : ", self[phase][root_object][decoration][application][state])
-    #   except:
-    #     print("no value")
+
 
     if decoration == NAMES["indicator token"]:
       data = IndicatorDot()
@@ -786,7 +696,7 @@ class GraphDataObjects(OrderedDict):
     a = M_None
     s = M_None
 
-    if graphics_root_object == "node_intraface":
+    if graphics_root_object == NAMES["intraface"]:
       # print("debugging -- intraface")
       pass
 

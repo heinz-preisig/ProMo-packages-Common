@@ -494,7 +494,7 @@ class OntologyContainer():
 
       pass
 
-    # print("debugging")
+    print("debugging")
 
     for nw, nature, token in self.object_key_list_inter:
       dummy = TEMPLATE_INTER_NODE_OBJECT % (nature)
