@@ -52,10 +52,11 @@ class SingleListSelector(QtWidgets.QDialog):
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
 
-    self.ui.listWidget.addItems(thelist)
 
     roundButton(self.ui.pushLeft, left_icon, left_tooltip )
     roundButton(self.ui.pushRight, right_icon, right_tooltip )
+
+    self.ui.listWidget.addItems(thelist)
 
     self.selection = None
     self.state = None  # left | right | selected
@@ -76,6 +77,10 @@ class SingleListSelector(QtWidgets.QDialog):
     else:
       self.ui.pushLeft.show()
     self.ui.pushRight.hide()
+
+    if not thelist:
+      self.ui.listWidget.hide()
+
     self.hide()
 
   def __move2row(self, selected):
