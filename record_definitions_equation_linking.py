@@ -58,7 +58,15 @@ class EntityBehaviour(dict):
 
   def removeVariant(self, network, entity, variant):
     entity_str_ID = functionMakeObjectStringID(network, entity, variant)
-    del self[entity_str_ID]
+    if variant == "base":
+      for o in self:
+        if "base" not in o:
+          del self[entity_str_ID]
+        else:
+          self[o] = None
+    else:
+      del self[entity_str_ID]
+
 
   def getRootVariableID(self, entity_str_ID):
     return int(self[entity_str_ID]["root_variable"])
