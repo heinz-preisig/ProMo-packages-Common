@@ -94,7 +94,7 @@ class EntityBehaviour(dict):
 
 
 class VariantRecord(dict):  # .............................................................. hash is global index_ID
-  def __init__(self, tree={}, nodes=[], IDs=[], root_variable=None, blocked_list=[], buddies_list=[]):
+  def __init__(self, tree={}, nodes=[], IDs=[], root_variable=None, blocked_list=[], buddies_list=[], to_be_inisialised=[]):
     super()
     self["tree"] = tree
     self["nodes"] = nodes
@@ -102,6 +102,7 @@ class VariantRecord(dict):  # ..................................................
     self["root_variable"] = root_variable
     self["blocked"] = blocked_list
     self["buddies"]= buddies_list
+    self["to_be_initialised"] = to_be_inisialised
   #
   # def getEquationIDList(self, ):
   #   equation_ID_list = []

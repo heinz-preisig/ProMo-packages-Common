@@ -13,9 +13,9 @@
 __project__ = "ProcessModeller  Suite"
 __author__ = "PREISIG, Heinz A"
 __copyright__ = "Copyright 2015, PREISIG, Heinz A"
-__since__ = "2017. 09. 25"
+__since__ = "2020. 12. 21"
 __license__ = "GPL planned -- until further notice for Bio4Fuel & MarketPlace internal use only"
-__version__ = "6.00"
+__version__ = "8.00"
 __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
@@ -55,15 +55,20 @@ class UI_String(QtWidgets.QDialog):
     self.ui.setupUi(self)
     # print(" <<<< show me")
     self.hide()
+
+    roundButton(self.ui.pushAccept, "accept", tooltip="accept")
+    roundButton(self.ui.pushReject, "reject", tooltip="reject")
+
+    self.ui.pushAccept.hide()
+
     self.placeholdertext = placeholdertext
     self.limiting_list = limiting_list
     self.setWindowTitle(prompt)
     self.text = None
 
-
-    roundButton(self.ui.pushAccept, "accept", tooltip="accept")
-    roundButton(self.ui.pushReject, "reject", tooltip="reject")
-    self.ui.pushAccept.hide()
+    reg_ex = QtCore.QRegExp("[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?")         #"[0-9]+.?[0-9]{,2}")
+    input_validator = QtGui.QRegExpValidator(reg_ex, self.ui.lineEdit)
+    self.ui.lineEdit.setValidator(input_validator)
 
     self.ui.pushAccept.clicked.connect(self.__accept)
     self.ui.pushReject.clicked.connect(self.close)
@@ -87,15 +92,7 @@ class UI_String(QtWidgets.QDialog):
 
   def __changedText(self, Qtext):
     text = Qtext
-    if len(text) == 0:
-      return
-
-    if (text in self.limiting_list) or (text[0] == " "):
-      self.ui.lineEdit.setPalette(self.palette_red)
-      self.ui.pushAccept.hide()
-    else:
-      self.ui.lineEdit.setPalette(self.palette_black)
-      self.ui.pushAccept.show()
+    self.ui.pushAccept.show()
 
   def __accept(self):
     self.accepted.emit(self.ui.lineEdit.text())
@@ -124,7 +121,6 @@ def changing(txt):
 
 
 if __name__ == '__main__':
-
   from Common.resource_initialisation import DIRECTORIES
   import os
 
@@ -133,9 +129,10 @@ if __name__ == '__main__':
   DIRECTORIES["packages"] = JOIN(os.path.abspath(".."))
   DIRECTORIES["common"] = JOIN(DIRECTORIES["packages"], "Common")
   DIRECTORIES["icon_location"] = JOIN(DIRECTORIES["common"], "icons")
+
   a = QtWidgets.QApplication([])
 
-  w = UI_String("give name", "name")
+  w = UI_String("give float", "-1.2e-5")
   w.show()
   w.accepted.connect(changing)
   a.exec_()
