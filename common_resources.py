@@ -197,20 +197,24 @@ def askForModelFileGivenOntologyLocation(model_library_location,
 
   model_names = __getSortedDirList(model_library_location)
 
-  model_name, status = selectFromList("choose model",
-                                      model_names,
-                                      left_icon=left_icon,
-                                      left_tooltip= left_tooltip,
-                                      right_icon=right_icon,
-                                      right_tooltip=right_tooltip)
+  model_name = None
+  status = None
+  if model_names:
 
-  print("debugging -- ask for model name", model_name, status)
+    model_name, status = selectFromList("choose model",
+                                        model_names,
+                                        left_icon=left_icon,
+                                        left_tooltip= left_tooltip,
+                                        right_icon=right_icon,
+                                        right_tooltip=right_tooltip)
 
-  if (not model_name) and (not status):
-    sys.exit()
+    print("debugging -- ask for model name", model_name, status)
 
-  if model_name:
-    return model_name, "existent"
+    if (not model_name) and (not status):
+      sys.exit()
+
+    if model_name:
+      return model_name, "existent"
 
   # while (model_name in acceptance_list):
   while not (model_name or (status == "exit")):

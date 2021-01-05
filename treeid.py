@@ -392,6 +392,20 @@ class Tree(dict):
       i = children.index(id)
       return children[:i] + children[i + 1:]
 
+  def getMappedSubtree(self, id):
+    nodes = self.walkDepthFirst(id)
+    new_tree = Tree(root=id)
+    # map = {}
+    # count = 0
+    for nodeID in nodes:
+      # map[nodeID] = count
+      new_tree[nodeID] = copy.deepcopy(self[nodeID])
+      new_tree[nodeID]["ancestors"].remove(0)
+      # count += 1
+    node_map =  new_tree.mapMe()
+    return new_tree, node_map
+
+
   def isRoot(self, id):
     if self[id]['ancestors'] == []:
       return True

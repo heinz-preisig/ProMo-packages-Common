@@ -86,6 +86,7 @@ class UI_String(QtWidgets.QDialog):
     self.ui.lineEdit.setText(str(txt))
 
   def __changedText(self, Qtext):
+    print("debugging -- changed text", Qtext)
     text = Qtext
     if len(text) == 0:
       return
@@ -102,8 +103,12 @@ class UI_String(QtWidgets.QDialog):
     self.text = self.ui.lineEdit.text()
     self.close()
 
+  def on_lineEdit_returnPressed(self):
+    text = self.ui.lineEdit.text()
+    print("debugging -- return pressed", text)
+
   def getText(self):
-    return self.text
+    return self.ui.lineEdit.text()
 
   def newText(self, txt):
     # print("changed text:", txt, len(txt))
