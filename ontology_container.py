@@ -28,7 +28,7 @@ __status__ = "beta"
 import os as OS
 from collections import OrderedDict
 
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtWidgets
 
 from Common.common_resources import getData
 from Common.common_resources import M_None
@@ -1036,7 +1036,7 @@ class OntologyContainer():
             "" \
             "variable file"
 
-      reply = QtGui.QMessageBox.warning(QtGui.QWidget(), "ProMo", msg, QtGui.QMessageBox.Ok)
+      reply = QtWidgets.QMessageBox.warning(QtWidgets.QWidget(), "ProMo", msg, QtWidgets.QMessageBox.Ok)
       if reply == OK:
         exit(-1)
 
