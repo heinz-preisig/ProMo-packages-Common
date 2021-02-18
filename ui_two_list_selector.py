@@ -14,7 +14,7 @@ from PyQt5 import QtWidgets
 class Ui_TwoListSelector(object):
   def setupUi(self, TwoListSelector):
     TwoListSelector.setObjectName("TwoListSelector")
-    TwoListSelector.resize(1058, 300)
+    # TwoListSelector.resize(1058, 300)
     self.groupBox = QtWidgets.QGroupBox(TwoListSelector)
     self.groupBox.setGeometry(QtCore.QRect(20, 10, 1021, 281))
     self.groupBox.setObjectName("groupBox")
