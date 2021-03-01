@@ -392,7 +392,7 @@ def saveBackupFile(path):
 def saveWithBackup(data, path):
   print("saving")
   old_path, new_path, next_path = saveBackupFile(path)
-  putData(data,next_path)
+  putData(data,path)
 
 
 def getFilesAndVersions(abs_name, ext):

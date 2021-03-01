@@ -990,15 +990,12 @@ class OntologyContainer():
     :param data: input data
     :return:
     """
-
-    f_name = FILES[
-               "variables_file"] % self.ontology_name  # RULE: The file name carries also the version at least for
-    # the time being
+    # RULE: The file name carries also the version at least for the time being
+    f_name = FILES["variables_file"] % self.ontology_name
 
     data = VariableFile(variables, indices, VARIABLE_EQUATIONS_VERSION, self.ProMoIRI)
 
-    saveWithBackup(data, f_name)
-    # saveBackupFile(f_name)  # NOTE: every saving generates a backup file -- enables scrolling back
+    saveWithBackup(data, f_name)# NOTE: every saving generates a backup file -- enables scrolling back
     # putData(data, f_name)
 
   def readVariables(self):

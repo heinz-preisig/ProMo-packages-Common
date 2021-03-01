@@ -71,12 +71,25 @@ class EntityBehaviour(dict):
   def getRootVariableID(self, entity_str_ID):
     return int(self[entity_str_ID]["root_variable"])
 
-  def getVariantList(self):
+  def getVariantList(self, network_def, entity_def):
+    variant_set = set()
+    for entity_str_ID in self:
+      network, entity, variant = functionGetObjectsFromObjectStringID(entity_str_ID)
+      if network == network_def:
+        if entity == entity_def:
+          variant_set.add(variant)
+    return sorted(variant_set)
+
+
+
+
+  def getAllVariants(self):
     variant_set = set()
     for entity_str_ID in self:
       network, entity, variant = functionGetObjectsFromObjectStringID(entity_str_ID)
       variant_set.add(variant)
     return sorted(variant_set)
+
 
   def getEquationIDList(self, entity_str_ID ):
     equation_ID_list = []
