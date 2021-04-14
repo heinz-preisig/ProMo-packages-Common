@@ -65,7 +65,7 @@ class RecordVariable_6(dict):  # obsolete as soon as Tobias is finished
     self["units"] = None,  # TODO= list of 8 zeros ?
     self["equation_list"] = []
     self["aliases"] = {}
-    self["immutable"] = False
+    self["token"] = []
 
 
 class RecordVariable(dict):
@@ -86,6 +86,7 @@ class RecordVariable(dict):
     self["equations"] = {}  # ............................................................ hash is equation_ID: integer
     self["aliases"] = {}  # ..................................  one for each language, with language being the hash key
     self["port_variable"] = False  # ................. port variables are at the bottom of the definition -- foundation
+    self["tokens"] = []  # ...................................................................................... token
 
 
 class RecordEquation(dict):
@@ -149,6 +150,7 @@ class RecordIndex(dict):  # ....................................................
       "network"] = []  # TODO : the list of networks is available from the ontology >> heirs_network_dictionary -->
     # simplify
     self["aliases"] = {}  # ...................................................................... hash-key is language
+    self["tokens"] = None
 
 
 class RecordBlockIndex(dict):  # .............................................................. hash is global index_ID
@@ -168,7 +170,7 @@ class RecordIncidenceMatrix(RecordVariable):  # obsolete for the time being
     self["type"] = "network"
     self["network"] = network
     self["doc"] = "incidence matrix"
-    self["token"] = token
+    self["tokens"] = token
     self["transfer_mechanism"] = transfer_mechanism
     self["index_structures"] = [node_index, arc_index]
     self["immutable"] = True  # TODO: is this useful -- protect from stupidities ???
@@ -244,6 +246,7 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
                                equations={},
                                aliases={},
                                port_variable=False,
+                               tokens=[],
                                ):
   """
   NOTE: there is a problem here with the defaults -- do not use them, but define everthing explicitly.
@@ -270,8 +273,8 @@ def makeCompleteVariableRecord(var_ID,  # TODO: remove ?? and replace with varia
   self["units"] = units  # ....................................................................
   self["equations"] = equations  # ..................................................... hash is equation ID, an integer
   self["aliases"] = aliases  # .....could be in code - not handy and not quite logical: there is also a compiled version
-  self[
-    "port_variable"] = port_variable  # ............. port variables are at the bottom of the definition -- foundation
+  self["port_variable"] = port_variable  # ............ port variables are at the bottom of the definition -- foundation
+  self["tokens"] = tokens # ........................................................................................ token
 
   for language in LANGUAGES["aliasing"]:
     self["aliases"][language] = label

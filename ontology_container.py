@@ -101,6 +101,7 @@ def makeIndices(ontology_container):
   from Common.record_definitions import RecordBlockIndex
 
   typed_token_definition_nw = ontology_container.typed_token_definition_nw
+  token_associated_with_typed_token = ontology_container.token_associated_with_typed_token
 
   indices = {}
   index_counter = 0
@@ -122,6 +123,7 @@ def makeIndices(ontology_container):
     index = RecordIndex()
     index["label"] = typed_token
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
+    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1  # indices.add(**index)
     indices[index_counter] = index
 
@@ -134,6 +136,7 @@ def makeIndices(ontology_container):
     label = TEMPLATES["conversion_label"] % typed_token  # [0].capitalize()
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
+    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1
     indices[index_counter] = index
     makeIndexAliases(indices[index_counter], index_counter, TEMPLATES["conversion_alias"] % typed_token[0].capitalize())
@@ -150,6 +153,7 @@ def makeIndices(ontology_container):
       index["label"] = label
       index["network"] = ontology_container.heirs_network_dictionary[definition_network]
       index["indices"] = [index_outer_ID, index_inner_ID]
+      index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
       index_counter += 1
       indices[index_counter] = index
       index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
@@ -173,6 +177,7 @@ def makeIndices(ontology_container):
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
     index["indices"] = [index_outer_ID, index_inner_ID]
+    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1
     indices[index_counter] = index
     index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
@@ -197,6 +202,7 @@ def makeIndices(ontology_container):
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
     index["indices"] = [index_outer_ID, index_inner_ID]
+    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1
     indices[index_counter] = index
     index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
@@ -348,7 +354,9 @@ class OntologyContainer():
     self.arc_info_dictionary = self.__makeArcTypeDictionary()  # TODO check usage  -->  done is used check structure
     self.arc_info_allnetworks_dict = self.__make_arc_type_network_dict()  # TODO: check usage
 
-    self.token_definition_nw, self.typed_token_definition_nw = self.__makeDefinitionNetworkDictionaries()
+    self.token_definition_nw, \
+    self.typed_token_definition_nw, \
+    self.token_associated_with_typed_token = self.__makeDefinitionNetworkDictionaries()
 
     self.variables, \
     self.indices, \
@@ -940,6 +948,7 @@ class OntologyContainer():
   def __makeDefinitionNetworkDictionaries(self):
     token_definition_nw = {}  # hash is token
     typed_token_definition_nw = {}  # hash is typed token
+    token_associated_with_typed_token = {}
     for token in self.tokens:
       for nw in self.networks:
         if token in self.token_typedtoken_on_networks[nw]:
@@ -950,9 +959,10 @@ class OntologyContainer():
             for typed_token in self.token_typedtoken_on_networks[nw][token]:
               if typed_token not in typed_token_definition_nw:
                 typed_token_definition_nw[typed_token] = nw
+              token_associated_with_typed_token[typed_token] = token
                 # print("debugging - found first location of typed token %s in token %s in network %s"%(typed_token,
                 # token, nw))
-    return token_definition_nw, typed_token_definition_nw
+    return token_definition_nw, typed_token_definition_nw, token_associated_with_typed_token
 
   def __makeEquationDictionary(self):
     equation_dictionary = {}
@@ -1061,6 +1071,18 @@ class OntologyContainer():
       aliases = eval(variables_raw[ID]["aliases"])
       variables_raw[ID]["aliases"] = aliases
       variables_raw[ID]["index_structures"] = eval(variables_raw[ID]["index_structures"])
+      try:
+        variables_raw[ID]["tokens"] = eval(variables_raw[ID]["tokens"])
+      except:
+        variables_raw[ID]["tokens"] = [] # todo: not sure when it goes wrong. Not defining token results in "" as tokens
+      # token_raw = variables_raw[ID]["tokens"]
+      # if token_raw == "":
+      #   variables_raw[ID]["tokens"]  = []
+      # else:
+      #   variables_raw[ID]["tokens"] = eval(token_raw)
+      # convert from 8 to 8.1 adding tokens
+      # if "tokens" not in variables_raw[ID]:
+      #   variables_raw[ID]["tokens"] = ""
       variables[int(ID)] = variables_raw[ID]
     indices = {}
     for i in indices_raw:  # DOC: indices are stored in a dictionary with the hash being the enumeration integer

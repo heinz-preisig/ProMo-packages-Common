@@ -24,7 +24,7 @@ from PyQt5 import QtGui, QtWidgets
 from Common.ui_match_pairs import Ui_Dialog
 from Common.resources_icons import roundButton
 
-PAIRDELIMITER = " & "
+PAIRDELIMITER = " @ "
 
 class UI_MatchPairs(QtWidgets.QDialog):
   '''
@@ -32,7 +32,7 @@ class UI_MatchPairs(QtWidgets.QDialog):
   '''
   selection = QtCore.pyqtSignal(list)
 
-  def __init__(self, left_items, right_items, connector):
+  def __init__(self, left_items, right_items, connector, take_left=True, take_right=True):
     '''
     plain constructor
     '''
@@ -41,6 +41,10 @@ class UI_MatchPairs(QtWidgets.QDialog):
     self.ui = Ui_Dialog()
     self.ui.setupUi(self)
     self.show()
+    self.left_items = left_items
+    self.right_items = right_items
+    self.take_left = take_left
+    self.take_right = take_right
     try:
       roundButton(self.ui.pushButtonExit, "exit", "exit" )
     except:
@@ -65,6 +69,24 @@ class UI_MatchPairs(QtWidgets.QDialog):
     for i in right_items:
         self.ui.listWidgetRight.addItem(i)
 
+    self.__fitMe(self.ui.listWidgetLeft, self.left_items)
+    self.__fitMe(self.ui.listWidgetRight, self.right_items)
+
+  def __fitMe(self, widget, items ):
+    return
+    # maxwidth = 0
+    # count = widget.count()
+    # for i in range(0, count):
+    #   text = items[i]
+    #   t = QtWidgets.QLabel(text)
+    #   width = t.width()
+    #   del t
+    #   print("text: ", text, width)
+    #   if width > maxwidth:
+    #     maxwidth = width
+    # widget.setFixedWidth(maxwidth)
+    # print("setting max width to:", maxwidth)
+
   def getSelected(self):
     selected = []
     count = self.ui.listWidgetPairs.count()
@@ -73,6 +95,8 @@ class UI_MatchPairs(QtWidgets.QDialog):
       s = str(item.text())
       s_left,s_right = s.split(PAIRDELIMITER)
       selected.append((s_left,s_right))
+
+    # self.__fitMe(self.ui.listWidgetPairs)
     return selected
 
   def on_listWidgetRight_itemClicked(self):
@@ -89,9 +113,15 @@ class UI_MatchPairs(QtWidgets.QDialog):
     if self.selected_left:
       if self.selected_right:
         row_left = self.ui.listWidgetLeft.currentRow()
-        item_left = self.ui.listWidgetLeft.takeItem(row_left)
+        if self.take_left:
+          item_left = self.ui.listWidgetLeft.takeItem(row_left)
+        else:
+          item_left = self.ui.listWidgetLeft.item((row_left))
         row_right = self.ui.listWidgetRight.currentRow()
-        item_right = self.ui.listWidgetRight.takeItem(row_right)
+        if self.take_right:
+          item_right = self.ui.listWidgetRight.takeItem(row_right)
+        else:
+          item_right = self.ui.listWidgetRight.item(row_right)
         text_left = item_left.text()
         text_right = item_right.text()
         text_pair = "%s%s%s"%(text_left,PAIRDELIMITER,text_right)
@@ -106,8 +136,10 @@ class UI_MatchPairs(QtWidgets.QDialog):
     item_pair = self.ui.listWidgetPairs.takeItem(row_pair)
     text_pair = item_pair.text()
     text_left, text_right = text_pair.split(PAIRDELIMITER)
-    self.ui.listWidgetLeft.addItem(text_left.strip())
-    self.ui.listWidgetRight.addItem(text_right.strip())
+    if self.take_left:
+      self.ui.listWidgetLeft.addItem(text_left.strip())
+    if self.take_right:
+      self.ui.listWidgetRight.addItem(text_right.strip())
     self.ui.listWidgetLeft.sortItems()
     self.ui.listWidgetRight.sortItems()
 
@@ -124,11 +156,11 @@ def gottenList(selection):
 if __name__ == '__main__':
   import sys
   right = ['a','b','c','d']
-  left = ['1','2','3']
+  left = ['1111111111111111111111111111111111111111111111111111111111111111111','2','3']
 
   app = QtWidgets.QApplication([])
 
-  ui = UI_MatchPairs(left,right, gottenList)
+  ui = UI_MatchPairs(left,right, gottenList, take_right=False)
   ui.show()
 
   my_list = sys.exit(app.exec_())

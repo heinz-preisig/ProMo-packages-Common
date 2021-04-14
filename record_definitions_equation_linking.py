@@ -125,3 +125,15 @@ class VariantRecord(dict):  # ..................................................
   #       equation_ID_list.append(ID)
   #
   #   return equation_ID_list
+
+class NodeArcAssociations(dict):
+  def __init__(self, networks, node_objects, arc_objects):
+    super()
+    for nw in networks:
+      self[nw] = {}
+      self[nw]["nodes"] = {}
+      self[nw]["arcs"] = {}
+      for n in node_objects[nw]:
+        self[nw]["nodes"][n] = None
+      for a in arc_objects[nw]:
+        self[nw]["arcs"][a] = None
