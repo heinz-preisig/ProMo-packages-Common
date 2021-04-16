@@ -86,7 +86,7 @@ class UI_String(QtWidgets.QDialog):
     self.ui.lineEdit.setText(str(txt))
 
   def __changedText(self, Qtext):
-    print("debugging -- changed text", Qtext)
+    # print("debugging -- changed text", Qtext)
     text = Qtext
     if len(text) == 0:
       return
