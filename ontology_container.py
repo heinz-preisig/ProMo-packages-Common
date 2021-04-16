@@ -123,7 +123,7 @@ def makeIndices(ontology_container):
     index = RecordIndex()
     index["label"] = typed_token
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
-    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
+    index["tokens"] = ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1  # indices.add(**index)
     indices[index_counter] = index
 
@@ -136,7 +136,7 @@ def makeIndices(ontology_container):
     label = TEMPLATES["conversion_label"] % typed_token  # [0].capitalize()
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
-    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
+    index["tokens"] = ontology_container.converting_tokens[typed_token] #ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1
     indices[index_counter] = index
     makeIndexAliases(indices[index_counter], index_counter, TEMPLATES["conversion_alias"] % typed_token[0].capitalize())
@@ -153,7 +153,7 @@ def makeIndices(ontology_container):
       index["label"] = label
       index["network"] = ontology_container.heirs_network_dictionary[definition_network]
       index["indices"] = [index_outer_ID, index_inner_ID]
-      index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
+      index["tokens"] = ontology_container.token_associated_with_typed_token[typed_token]
       index_counter += 1
       indices[index_counter] = index
       index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
@@ -177,7 +177,8 @@ def makeIndices(ontology_container):
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
     index["indices"] = [index_outer_ID, index_inner_ID]
-    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
+    driving_token = ontology_container.converting_tokens[typed_token]
+    index["tokens"] = driving_token #ontology_container.token_associated_with_typed_token[typed_token]
     index_counter += 1
     indices[index_counter] = index
     index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
@@ -202,7 +203,8 @@ def makeIndices(ontology_container):
     index["label"] = label
     index["network"] = ontology_container.heirs_network_dictionary[definition_network]
     index["indices"] = [index_outer_ID, index_inner_ID]
-    index["token"] = ontology_container.token_associated_with_typed_token[typed_token]
+    driving_token = ontology_container.converting_tokens[typed_token]
+    index["tokens"] = [ontology_container.token_associated_with_typed_token[typed_token], driving_token]
     index_counter += 1
     indices[index_counter] = index
     index_outer_language = indices[index_outer_ID]["aliases"]["internal_code"]
