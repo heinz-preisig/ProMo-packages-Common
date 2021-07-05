@@ -104,8 +104,7 @@ class UI_String(QtWidgets.QDialog):
     self.close()
 
   def on_lineEdit_returnPressed(self):
-    text = self.ui.lineEdit.text()
-    print("debugging -- return pressed", text)
+    self.__accept()
 
   def getText(self):
     return self.ui.lineEdit.text()

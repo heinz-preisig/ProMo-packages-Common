@@ -79,7 +79,10 @@ EXTENSION_DUPLICATES_REMOVED = "-D"
 
 TEMPLATE_NODE_OBJECT = "%s" + NODE_COMPONENT_SEPARATOR + "%s"
 TEMPLATE_NODE_OBJECT_WITH_TOKEN = "%s" + NODE_COMPONENT_SEPARATOR + "%s" + NODE_COMPONENT_SEPARATOR + "%s"
-TEMPLATE_ENTITY_OBJECT = "%s" + ENTITY_OBJECT_SEPARATOR + "%s" + ENTITY_OBJECT_SEPARATOR + "%s"
+TEMPLATE_ENTITY_OBJECT = "%s" + ENTITY_OBJECT_SEPARATOR \
+                         + "%s" + ENTITY_OBJECT_SEPARATOR \
+                         + "%s" + ENTITY_OBJECT_SEPARATOR \
+                          + "%s"                                     #network, node|arc, object, variant
 TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN = "%s" + NODE_COMPONENT_SEPARATOR + "%s"
 TEMPLATE_INTRA_NODE_OBJECT = "%s"
 TEMPLATE_INTER_NODE_OBJECT = "%s"
@@ -193,7 +196,8 @@ def askForModelFileGivenOntologyLocation(model_library_location,
                                       left_icon="new",
                                       left_tooltip= "new",
                                       right_icon="accept",
-                                      right_tooltip="accept"):
+                                      right_tooltip="accept",
+                                      alternative=True):
 
   model_names = __getSortedDirList(model_library_location)
 
@@ -210,11 +214,11 @@ def askForModelFileGivenOntologyLocation(model_library_location,
 
     print("debugging -- ask for model name", model_name, status)
 
-    if (not model_name) and (not status):
-      sys.exit()
-
     if model_name:
       return model_name, "existent"
+
+  if not alternative:
+    return None, "exit"
 
   # while (model_name in acceptance_list):
   while not (model_name or (status == "exit")):
@@ -227,41 +231,40 @@ def askForModelFileGivenOntologyLocation(model_library_location,
   return model_name, "new"
 
 
-def askForCasefileGivenLocation(case_rep_loc, alternative=True, new=False, exit="exit"):
-  acceptance_list = []
-  if exit == "exit":
-    case_names = [exit]
-  else:
-    case_names = []
-  if not new:
-    if alternative:
-      case_names.append(DIALOGUE["new case"])
-      acceptance_list.append(DIALOGUE["new case"])
-    else:
-      pass
+def askForCasefileGivenLocation(case_rep_loc,
+                                      left_icon="new",
+                                      left_tooltip= "new",
+                                      right_icon="accept",
+                                      right_tooltip="accept"):
 
-    case_names.extend(__getSortedDirList(case_rep_loc))
-    acceptance_list.extend(__getSortedDirList(case_rep_loc))
+  case_names = __getSortedDirList(case_rep_loc)
 
-    caselist = SingleListSelector(case_names)
-    caselist.exec_()
-    caselist.show()
-    case_name = caselist.getSelection()
+  if case_names:
+    case_name, status = selectFromList("choose case",
+                                        case_names,
+                                        left_icon=left_icon,
+                                        left_tooltip= left_tooltip,
+                                        right_icon=right_icon,
+                                        right_tooltip=right_tooltip)
 
-  else:
-    return DIALOGUE["new case"], True
 
-  if case_name == DIALOGUE["new case"]:
-    while (case_name in acceptance_list):
-      ui_ask = UI_String("give new case name or type exit ", "case name or exit", limiting_list=acceptance_list)
-      ui_ask.exec_()
-      case_name = ui_ask.getText()
-      print("new case name defined", case_name)
-      if case_name == "exit":
-        return case_name, False
-    return case_name, True
+    if (not case_name) and (not status):
+      sys.exit()
 
-  return case_name, False
+    if case_name:
+      return case_name, "existent"
+
+  case_name = ""
+  status = ""
+
+  while not (case_name or (status == "exit")):
+    ui_ask = UI_String("give new case name or type exit ", "case name or exit", limiting_list=case_names)
+    ui_ask.exec_()
+    case_name = ui_ask.getText()
+    print("debugging -- new model name defined", case_name)
+    if not case_name:  # == "exit":
+      return case_name, "exit"
+  return case_name, "new"
 
 
 def getOntologyName(new=False, task="ProMo_logo", behaviour="on_click", left_icon=None, right_icon=None):

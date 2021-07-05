@@ -34,6 +34,7 @@ from Common.common_resources import getData
 from Common.common_resources import M_None
 from Common.common_resources import putData
 from Common.common_resources import putDataOrdered
+from Common.common_resources import invertDict
 from Common.common_resources import saveBackupFile, saveWithBackup
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
 from Common.common_resources import TEMPLATE_CONNECTION_NETWORK, CONNECTION_NETWORK_SEPARATOR
@@ -332,7 +333,8 @@ class OntologyContainer():
 
     self.object_key_list_networks, \
     self.object_key_list_intra, \
-    self.object_key_list_inter = self.__makeObjectKeyLists()
+    self.object_key_list_inter, \
+    self.keys_networks_tokens = self.__makeObjectKeyLists()
 
     # self.arc_types_in_leave_networks_list_coded = self.__makeArcTypesInLeaveNetworksDictCoded()
     # self.node_types_in_leave_networks_list_coded = self.__makeNodeTypesInLeaveNetworksDictCoded()
@@ -350,7 +352,8 @@ class OntologyContainer():
     self.list_inter_node_objects, \
     self.list_arc_objects, \
     self.list_reduced_network_node_objects, \
-    self.list_reduced_network_arc_objects = self.__makeNodeObjectList()
+    self.list_reduced_network_arc_objects, \
+    self.list_inter_node_objects_tokens= self.__makeNodeObjectList()
 
     self.arc_types_in_networks_tuples = self.__makeArcTypesInNetworks()
     self.arc_info_dictionary = self.__makeArcTypeDictionary()  # TODO check usage  -->  done is used check structure
@@ -359,6 +362,7 @@ class OntologyContainer():
     self.token_definition_nw, \
     self.typed_token_definition_nw, \
     self.token_associated_with_typed_token = self.__makeDefinitionNetworkDictionaries()
+    self.typed_token_refining_token = invertDict(self.token_associated_with_typed_token)
 
     self.variables, \
     self.indices, \
@@ -397,6 +401,7 @@ class OntologyContainer():
   def __makeObjectKeyLists(self):
 
     keys_networks = []
+    keys_networks_tokens = []
     networks = self.networks
 
     # we make all combinations first
@@ -412,6 +417,11 @@ class OntologyContainer():
           tokens.extend(typed_tokens)
           for token in tokens:
             keys_networks.append((nw, "node", node_type, nature, token))
+          tokens = list(self.ontology_tree[nw]["structure"]["token"].keys())
+          for token in tokens:
+            keys_networks_tokens.append((nw, "node", node_type, nature, token))
+          if len(tokens) > 1:
+            keys_networks_tokens.append((nw, "node", node_type, nature, tokens))
 
       arc_info = self.ontology_tree[nw]["structure"]["arc"]
       tokens = list(arc_info.keys())
@@ -441,7 +451,7 @@ class OntologyContainer():
       inter_token = self.interfaces[inter_nw]["token"]
       keys_inter.append((inter_nw, "inter", inter_token))
 
-    return keys_networks, keys_intra, keys_inter
+    return keys_networks, keys_intra, keys_inter, keys_networks_tokens
 
   def __makeNodeObjectList(self):
     """
@@ -558,6 +568,26 @@ class OntologyContainer():
       for i in network_arc_list:
         list_reduced_network_arc_objects[nw].append(i)
 
+
+    list_inter_node_objects_tokens = {}
+
+    for nw in self.list_inter_branches:
+      list_inter_node_objects_tokens[nw] = []
+      s = "%s|%s|%s"
+
+      node_types = list(self.ontology_tree[nw]["structure"]["node"].keys())
+      for node_type in node_types:
+        natures = self.ontology_tree[nw]["structure"]["node"][node_type]
+        for nature in natures:
+          tokens = list(self.ontology_tree[nw]["structure"]["token"].keys())
+          for token in tokens:
+            ss = s % (node_type, nature, token)
+            list_inter_node_objects_tokens[nw].append(ss)
+          if len(tokens) > 1:
+            r = str(tokens).strip("'[]").replace("'", "").replace(", ","_")
+            ss = s % (node_type, nature, r)
+            list_inter_node_objects_tokens[nw].append(ss)
+
     return \
       list_node_objects_on_networks, \
       list_node_objects_on_networks_with_tokens, \
@@ -572,7 +602,8 @@ class OntologyContainer():
       list_inter_node_objects, \
       list_arc_objects, \
       list_reduced_network_node_objects, \
-      list_reduced_network_arc_objects
+      list_reduced_network_arc_objects, \
+      list_inter_node_objects_tokens
 
   ########################
 
@@ -584,6 +615,8 @@ class OntologyContainer():
         dnary[nw][token] = []
         if self.ontology_tree[nw]["structure"]["token"][token]:
           dnary[nw][token].append(self.ontology_tree[nw]["structure"]["token"][token][0])
+
+    invertDict
     return dnary
 
   def __makeOntologyHierarchy(self):
@@ -979,6 +1012,8 @@ class OntologyContainer():
       for eq_ID in self.variables[var_ID]["equations"]:
         equation_variable_dictionary[eq_ID] = (var_ID, self.variables[var_ID]["equations"][eq_ID])
     return equation_variable_dictionary
+
+
 
   def writeMe(self):
 

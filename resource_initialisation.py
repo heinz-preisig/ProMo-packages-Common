@@ -29,11 +29,12 @@ from Common.pop_up_message_box import makeMessageBox
 
 # from Common.ui_message_popup_impl import UI_MessagePopUp
 
-#TODO: reloacte all shell commands into one location
+# TODO: reloacte all shell commands into one location
 
 FILE_NAMES = {
         "ontology_file"                       : "ontology.json",
         "model_file"                          : "model.json",
+        "model_flat_file"                     : "model_flat.json",
         "indices_file"                        : "indices.json",
         # "rules_file"                      : "rules.json",
         "variables_file"                      : "variables_v8.json",
@@ -170,6 +171,14 @@ FILES["model_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                            DIRECTORIES["model_repository"], "%s",
                            FILE_NAMES["model_file"])  # %onto_name, model_name
 
+FILES["model_flat_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                DIRECTORIES["model_repository"], "%s",
+                                FILE_NAMES["model_flat_file"])  # %onto_name, model_name
+
+FILES["model_case_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                DIRECTORIES["model_repository"], "%s",
+                                "%s.json")  # %onto_name, model_name, case_name
+
 FILES["pnglatex"] = JOIN(DIRECTORIES["common_shell_scripts"], "pnglatex.bash")
 
 FILES["lock_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", "lock_file")
@@ -189,7 +198,8 @@ FILES["graph_resource_file_spec"] = JOIN(DIRECTORIES["ontology_repository"], "%s
                                          FILE_NAMES["graph_objects"])  # %ontology_name
 
 FILES["variable_assignment_to_entity_object"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                                                     FILE_NAMES["variable_assignment_to_entity_object"])  # %ontology_name
+                                                     FILE_NAMES[
+                                                         "variable_assignment_to_entity_object"])  # %ontology_name
 
 FILES["template_variable"] = JOIN(DIRECTORIES["equation_templates"], FILE_NAMES["template_variable"])
 
@@ -209,6 +219,10 @@ FILES["OWL_template"] = "template_variables.owl"
 
 FILES["latex_main"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                            DIRECTORIES["latex"], "main.tex")
+
+FILES["latex_equation_list"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                           DIRECTORIES["latex"], "%s.tex")                       # ontology_name, variant_name
+
 FILES["latex_documentation"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                     DIRECTORIES["latex"], "main.pdf")
 
@@ -224,6 +238,8 @@ FILES["latex_equations"] = JOIN("%s", DIRECTORIES["latex"], "equations_%s.tex")
 FILES["latex_template_main"] = "template_main.latex"
 FILES["latex_template_variables"] = "template_variables.latex"
 FILES["latex_template_equations"] = "template_equations.latex"
+FILES["latex_template_equation_list"] = "template_equation_list.latex"
+
 
 ### info files
 FILES["info_ontology_foundation_editor"] = JOIN(DIRECTORIES["common"], "info_ontology_foundation_editor.html")
@@ -263,7 +279,7 @@ FILES["constants_initialized"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                       DIRECTORIES["model_repository"], "%s",
                                       DIRECTORIES["case_repository"], "%s", "%s",
                                       FILE_NAMES[
-                                        "constants_init_python"])  # %ontology_name, model_name, case_name, language
+                                          "constants_init_python"])  # %ontology_name, model_name, case_name, language
 
 FILES["networks_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                    DIRECTORIES["model_repository"], "%s",
@@ -274,12 +290,12 @@ FILES["simulation_main_python"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                        DIRECTORIES["model_repository"], "%s",
                                        DIRECTORIES["case_repository"], "%s", "%s",
                                        FILE_NAMES[
-                                         "simulation_main_python"])  # %ontology_name, model_name, case_name, language
+                                           "simulation_main_python"])  # %ontology_name, model_name, case_name, language
 FILES["selections_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                      DIRECTORIES["model_repository"], "%s",
                                      DIRECTORIES["case_repository"], "%s", "%s",
                                      FILE_NAMES[
-                                       "selections_variables"])  # %ontology_name, model_name, case_name, language
+                                         "selections_variables"])  # %ontology_name, model_name, case_name, language
 
 FILES["coded_equations"] = JOIN("%s", "equations_%s.json")  # ontology_location, language
 
@@ -307,56 +323,56 @@ FILES["icons"] = {
 
 
 def checkAndFixResources(ontology_name, stage="ontology_stage_1"):
-  REQUIRED_DIRECTORIES = [DIRECTORIES["ontology_repository"],
-                          DIRECTORIES["ontology_location"] % ontology_name,
-                          DIRECTORIES["model_library_location"] % ontology_name,
-                          DIRECTORIES["resource_location"] % ontology_name,
-                          DIRECTORIES["automata_location"] % ontology_name,
-                          DIRECTORIES["latex_doc_location"] % ontology_name,
-                          DIRECTORIES["latex_resource_location"] % ontology_name
-                          ]
+    REQUIRED_DIRECTORIES = [DIRECTORIES["ontology_repository"],
+                            DIRECTORIES["ontology_location"] % ontology_name,
+                            DIRECTORIES["model_library_location"] % ontology_name,
+                            DIRECTORIES["resource_location"] % ontology_name,
+                            DIRECTORIES["automata_location"] % ontology_name,
+                            DIRECTORIES["latex_doc_location"] % ontology_name,
+                            DIRECTORIES["latex_resource_location"] % ontology_name
+                            ]
 
-  # touples        #TODO: include all files
-  # - first the required file
-  # - second the source
-  RESOURCE_FILES = {
-          "ontology_stage_1": [(FILES["ontology_file"] % ontology_name,
-                                JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["ontology_file"])
-                                ),
-                               # (FILES["rules_file"]%ontology_name,
-                               #  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
-                               #  ),
-                               ],
-          "ontology_stage_2": [(FILES["converting_tokens_file"] % ontology_name,
-                                JOIN(DIRECTORIES["repository_infrastructure"],
-                                     FILE_NAMES["converting_tokens_file"])
-                                ),
-                               ],
-          }
+    # touples        #TODO: include all files
+    # - first the required file
+    # - second the source
+    RESOURCE_FILES = {
+            "ontology_stage_1": [(FILES["ontology_file"] % ontology_name,
+                                  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["ontology_file"])
+                                  ),
+                                 # (FILES["rules_file"]%ontology_name,
+                                 #  JOIN(DIRECTORIES["repository_infrastructure"], FILE_NAMES["rules_file"])
+                                 #  ),
+                                 ],
+            "ontology_stage_2": [(FILES["converting_tokens_file"] % ontology_name,
+                                  JOIN(DIRECTORIES["repository_infrastructure"],
+                                       FILE_NAMES["converting_tokens_file"])
+                                  ),
+                                 ],
+            }
 
-  MUST_HAVE_FILES = {
-          "ontology_stage_1": [],
-          "ontology_stage_2": [FILES["ontology_file"] % ontology_name,
-                               ],
-          "ontology_stage_2": [FILES["ontology_file"] % ontology_name
-                               ],
-          "model_composer"  : [FILES["typed_token_file"] % ontology_name,
-                               ],
-          }
+    MUST_HAVE_FILES = {
+            "ontology_stage_1": [],
+            "ontology_stage_2": [FILES["ontology_file"] % ontology_name,
+                                 ],
+            "ontology_stage_2": [FILES["ontology_file"] % ontology_name
+                                 ],
+            "model_composer"  : [FILES["typed_token_file"] % ontology_name,
+                                 ],
+            }
 
-  if stage == "ontology_stage_1":
+    if stage == "ontology_stage_1":
 
-    for r in REQUIRED_DIRECTORIES:
-      if not OS.path.exists(r):
-        OS.mkdir(r)
-        print("RESOURCES -- made new directory :", r)
+        for r in REQUIRED_DIRECTORIES:
+            if not OS.path.exists(r):
+                OS.mkdir(r)
+                print("RESOURCES -- made new directory :", r)
 
-  for f in MUST_HAVE_FILES[stage]:
-    if not OS.path.exists(f):
-      gugus = makeMessageBox("no such file : %s" % f, buttons=[])
-      pass
+    for f in MUST_HAVE_FILES[stage]:
+        if not OS.path.exists(f):
+            gugus = makeMessageBox("no such file : %s" % f, buttons=[])
+            pass
 
-  for r in range(len(RESOURCE_FILES[stage])):
-    file, resource = RESOURCE_FILES[stage][r]
-    if not OS.path.exists(file):
-      copyfile(resource, file)
+    for r in range(len(RESOURCE_FILES[stage])):
+        file, resource = RESOURCE_FILES[stage][r]
+        if not OS.path.exists(file):
+            copyfile(resource, file)

@@ -33,20 +33,17 @@ def functionMakeObjectStringID(network, entity, variant):
   return entity_str_ID
 
 def functionGetObjectsFromObjectStringID(entity_str_ID):
-  network, entity, variant = entity_str_ID.split(ENTITY_OBJECT_SEPARATOR)
-  return network, entity, variant
+  network, component, entity, variant = entity_str_ID.split(ENTITY_OBJECT_SEPARATOR)
+  return network, component, entity, variant
 
 class EntityBehaviour(dict):
-  def __init__(self, networks, entities):
+  def __init__(self, entities):
     super().__init__()
-    for nw in networks:
-      for entity in entities[nw]:
-        entity_str_ID = TEMPLATE_ENTITY_OBJECT % (
-                nw, entity, "base")  # RULE: "base" is used for the base bipartite graph
-        self[entity_str_ID] = None
+    for e in entities:
+      self[e] = None
 
-  def addVariant(self, network, entity, variant, data):
-    entity_str_ID = functionMakeObjectStringID(network, entity, variant)
+  def addVariant(self, entity_str_ID, data): #network, entity, variant, data):
+    # entity_str_ID = functionMakeObjectStringID(network, entity, variant)
 
     # self[entity_str_ID] = VariantRecord(tree=data["tree"],
     #                                     nodes=data["nodes"],
@@ -56,16 +53,20 @@ class EntityBehaviour(dict):
     #                                     buddies_list = data["buddies"])
     self[entity_str_ID] = deepcopy(data)
 
-  def removeVariant(self, network, entity, variant):
-    entity_str_ID = functionMakeObjectStringID(network, entity, variant)
-    if variant == "base":
+  def removeVariant(self, obj):
+    # entity_str_ID = functionMakeObjectStringID(network, entity, variant)
+    elements = obj.split(".")
+    if elements[-1] == "base":
+      reminder = obj.replace(".base","")
+      del_list = []
       for o in self:
-        if "base" not in o:
-          del self[entity_str_ID]
-        else:
-          self[o] = None
+        if reminder in o:
+          del_list.append(o)
+      for e in del_list:
+        del self[e]
+      self[obj] = None
     else:
-      del self[entity_str_ID]
+      del self[obj]
 
 
   def getRootVariableID(self, entity_str_ID):

@@ -75,14 +75,13 @@ class RecordVariable(dict):
     internally it is dynamically we use an additional dictionary for the compiled versions
     TODO: we need to decide if we store the ID version or the ProMo version (currently called internal)
     """
-    super()
-    " the global var_ID is the hash tag -- enumeration type"
+    super()     #.............................................. " the global var_ID is the hash tag -- enumeration type"
     self["label"] = ""
     self["type"] = ""  # ............................................................................... variable class
     self["network"] = ""  # ..................................................  specifies application/definition domain
     self["doc"] = ''
     self["index_structures"] = []  # ...........................................................    index_IDs: integers
-    self["units"] = None,  # ................................................................ # TODO; default 8 zeros ?
+    self["units"] = None,  #       8 integers exponents of time, length, amount, mass, temperature, current, light, nil
     self["equations"] = {}  # ............................................................ hash is equation_ID: integer
     self["aliases"] = {}  # ..................................  one for each language, with language being the hash key
     self["port_variable"] = False  # ................. port variables are at the bottom of the definition -- foundation
