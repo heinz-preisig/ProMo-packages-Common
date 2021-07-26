@@ -6,798 +6,261 @@
           "-": {
             "-": {
               "action": [],
-              "layer": "mainPanel",
+              "layer": "text",
               "movable": false,
-              "position_x": 0,
-              "position_y": 0
+              "position_x": -95,
+              "position_y": 20
             }
           }
         },
         "root": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "zoom in"
+              ],
               "colour": [
                 255,
                 255,
                 255,
-                100
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 15,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 30
             }
           }
         }
       },
       "arc_edge": {
         "head": {
-          "diff_signals|transfer|unidirectional": {
-            "selected": {
+          "-": {
+            "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                46,
+                52,
+                54,
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 15,
+              "layer": "knot",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "momentum|transfer|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
+              "width": 15
             }
           }
         },
         "root": {
-          "diff_signals|transfer|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|conduction|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
           "energy|conduction|lumped": {
-            "selected": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                239,
+                41,
+                41,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dashed",
               "width": 2
-            }
-          },
-          "energy|radiation|distributed": {
+            },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|radiation|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|work|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
+              "style": "dashed",
               "width": 2
             }
           },
           "energy|work|lumped": {
-            "selected": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                52,
+                101,
+                164,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dashed",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dashed",
               "width": 2
             }
           },
-          "mass|diffusion|distributed": {
-            "selected": {
+          "information|link|unidirectional": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                196,
+                160,
+                0,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dotted",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            }
+          },
+          "mass|convection|lumped": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "solid",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "solid",
               "width": 2
             }
           },
           "mass|diffusion|lumped": {
-            "selected": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                0,
+                0,
+                0,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dotted",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
               "width": 2
             }
           },
-          "mass|volumetric|distributed": {
-            "selected": {
+          "signal|link|unidirectional": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                138,
+                226,
+                52,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dash dot",
               "width": 2
-            }
-          },
-          "mass|volumetric|lumped": {
+            },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "momentum|transfer|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
+              "style": "dash dot",
               "width": 2
             }
           }
         },
         "tail": {
-          "diff_signals|transfer|unidirectional": {
-            "selected": {
+          "-": {
+            "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                186,
+                189,
+                182,
+                255
               ],
               "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "momentum|transfer|lumped": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
+              "layer": "knot",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
@@ -810,11 +273,13 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
-              "layer": "mainPanel",
+              "action": [
+                "name node"
+              ],
+              "layer": "text",
               "movable": false,
               "position_x": 0,
-              "position_y": 0
+              "position_y": -25
             }
           }
         },
@@ -823,17 +288,17 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                46,
+                52,
+                54,
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 20,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 20
             }
           }
         }
@@ -842,19 +307,21 @@
         "root": {
           "-": {
             "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
+              "action": [
+                "remove knot"
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "colour": [
+                46,
+                52,
+                54,
+                255
+              ],
+              "height": 15,
+              "layer": "knot",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 15
             }
           }
         }
@@ -863,30 +330,36 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
-              "layer": "mainPanel",
-              "movable": false,
+              "action": [
+                "name node"
+              ],
+              "layer": "text",
+              "movable": true,
               "position_x": 0,
-              "position_y": 0
+              "position_y": 50
             }
           }
         },
         "root": {
           "-": {
             "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
+              "action": [
+                "delete node",
+                "zoom in",
+                "explode node"
               ],
-              "height": 100,
-              "layer": "mainPanel",
+              "colour": [
+                143,
+                89,
+                2,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
               "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 100
+              "position_x": -20,
+              "position_y": -20,
+              "width": 40
             }
           }
         }
@@ -895,30 +368,47 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
-              "layer": "mainPanel",
-              "movable": false,
+              "action": [
+                "name node"
+              ],
+              "layer": "text",
+              "movable": true,
               "position_x": 0,
-              "position_y": 0
+              "position_y": 55
             }
           }
         },
         "root": {
-          "-": {
-            "selected": {
+          "inter": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                78,
+                154,
+                6,
+                255
               ],
               "height": 10,
-              "layer": "mainPanel",
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 50
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 10,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 50
             }
           }
         }
@@ -927,30 +417,47 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
-              "layer": "mainPanel",
-              "movable": false,
+              "action": [
+                "name node"
+              ],
+              "layer": "text",
+              "movable": true,
               "position_x": 0,
-              "position_y": 0
+              "position_y": 50
             }
           }
         },
         "root": {
-          "-": {
+          "intra": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                46,
+                52,
+                54,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": -25,
+              "width": 10
+            },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "height": 100,
-              "layer": "mainPanel",
+              "height": 50,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
-              "position_y": 0,
-              "width": 100
+              "position_y": -25,
+              "width": 10
             }
           }
         }
@@ -959,11 +466,32 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
-              "layer": "mainPanel",
-              "movable": false,
+              "action": [
+                "name node"
+              ],
+              "layer": "text",
+              "movable": true,
               "position_x": 0,
-              "position_y": 0
+              "position_y": 50
+            }
+          }
+        },
+        "named_network": {
+          "-": {
+            "-": {
+              "action": [],
+              "colour": [
+                255,
+                255,
+                255,
+                100
+              ],
+              "height": 30,
+              "layer": "network",
+              "movable": false,
+              "position_x": -15,
+              "position_y": 0,
+              "width": 30
             }
           }
         },
@@ -977,65 +505,142 @@
                 255,
                 100
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 40,
+              "layer": "network",
               "movable": false,
-              "position_x": 0,
+              "position_x": -10,
               "position_y": 0,
-              "width": 10
+              "width": 40
             }
           }
         },
         "root": {
-          "constant": {
+          "constant|infinity": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                143,
+                89,
+                2,
+                255
+              ],
+              "height": 60,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 60
+            },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 60,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 60
+            }
+          },
+          "dynamic|lumped": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                239,
+                41,
+                41,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 40
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 40
+            }
+          },
+          "event|distributed": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                46,
+                52,
+                54,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
               "width": 10
             }
           },
-          "dynamic": {
-            "selected": {
+          "event|lumped": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                85,
+                87,
+                83,
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 20,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
-            }
-          },
-          "event": {
+              "width": 20
+            },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "height": 20,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 20
             }
           }
         }
@@ -1046,16 +651,16 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                186,
+                189,
+                182,
+                255
               ],
               "height": 100,
-              "layer": "mainPanel",
+              "layer": "sidePanel",
               "movable": false,
-              "position_x": 0,
-              "position_y": 0,
+              "position_x": 100,
+              "position_y": -50,
               "width": 100
             }
           }
@@ -1065,16 +670,16 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                211,
+                215,
+                207,
+                255
               ],
               "height": 100,
-              "layer": "mainPanel",
+              "layer": "sidePanel",
               "movable": false,
-              "position_x": 0,
-              "position_y": 0,
+              "position_x": -100,
+              "position_y": 50,
               "width": 100
             }
           }
@@ -1082,12 +687,16 @@
         "root": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "add arc",
+                "insert model",
+                "group nodes"
+              ],
               "colour": [
                 255,
                 255,
                 255,
-                100
+                255
               ],
               "height": 100,
               "layer": "mainPanel",
@@ -1104,29 +713,31 @@
           "-": {
             "-": {
               "action": [],
-              "layer": "mainPanel",
+              "layer": "text",
               "movable": false,
               "position_x": 0,
-              "position_y": 0
+              "position_y": 20
             }
           }
         },
         "root": {
           "-": {
             "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
+              "action": [
+                "zoom in"
               ],
-              "height": 10,
-              "layer": "mainPanel",
+              "colour": [
+                136,
+                138,
+                133,
+                255
+              ],
+              "height": 15,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
+              "width": 30
             }
           }
         }
@@ -1153,7 +764,7 @@
               ],
               "colour": [
                 255,
-                155,
+                255,
                 255,
                 255
               ],
@@ -1169,781 +780,140 @@
       },
       "arc_edge": {
         "head": {
-          "diff_signals|transfer|unidirectional": {
+          "-": {
             "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
+                46,
+                52,
+                54,
                 255
               ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            }
-          },
-          "energy|radiation|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
+              "height": 15,
               "layer": "knot",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            }
-          },
-          "mass|volumetric|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "momentum|transfer|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
+              "width": 15
             }
           }
         },
         "root": {
-          "diff_signals|transfer|unidirectional": {
-            "-": {
+          "energy|conduction|lumped": {
+            "enabled": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|conduction|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                218,
+                239,
+                41,
                 41,
                 255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dashed",
+              "width": 2
+            }
+          },
+          "energy|work|lumped": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                52,
+                101,
+                164,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dashed",
+              "width": 2
+            }
+          },
+          "information|link|unidirectional": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                196,
+                160,
+                0,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            }
+          },
+          "mass|convection|lumped": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "solid",
+              "width": 2
+            }
+          },
+          "mass|diffusion|lumped": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            }
+          },
+          "signal|link|unidirectional": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                138,
+                226,
+                52,
+                255
+              ],
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
               "style": "dash dot",
               "width": 2
             }
-          },
-          "energy|conduction|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|radiation|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                212,
-                212,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dash dot dot",
-              "width": 4
-            }
-          },
-          "energy|radiation|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                212,
-                212,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dash dot dot",
-              "width": 2
-            }
-          },
-          "energy|work|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                212,
-                212,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dashed",
-              "width": 4
-            }
-          },
-          "energy|work|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                212,
-                212,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dashed",
-              "width": 2
-            }
-          },
-          "mass|diffusion|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "mass|diffusion|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "mass|volumetric|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                225,
-                225,
-                225,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 4
-            }
-          },
-          "mass|volumetric|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                225,
-                225,
-                225,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 2
-            }
-          },
-          "momentum|transfer|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                218,
-                41,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dashed",
-              "width": 2
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
           }
         },
         "tail": {
-          "diff_signals|transfer|unidirectional": {
+          "-": {
             "-": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|lumped": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "energy|work|distributed": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "mass|diffusion|distributed": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
               "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
               "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|lumped": {
-            "-": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "momentum|transfer|lumped": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "-": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
@@ -1971,9 +941,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                170,
-                0,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 20,
@@ -1994,9 +964,9 @@
                 "remove knot"
               ],
               "colour": [
-                79,
-                79,
-                79,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 15,
@@ -2032,9 +1002,9 @@
                 "explode node"
               ],
               "colour": [
-                0,
-                148,
-                153,
+                143,
+                89,
+                2,
                 255
               ],
               "height": 40,
@@ -2051,62 +1021,62 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "name node"
+              ],
               "layer": "text",
-              "movable": false,
+              "movable": true,
               "position_x": 0,
-              "position_y": 50
+              "position_y": 55
             }
           }
         },
         "root": {
-          "-": {
+          "inter": {
             "blocked": {
               "action": [],
               "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 20,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "enabled": {
-              "action": [
-                "inject"
-              ],
-              "colour": [
-                85,
-                85,
-                85,
-                255
-              ],
-              "height": 20,
+              "height": 10,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 5
+              "width": 50
+            },
+            "enabled": {
+              "action": [],
+              "colour": [
+                78,
+                154,
+                6,
+                255
+              ],
+              "height": 10,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 50
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 20,
-              "layer": "mainPanel",
+              "height": 10,
+              "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 5
+              "width": 50
             }
           }
         }
@@ -2115,22 +1085,24 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "name node"
+              ],
               "layer": "text",
-              "movable": false,
+              "movable": true,
               "position_x": 0,
               "position_y": 50
             }
           }
         },
         "root": {
-          "-": {
+          "intra": {
             "blocked": {
               "action": [],
               "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
                 255
               ],
               "height": 50,
@@ -2138,16 +1110,14 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             },
             "enabled": {
-              "action": [
-                "inject"
-              ],
+              "action": [],
               "colour": [
-                85,
-                85,
-                85,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 50,
@@ -2155,14 +1125,14 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
               "height": 50,
@@ -2170,7 +1140,7 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             }
           }
         }
@@ -2189,6 +1159,25 @@
             }
           }
         },
+        "named_network": {
+          "-": {
+            "-": {
+              "action": [],
+              "colour": [
+                255,
+                255,
+                255,
+                100
+              ],
+              "height": 30,
+              "layer": "network",
+              "movable": false,
+              "position_x": -15,
+              "position_y": 0,
+              "width": 30
+            }
+          }
+        },
         "network": {
           "-": {
             "-": {
@@ -2199,121 +1188,117 @@
                 255,
                 100
               ],
-              "height": 55,
+              "height": 40,
               "layer": "network",
               "movable": false,
-              "position_x": 0,
+              "position_x": -10,
               "position_y": 0,
-              "width": 55
+              "width": 40
             }
           }
         },
         "root": {
-          "constant": {
+          "constant|infinity": {
             "blocked": {
               "action": [],
               "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 45,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 45
-            },
-            "enabled": {
-              "action": [
-                "inject"
-              ],
-              "colour": [
-                38,
-                48,
-                86,
-                255
-              ],
-              "height": 45,
-              "layer": "node",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 45
-            },
-            "selected": {
-              "action": [
-                "select"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 45,
-              "layer": "node",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 45
-            }
-          },
-          "dynamic": {
-            "blocked": {
-              "action": [],
-              "colour": [
-                200,
-                200,
-                200,
-                255
-              ],
-              "height": 30,
-              "layer": "node",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 30
+              "width": 60
             },
             "enabled": {
               "action": [],
               "colour": [
-                255,
-                111,
-                97,
+                143,
+                89,
+                2,
                 255
               ],
-              "height": 30,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 30
+              "width": 60
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 20,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 30
+              "width": 60
             }
           },
-          "event": {
+          "dynamic|lumped": {
             "blocked": {
               "action": [],
               "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 40
+            },
+            "enabled": {
+              "action": [],
+              "colour": [
+                239,
+                41,
+                41,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 40
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 40,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 40
+            }
+          },
+          "event|distributed": {
+            "blocked": {
+              "action": [],
+              "colour": [
+                186,
+                189,
+                182,
                 255
               ],
               "height": 50,
@@ -2321,16 +1306,63 @@
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 3
+              "width": 10
             },
             "enabled": {
               "action": [
-                "select"
+                "inject"
               ],
               "colour": [
-                0,
-                0,
-                0,
+                46,
+                52,
+                54,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            }
+          },
+          "event|lumped": {
+            "blocked": {
+              "action": [],
+              "colour": [
+                186,
+                189,
+                182,
+                255
+              ],
+              "height": 20,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 20
+            },
+            "enabled": {
+              "action": [],
+              "colour": [
+                85,
+                87,
+                83,
                 255
               ],
               "height": 20,
@@ -2343,17 +1375,17 @@
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 50,
+              "height": 20,
               "layer": "node",
-              "movable": true,
+              "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 3
+              "width": 20
             }
           }
         }
@@ -2364,9 +1396,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                195,
-                255,
+                186,
+                189,
+                182,
                 255
               ],
               "height": 100,
@@ -2383,9 +1415,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
+                211,
                 215,
-                255,
+                207,
                 255
               ],
               "height": 100,
@@ -2409,7 +1441,7 @@
                 255,
                 255,
                 255,
-                100
+                255
               ],
               "height": 100,
               "layer": "mainPanel",
@@ -2440,9 +1472,9 @@
                 "zoom in"
               ],
               "colour": [
-                255,
-                175,
-                255,
+                136,
+                138,
+                133,
                 255
               ],
               "height": 15,
@@ -2461,7 +1493,9 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "name node"
+              ],
               "layer": "text",
               "movable": false,
               "position_x": -95,
@@ -2473,11 +1507,12 @@
           "-": {
             "-": {
               "action": [
-                "zoom in"
+                "zoom in",
+                "name node"
               ],
               "colour": [
                 255,
-                155,
+                255,
                 255,
                 255
               ],
@@ -2493,979 +1528,36 @@
       },
       "arc_edge": {
         "head": {
-          "diff_signals|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                0,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                218,
-                41,
-                255
-              ],
-              "height": 14,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 14
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "enabled": {
+          "-": {
+            "-": {
               "action": [
-                "insert knot",
+                "remove arc",
                 "re-direct arc",
-                "remove arc"
+                "insert knot"
               ],
               "colour": [
-                200,
-                100,
-                50,
+                46,
+                52,
+                54,
                 255
               ],
-              "height": 10,
+              "height": 15,
               "layer": "knot",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 20
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            }
-          },
-          "energy|radiation|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|distributed": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                200,
-                100,
-                50,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                200,
-                100,
-                50,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 20
-            }
-          },
-          "mass|volumetric|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 10,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "momentum|transfer|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                218,
-                41,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                85,
-                170,
-                127,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                0,
-                127,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                0,
-                85,
-                255,
-                255
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
+              "width": 15
             }
           }
         },
         "root": {
-          "diff_signals|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                170,
-                170,
-                127,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|conduction|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                111,
-                97,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 3
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
           "energy|conduction|lumped": {
             "enabled": {
               "action": [],
               "colour": [
-                255,
-                111,
-                97,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "energy|radiation|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                0,
-                0,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 4
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 4
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 4
-            }
-          },
-          "energy|radiation|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                0,
-                0,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dotted",
-              "width": 2
-            }
-          },
-          "energy|work|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                125,
-                93,
-                153,
+                239,
+                41,
+                41,
                 255
               ],
               "layer": "arc",
@@ -3473,14 +1565,14 @@
               "position_x": 0,
               "position_y": 0,
               "style": "dashed",
-              "width": 4
+              "width": 2
             },
             "open": {
               "action": [],
               "colour": [
-                0,
-                255,
-                255,
+                114,
+                159,
+                207,
                 255
               ],
               "layer": "arc",
@@ -3488,14 +1580,14 @@
               "position_x": 0,
               "position_y": 0,
               "style": "dashed",
-              "width": 4
+              "width": 2
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
               "layer": "arc",
@@ -3503,16 +1595,16 @@
               "position_x": 0,
               "position_y": 0,
               "style": "dashed",
-              "width": 4
+              "width": 2
             }
           },
           "energy|work|lumped": {
             "enabled": {
               "action": [],
               "colour": [
-                125,
-                93,
-                153,
+                52,
+                101,
+                164,
                 255
               ],
               "layer": "arc",
@@ -3525,24 +1617,9 @@
             "open": {
               "action": [],
               "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dashed",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
+                114,
+                159,
+                207,
                 255
               ],
               "layer": "arc",
@@ -3551,300 +1628,33 @@
               "position_y": 0,
               "style": "dashed",
               "width": 2
-            }
-          },
-          "mass|diffusion|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                70,
-                70,
-                70,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dashed",
-              "width": 4
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "mass|diffusion|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                70,
-                70,
-                70,
+                252,
+                233,
+                79,
                 255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
               "style": "dashed",
               "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
             }
           },
-          "mass|volumetric|distributed": {
+          "information|link|unidirectional": {
             "enabled": {
               "action": [],
               "colour": [
-                70,
-                70,
-                70,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 4
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 4
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
+                196,
+                160,
                 0,
                 255
               ],
               "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 4
-            }
-          },
-          "mass|volumetric|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                70,
-                70,
-                70,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "layer": "arc",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "solid",
-              "width": 2
-            }
-          },
-          "momentum|transfer|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                218,
-                41,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dash dot",
-              "width": 4
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                85,
-                170,
-                127,
-                255
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "dash dot",
-              "width": 2
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "style": "no pen",
-              "width": 2
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                0,
-                127,
-                255
-              ],
-              "layer": "mainPanel",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
@@ -3854,836 +1664,194 @@
             "open": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                114,
+                159,
+                207,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dotted",
               "width": 2
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "dotted",
               "width": 2
             }
           },
-          "state_info|auto|unidirectional": {
+          "mass|convection|lumped": {
             "enabled": {
               "action": [],
               "colour": [
-                85,
-                85,
-                255,
+                0,
+                0,
+                0,
                 255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "dashed",
+              "style": "solid",
               "width": 2
             },
             "open": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                114,
+                159,
+                207,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "solid",
               "width": 2
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                255,
-                100
+                252,
+                233,
+                79,
+                255
               ],
-              "layer": "mainPanel",
+              "layer": "arc",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "style": "no pen",
+              "style": "solid",
+              "width": 2
+            }
+          },
+          "mass|diffusion|lumped": {
+            "enabled": {
+              "action": [
+                "re-direct arc"
+              ],
+              "colour": [
+                0,
+                0,
+                0,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            },
+            "open": {
+              "action": [],
+              "colour": [
+                114,
+                159,
+                207,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dotted",
+              "width": 2
+            }
+          },
+          "signal|link|unidirectional": {
+            "enabled": {
+              "action": [],
+              "colour": [
+                138,
+                226,
+                52,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dash dot",
+              "width": 2
+            },
+            "open": {
+              "action": [],
+              "colour": [
+                114,
+                159,
+                207,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dash dot",
+              "width": 2
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "layer": "arc",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "style": "dash dot",
               "width": 2
             }
           }
         },
         "tail": {
-          "diff_signals|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                111,
-                97,
-                255
-              ],
-              "height": 6,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 6
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|conduction|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|distributed": {
-            "enabled": {
+          "-": {
+            "-": {
               "action": [
-                "insert knot",
+                "remove arc",
                 "re-direct arc",
-                "remove arc"
+                "insert knot"
               ],
               "colour": [
-                225,
-                225,
-                225,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|radiation|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                170,
-                170,
-                170,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "energy|work|distributed": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
                 255
               ],
               "height": 10,
               "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "energy|work|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                170,
-                170,
-                170,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "mass|diffusion|distributed": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|diffusion|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|distributed": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                225,
-                225,
-                225,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "mass|volumetric|lumped": {
-            "enabled": {
-              "action": [
-                "insert knot",
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                170,
-                170,
-                170,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "open": {
-              "action": [
-                "re-direct arc",
-                "remove arc"
-              ],
-              "colour": [
-                0,
-                255,
-                255,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "selected": {
-              "action": [
-                "change arc"
-              ],
-              "colour": [
-                255,
-                255,
-                0,
-                255
-              ],
-              "height": 5,
-              "layer": "knot",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            }
-          },
-          "momentum|transfer|lumped": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                218,
-                41,
-                255
-              ],
-              "height": 5,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 5
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "property_info|auto|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "signal|transfer|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            }
-          },
-          "state_info|auto|unidirectional": {
-            "enabled": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "open": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
-              "movable": false,
-              "position_x": 0,
-              "position_y": 0,
-              "width": 10
-            },
-            "selected": {
-              "action": [],
-              "colour": [
-                255,
-                255,
-                255,
-                100
-              ],
-              "height": 10,
-              "layer": "mainPanel",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
@@ -4711,9 +1879,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                170,
-                0,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 20,
@@ -4731,12 +1899,13 @@
           "-": {
             "-": {
               "action": [
-                "remove knot"
+                "remove knot",
+                "insert knot"
               ],
               "colour": [
-                0,
-                0,
-                0,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 15,
@@ -4768,13 +1937,15 @@
             "-": {
               "action": [
                 "delete node",
+                "explode node",
                 "zoom in",
-                "explode node"
+                "name node",
+                "make a copy"
               ],
               "colour": [
-                0,
-                148,
-                153,
+                143,
+                89,
+                2,
                 255
               ],
               "height": 40,
@@ -4797,63 +1968,56 @@
               "layer": "text",
               "movable": true,
               "position_x": 0,
-              "position_y": 50
+              "position_y": 55
             }
           }
         },
         "root": {
-          "-": {
+          "inter": {
             "blocked": {
               "action": [],
               "colour": [
-                225,
-                225,
-                225,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 20,
+              "height": 10,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 5
+              "width": 50
             },
             "enabled": {
-              "action": [
-                "add arc",
-                "begin arc",
-                "change arc",
-                "delete node",
-                "name node",
-                "reset"
-              ],
+              "action": [],
               "colour": [
-                0,
-                0,
-                0,
+                78,
+                154,
+                6,
                 255
               ],
-              "height": 40,
+              "height": 10,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 20
+              "width": 50
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 20,
+              "height": 10,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 5
+              "width": 50
             }
           }
         }
@@ -4873,13 +2037,13 @@
           }
         },
         "root": {
-          "-": {
+          "intra": {
             "blocked": {
               "action": [],
               "colour": [
-                200,
-                200,
-                200,
+                186,
+                189,
+                182,
                 255
               ],
               "height": 50,
@@ -4887,22 +2051,14 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             },
             "enabled": {
-              "action": [
-                "add arc",
-                "begin arc",
-                "change arc",
-                "delete node",
-                "name node",
-                "reset",
-                "select node"
-              ],
+              "action": [],
               "colour": [
-                0,
-                0,
-                0,
+                46,
+                52,
+                54,
                 255
               ],
               "height": 50,
@@ -4910,14 +2066,14 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
               "height": 50,
@@ -4925,7 +2081,7 @@
               "movable": false,
               "position_x": 0,
               "position_y": -25,
-              "width": 7
+              "width": 10
             }
           }
         }
@@ -4944,6 +2100,25 @@
             }
           }
         },
+        "named_network": {
+          "-": {
+            "-": {
+              "action": [],
+              "colour": [
+                255,
+                255,
+                255,
+                100
+              ],
+              "height": 30,
+              "layer": "network",
+              "movable": false,
+              "position_x": -15,
+              "position_y": 0,
+              "width": 30
+            }
+          }
+        },
         "network": {
           "-": {
             "-": {
@@ -4954,134 +2129,182 @@
                 255,
                 100
               ],
-              "height": 55,
+              "height": 40,
               "layer": "network",
               "movable": false,
-              "position_x": 0,
+              "position_x": -10,
               "position_y": 0,
-              "width": 55
+              "width": 40
             }
           }
         },
         "root": {
-          "constant": {
+          "constant|infinity": {
             "blocked": {
               "action": [],
               "colour": [
-                200,
-                200,
-                200,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 45,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 45
+              "width": 60
             },
             "enabled": {
               "action": [
                 "add arc",
                 "begin arc",
                 "change arc",
-                "delete node",
                 "name node",
-                "reset",
-                "zoom in",
-                "inject t-token"
+                "zoom in"
               ],
               "colour": [
-                38,
-                48,
-                86,
+                143,
+                89,
+                2,
                 255
               ],
-              "height": 45,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 45
+              "width": 60
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 45,
+              "height": 60,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 45
+              "width": 60
             }
           },
-          "dynamic": {
+          "dynamic|lumped": {
             "blocked": {
               "action": [],
               "colour": [
-                200,
-                200,
-                200,
+                186,
+                189,
+                182,
                 255
               ],
-              "height": 30,
+              "height": 40,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 30
+              "width": 40
             },
             "enabled": {
               "action": [
                 "add arc",
                 "begin arc",
                 "change arc",
-                "delete node",
-                "name node",
                 "zoom in",
-                "convert t-token"
+                "name node"
               ],
               "colour": [
-                255,
-                111,
-                97,
+                239,
+                41,
+                41,
                 255
               ],
-              "height": 30,
+              "height": 40,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 30
+              "width": 40
             },
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
-              "height": 30,
+              "height": 40,
               "layer": "node",
               "movable": false,
               "position_x": 0,
               "position_y": 0,
-              "width": 30
+              "width": 40
             }
           },
-          "event": {
+          "event|distributed": {
             "blocked": {
               "action": [],
               "colour": [
-                200,
-                200,
-                200,
+                186,
+                189,
+                182,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            },
+            "enabled": {
+              "action": [
+                "add arc",
+                "begin arc",
+                "change arc",
+                "name node",
+                "zoom in"
+              ],
+              "colour": [
+                46,
+                52,
+                54,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            },
+            "selected": {
+              "action": [],
+              "colour": [
+                252,
+                233,
+                79,
+                255
+              ],
+              "height": 50,
+              "layer": "node",
+              "movable": false,
+              "position_x": 0,
+              "position_y": 0,
+              "width": 10
+            }
+          },
+          "event|lumped": {
+            "blocked": {
+              "action": [],
+              "colour": [
+                186,
+                189,
+                182,
                 255
               ],
               "height": 20,
@@ -5093,14 +2316,16 @@
             },
             "enabled": {
               "action": [
-                "convert t-token",
-                "name node",
-                "set t-token constraint"
+                "add arc",
+                "begin arc",
+                "change arc",
+                "zoom in",
+                "name node"
               ],
               "colour": [
-                0,
-                0,
-                0,
+                85,
+                87,
+                83,
                 255
               ],
               "height": 20,
@@ -5113,9 +2338,9 @@
             "selected": {
               "action": [],
               "colour": [
-                255,
-                255,
-                0,
+                252,
+                233,
+                79,
                 255
               ],
               "height": 20,
@@ -5134,9 +2359,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
-                195,
-                255,
+                186,
+                189,
+                182,
                 255
               ],
               "height": 100,
@@ -5153,9 +2378,9 @@
             "-": {
               "action": [],
               "colour": [
-                255,
+                211,
                 215,
-                255,
+                207,
                 255
               ],
               "height": 100,
@@ -5171,15 +2396,15 @@
           "-": {
             "-": {
               "action": [
-                "add arc",
-                "insert model",
-                "group nodes"
+                "add node",
+                "group nodes",
+                "insert model"
               ],
               "colour": [
                 255,
                 255,
                 255,
-                100
+                255
               ],
               "height": 100,
               "layer": "mainPanel",
@@ -5195,7 +2420,9 @@
         "name": {
           "-": {
             "-": {
-              "action": [],
+              "action": [
+                "name node"
+              ],
               "layer": "text",
               "movable": false,
               "position_x": 0,
@@ -5207,12 +2434,13 @@
           "-": {
             "-": {
               "action": [
-                "zoom in"
+                "zoom in",
+                "name node"
               ],
               "colour": [
-                255,
-                175,
-                255,
+                136,
+                138,
+                133,
                 255
               ],
               "height": 15,
@@ -5230,9 +2458,9 @@
   "networks": {
     "control": {
       "colour": [
-        198,
-        33,
-        104,
+        255,
+        85,
+        255,
         255
       ]
     },
@@ -5252,7 +2480,15 @@
         100
       ]
     },
-    "control >>> molecular": {
+    "control >>> materialDB": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "control >>> mixing": {
       "colour": [
         255,
         255,
@@ -5262,37 +2498,29 @@
     },
     "control >>> solid": {
       "colour": [
-        200,
-        200,
-        200,
-        255
+        255,
+        255,
+        255,
+        100
       ]
     },
     "gas": {
       "colour": [
-        214,
-        156,
-        47,
+        255,
+        255,
+        0,
         255
       ]
     },
     "gas >>> control": {
       "colour": [
-        200,
-        200,
-        200,
-        255
+        255,
+        255,
+        255,
+        100
       ]
     },
-    "gas >>> liquid": {
-      "colour": [
-        170,
-        170,
-        170,
-        255
-      ]
-    },
-    "gas >>> molecular": {
+    "gas >>> materialDB": {
       "colour": [
         255,
         255,
@@ -5300,31 +2528,31 @@
         100
       ]
     },
-    "gas >>> solid": {
+    "gas >>> mixing": {
       "colour": [
-        170,
-        170,
-        170,
-        255
+        255,
+        255,
+        255,
+        100
       ]
     },
     "liquid": {
       "colour": [
-        17,
-        88,
+        114,
         159,
+        207,
         255
       ]
     },
     "liquid >>> control": {
       "colour": [
-        200,
-        200,
-        200,
-        255
+        255,
+        255,
+        255,
+        100
       ]
     },
-    "liquid >>> molecular": {
+    "liquid >>> materialDB": {
       "colour": [
         255,
         255,
@@ -5332,23 +2560,7 @@
         100
       ]
     },
-    "liquid >>> solid": {
-      "colour": [
-        170,
-        170,
-        170,
-        255
-      ]
-    },
-    "molecular": {
-      "colour": [
-        213,
-        215,
-        23,
-        255
-      ]
-    },
-    "molecular >>> control": {
+    "liquid >>> mixing": {
       "colour": [
         255,
         255,
@@ -5356,15 +2568,15 @@
         100
       ]
     },
-    "molecular >>> gas": {
+    "materialDB": {
       "colour": [
-        210,
-        194,
-        157,
+        141,
+        148,
+        64,
         255
       ]
     },
-    "molecular >>> liquid": {
+    "materialDB >>> control": {
       "colour": [
         255,
         255,
@@ -5372,7 +2584,79 @@
         100
       ]
     },
-    "molecular >>> solid": {
+    "materialDB >>> gas": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "materialDB >>> liquid": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "materialDB >>> mixing": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "materialDB >>> solid": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "mixing": {
+      "colour": [
+        173,
+        127,
+        168,
+        255
+      ]
+    },
+    "mixing >>> control": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "mixing >>> gas": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "mixing >>> liquid": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "mixing >>> materialDB": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "mixing >>> solid": {
       "colour": [
         255,
         255,
@@ -5382,21 +2666,29 @@
     },
     "solid": {
       "colour": [
-        141,
-        148,
-        64,
+        143,
+        89,
+        2,
         255
       ]
     },
     "solid >>> control": {
       "colour": [
-        200,
-        200,
-        200,
-        255
+        255,
+        255,
+        255,
+        100
       ]
     },
-    "solid >>> molecular": {
+    "solid >>> materialDB": {
+      "colour": [
+        255,
+        255,
+        255,
+        100
+      ]
+    },
+    "solid >>> mixing": {
       "colour": [
         255,
         255,
@@ -5405,15 +2697,39 @@
       ]
     }
   },
+  "states": {
+    "-": [
+      255,
+      255,
+      255,
+      100
+    ],
+    "blocked": [
+      186,
+      189,
+      182,
+      255
+    ],
+    "enabled": [
+      255,
+      255,
+      255,
+      100
+    ],
+    "open": [
+      114,
+      159,
+      207,
+      255
+    ],
+    "selected": [
+      252,
+      233,
+      79,
+      255
+    ]
+  },
   "tokens": {
-    "diff_signals": {
-      "colour": [
-        255,
-        255,
-        255,
-        100
-      ]
-    },
     "energy": {
       "colour": [
         255,
@@ -5430,35 +2746,19 @@
         255
       ]
     },
-    "momentum": {
+    "mixCoeff": {
       "colour": [
-        141,
-        148,
-        64,
-        255
-      ]
-    },
-    "property_info": {
-      "colour": [
-        117,
-        81,
-        57,
+        173,
+        127,
+        168,
         255
       ]
     },
     "signal": {
       "colour": [
-        170,
         255,
+        170,
         0,
-        255
-      ]
-    },
-    "state_info": {
-      "colour": [
-        152,
-        36,
-        58,
         255
       ]
     }
