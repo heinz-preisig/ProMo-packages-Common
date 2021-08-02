@@ -216,8 +216,7 @@ FILES["latex_shell_ontology_view_exec"] = JOIN(DIRECTORIES["resource_location"] 
 FILES["latex_shell_automata_doc_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                                  DIRECTORIES["latex"],
                                                  FILE_NAMES["latex_shell_automata_doc_command"])
-FILES["latex_shell_var_equ_list_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
-                                                DIRECTORIES["latex"],
+FILES["latex_shell_var_equ_list_command"] = JOIN(DIRECTORIES["latex_resource_location"],
                                                 FILE_NAMES["latex_shell_var_equ_list_command"])
 
 FILES["OWL_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s", "python_owl.py")
