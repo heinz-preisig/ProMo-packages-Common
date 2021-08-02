@@ -64,6 +64,7 @@ FILE_NAMES = {
         "dot_graph_shell"                     : "show_dot_graphs.sh",
         "latex_shell_var_equ_doc_command"     : "make_documentation.sh",
         "latex_shell_automata_doc_command"    : "make_automata_table.sh",
+        "latex_shell_var_equ_list_command"    : "latex_compile.sh",
         "variable_assignment_to_entity_object": "variable_assignment_to_entity_object.json"
         }
 
@@ -94,7 +95,8 @@ DIRECTORIES["equation_templates"] = JOIN(DIRECTORIES["packages"], "OntologyEquat
 DIRECTORIES["model_repository"] = "models"
 DIRECTORIES["graphobject_resources"] = "resources"
 DIRECTORIES["case_repository"] = "cases"
-DIRECTORIES["ontology_graphs_location"] = "ontology_graphs"
+DIRECTORIES["ontology_graphs_location"] = "ontology_graphs"  #TODO: change to graphs--needs change of infrastructure handling
+DIRECTORIES["graphs"] = "ontology_graphs" #TODO: change to graphs--needs change of infrastructure handling
 
 DIRECTORIES["ontology_location"] = JOIN(DIRECTORIES["ontology_repository"], "%s")  # %ontology_name
 DIRECTORIES["model_library_location"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
@@ -135,6 +137,7 @@ DIRECTORIES["output_language"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                       DIRECTORIES["case_repository"], "%s",
                                       "%s")  # %ontology_name, model_name, case_name, language
 DIRECTORIES["common_shell_scripts"] = JOIN(DIRECTORIES["common"], "shell_scripts")
+DIRECTORIES["graph_locations"] = JOIN(DIRECTORIES["ontology_repository"], "%s", DIRECTORIES["graphs"])
 
 FILES = {}
 FILES["ontology_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", FILE_NAMES["ontology_file"])  # %ontology_name
@@ -213,6 +216,9 @@ FILES["latex_shell_ontology_view_exec"] = JOIN(DIRECTORIES["resource_location"] 
 FILES["latex_shell_automata_doc_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                                  DIRECTORIES["latex"],
                                                  FILE_NAMES["latex_shell_automata_doc_command"])
+FILES["latex_shell_var_equ_list_command"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
+                                                DIRECTORIES["latex"],
+                                                FILE_NAMES["latex_shell_var_equ_list_command"])
 
 FILES["OWL_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s", "python_owl.py")
 FILES["OWL_template"] = "template_variables.owl"

@@ -239,7 +239,7 @@ class OntologyContainer():
     """
 
     # get the named ontology
-    self.onto_path = DIRECTORIES["ontology_location"] % ontology_name
+    self.ontology_location = DIRECTORIES["ontology_location"] % ontology_name
     self.ontology_name = ontology_name
     self.ontology_file = FILES["ontology_file"] % ontology_name
     print('Ontology file: ', self.ontology_file)
