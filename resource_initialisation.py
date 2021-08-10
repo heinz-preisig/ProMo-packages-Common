@@ -183,6 +183,7 @@ FILES["model_case_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                 "%s.json")  # %onto_name, model_name, case_name
 
 FILES["pnglatex"] = JOIN(DIRECTORIES["common_shell_scripts"], "pnglatex.bash")
+FILES["latex_png_header_file"] = JOIN(DIRECTORIES["ontology_location"],"png_header.tex")
 
 FILES["lock_file"] = JOIN(DIRECTORIES["ontology_repository"], "%s", "lock_file")
 
