@@ -249,9 +249,9 @@ FILES["latex_template_equation_list"] = "template_equation_list.latex"
 
 ### info files
 FILES["info_ontology_foundation_editor"] = JOIN(DIRECTORIES["common"], "info_ontology_foundation_editor.html")
-FILES["info_ontology_foundation_second_stage_editor"] = JOIN(DIRECTORIES["common"],
-                                                             "info_ontology_foundation_second_stage_editor.html")
-FILES["info_ontology_design_editor"] = JOIN(DIRECTORIES["common"], "info_ontology_design_editor.html")
+# FILES["info_ontology_foundation_second_stage_editor"] = JOIN(DIRECTORIES["common"],
+#                                                              "info_ontology_foundation_second_stage_editor.html")
+FILES["info_ontology_equation_editor"] = JOIN(DIRECTORIES["common"], "info_ontology_equation_editor.html")
 FILES["info_ontology_variable_table"] = JOIN(DIRECTORIES["common"], "info_ontology_variable_table.html")
 FILES["info_index_alias_table"] = JOIN(DIRECTORIES["common"], "info_index_alias_table.html")
 FILES["info_variable_alias_table"] = JOIN(DIRECTORIES["common"], "info_variable_alias_table.html")
