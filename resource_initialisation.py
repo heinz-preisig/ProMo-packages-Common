@@ -304,6 +304,7 @@ FILES["selections_variables"] = JOIN(DIRECTORIES["ontology_repository"], "%s",
                                          "selections_variables"])  # %ontology_name, model_name, case_name, language
 
 FILES["coded_equations"] = JOIN("%s", "equations_%s.json")  # ontology_location, language
+FILES["coded_variables"] = JOIN("%s", "variables_%s.json")  # ontology_location, language
 
 FILES["icons"] = {
         "info": JOIN(DIRECTORIES["icon_location"], "info_icon.png")

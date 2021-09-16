@@ -346,7 +346,7 @@ def __addItemToTreeWidget(treeWidget, parent, nodeID):
   item.setText(0, name)
   item.setSelected(True)
 
-  k = QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable \
+  k = QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsUserCheckable #\
     # | QtCore.Qt.ItemIsEditable
   item.setFlags(k)
 
