@@ -376,7 +376,7 @@ def checkAndFixResources(ontology_name, stage="ontology_stage_1"):
 
     for f in MUST_HAVE_FILES[stage]:
         if not OS.path.exists(f):
-            gugus = makeMessageBox("no such file : %s" % f, buttons=[])
+            gugus = makeMessageBox("no such file : %s" % f) #, buttons=[])
             pass
 
     for r in range(len(RESOURCE_FILES[stage])):
