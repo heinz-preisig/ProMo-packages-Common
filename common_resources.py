@@ -128,6 +128,16 @@ def getData(file_spec):
   else:
     return None
 
+def getEnumeratedData(file_spec):
+  raw_data = getData(file_spec)
+  if not raw_data:
+    return None
+  else:
+    data = {}
+    for str_ID in raw_data:
+      data[int(str_ID)] = raw_data[str_ID]
+    return data
+
 
 def putDataOrdered(data, file_spec, indent="  "):
   dump = json.dumps(data, sort_keys=True, indent=indent)
