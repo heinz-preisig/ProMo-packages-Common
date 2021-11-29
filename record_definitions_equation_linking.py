@@ -24,7 +24,7 @@ __status__ = "beta"
 from copy import deepcopy
 
 from Common.common_resources import ENTITY_OBJECT_SEPARATOR
-from Common.common_resources import TEMPLATE_ENTITY_OBJECT
+from Common.common_resources import TEMPLATE_ENTITY_OBJECT, getData
 
 
 
@@ -117,6 +117,49 @@ class VariantRecord(dict):  # ..................................................
     self["blocked"] = blocked_list
     self["buddies"]= buddies_list
     self["to_be_initialised"] = to_be_inisialised
+
+
+def readVariableAssignmentToEntity(f):
+  # f = FILES["variable_assignment_to_entity_object"] % self.ontology_name
+  # loaded_entity_behaviours = getData(f)
+  data = getData(f)
+  if data:
+    loaded_entity_behaviours = data["behaviours"]
+    node_arc_associations = data["associations"]
+    entity_behaviours = {}
+
+    if loaded_entity_behaviours:
+      for entity_str_ID in loaded_entity_behaviours:  # careful there may not be all entities at least during
+        # developments
+        if loaded_entity_behaviours[entity_str_ID]:
+          dummy = VariantRecord()
+          data = loaded_entity_behaviours[entity_str_ID]
+          for atr in dummy:
+            if atr not in data:
+              data[atr] = None
+          tree = {}
+          for treeStrID in data["tree"]:
+            tree[int(treeStrID)] = data["tree"][treeStrID]
+          data["tree"] = tree
+
+          nodes = {}
+          for nodeStrID in data["nodes"]:
+            nodes[int(nodeStrID)] = data["nodes"][nodeStrID]
+          data["nodes"] = nodes
+
+
+          entity_behaviours[entity_str_ID] = VariantRecord(tree=data["tree"],
+                                                                nodes=data["nodes"],
+                                                                IDs=data["IDs"],
+                                                                root_variable=data["root_variable"],
+                                                                blocked_list=data["blocked"],
+                                                                buddies_list=data["buddies"],
+                                                                to_be_inisialised=data["to_be_initialised"])
+    return node_arc_associations, entity_behaviours
+  else:
+    return None, None
+
+
   #
   # def getEquationIDList(self, ):
   #   equation_ID_list = []

@@ -370,6 +370,8 @@ class OntologyContainer():
     self.version, \
     self.ProMoIRI = self.readVariables()
 
+    self.nodeSubClasses = self.readNodeAssignments()
+
     if self.indices == {}:  # DOC: make indices if they do not yet exist
       self.indices = makeIndices(self)
     else:
@@ -1084,6 +1086,26 @@ class OntologyContainer():
       if reply == OK:
         exit(-1)
 
+  def readNodeAssignments(self):
+    print("debugging -- read node assignments")
+
+    assignment_file_name = FILES["variable_assignment_to_entity_object"] % self.ontology_name
+    if OS.path.exists(assignment_file_name):
+      data = self.__readVariableAssignmentFile(assignment_file_name)
+      return
+
+
+    # msg = "There is no variable file \n-- run foundation editor again and save information\n-- to generate an empty " \
+    #       "" \
+    #       "" \
+    #       "" \
+    #       "" \
+    #       "variable file"
+    #
+    # reply = QtWidgets.QMessageBox.warning(QtWidgets.QWidget(), "ProMo", msg, QtWidgets.QMessageBox.Ok)
+    # if reply == OK:
+    #   exit(-1)
+
   def __readVariablesEquationFile(self, variable_record_filter, variables_f_name):
     data = getData(variables_f_name)
     variables_raw = data["variables"]
@@ -1129,3 +1151,6 @@ class OntologyContainer():
     for i in ProMoIRI_raw:
       ProMoIRI[i] = int(ProMoIRI_raw[i])
     return variables, indices, variable_record_filter, version, ProMoIRI
+
+  def __readVariableAssignmentFile(self, file_name):
+    data = getData(file_name)
