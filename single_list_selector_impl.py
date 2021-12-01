@@ -71,17 +71,17 @@ class SingleListSelector(QtWidgets.QDialog):
         max_width = width
     self.__resizeMe(height, max_width + 20)
 
-    self.__move2row(selected)
-    if not left_icon:
-      self.ui.pushLeft.hide()
-    else:
-      self.ui.pushLeft.show()
-    self.ui.pushRight.hide()
-
-    if not thelist:
-      self.ui.listWidget.hide()
-
-    self.hide()
+    # self.__move2row(selected)
+    # if not left_icon:
+    #   self.ui.pushLeft.hide()
+    # else:
+    #   self.ui.pushLeft.show()
+    # self.ui.pushRight.hide()
+    #
+    # if not thelist:
+    #   self.ui.listWidget.hide()
+    #
+    # self.hide()
 
   def __move2row(self, selected):
     if (selected != None) and (selected in self.thelist):
