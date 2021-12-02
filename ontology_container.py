@@ -677,6 +677,18 @@ class OntologyContainer():
                   "right": r,
                   "type" : type
                   }
+          cnw = TEMPLATE_CONNECTION_NETWORK % (l, l)
+          intraconnectionNetworks[cnw] = {
+                  "left" : l,
+                  "right": l,
+                  "type" : type
+                  }
+          cnw = TEMPLATE_CONNECTION_NETWORK % (r, r)
+          intraconnectionNetworks[cnw] = {
+                  "left" : r,
+                  "right": r,
+                  "type" : type
+                  }
           # cnw = TEMPLATE_CONNECTION_NETWORK%(r, l)
           # intraconnectionNetworks[cnw] = {
           #       "left" : r,
