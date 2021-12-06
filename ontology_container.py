@@ -30,6 +30,10 @@ from collections import OrderedDict
 
 from PyQt5 import QtGui, QtWidgets
 
+from Common.pop_up_message_box import makeMessageBox
+
+from Common.qt_resources import NO
+from Common.qt_resources import YES
 from Common.common_resources import getData
 from Common.common_resources import M_None
 from Common.common_resources import putData
@@ -373,7 +377,16 @@ class OntologyContainer():
     self.nodeSubClasses = self.readNodeAssignments()
 
     if self.indices == {}:  # DOC: make indices if they do not yet exist
-      self.indices = makeIndices(self)
+      try:
+        self.indices = makeIndices(self)
+      except:
+        # gugus = makeMessageBox("index generation failed -- probably missing the definition of species in the ontology -- see structure, token @mass @species")
+        reply = QtWidgets.QMessageBox.question(None, "exception",
+                                               "There are problems with generating the indices probably missing the definition of refined tokens for example token mass refined by species",
+                                               OK)
+        if reply in [OK, YES] :
+          exit(-1)
+
     else:
       for i in self.indices:
         def_network = self.indices[i]["network"][0]
