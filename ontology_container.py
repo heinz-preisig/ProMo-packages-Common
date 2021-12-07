@@ -281,7 +281,7 @@ class OntologyContainer():
     file = FILES["converting_tokens_file"] % ontology_name
     self.converting_tokens = getData(file)  # ................................... make available as part of the ontology
 
-    self.ontology_hiearchy = self.__makeOntologyHierarchy()  # ...................constructs hierarchy network labels
+    self.ontology_hierarchy = self.__makeOntologyHierarchy()  # ...................constructs hierarchy network labels
     self.networks = walkBreathFirstFnc(self.ontology_tree, "root")
 
     self.list_leave_networks = self.__makeListOfLeaveNames()  # ................................ list of all leave nodes
