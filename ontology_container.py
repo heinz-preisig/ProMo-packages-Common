@@ -377,6 +377,8 @@ class OntologyContainer():
     self.nodeSubClasses = self.readNodeAssignments()
 
     if self.indices == {}:  # DOC: make indices if they do not yet exist
+
+      self.indices = makeIndices(self)
       try:
         self.indices = makeIndices(self)
       except:
