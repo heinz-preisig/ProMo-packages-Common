@@ -379,15 +379,17 @@ class OntologyContainer():
 
     if self.indices == {}:  # DOC: make indices if they do not yet exist
 
-      self.indices = makeIndices(self)
       try:
         self.indices = makeIndices(self)
       except:
-        # gugus = makeMessageBox("index generation failed -- probably missing the definition of species in the ontology -- see structure, token @mass @species")
         reply = QtWidgets.QMessageBox.question(None, "exception",
-                                               "There are problems with generating the indices probably missing the definition of refined tokens for example token mass refined by species",
-                                               OK)
+                                               "There are problems with generating the indices probably missing the "
+                                               "definition of refined tokens for example token mass refined by species"
+                                               " --- continue ?",
+                                               OK, NO)
         if reply in [OK, YES] :
+          pass
+        else:
           exit(-1)
 
     else:
