@@ -279,7 +279,7 @@ class OntologyContainer():
 
     #
     # TODO: converting tokens
-    file = FILES["converting_tokens_file"] % ontology_name
+    file = FILES["typed_token_file"] % ontology_name #FILES["converting_tokens_file"] % ontology_name
     self.converting_tokens = getData(file)  # ................................... make available as part of the ontology
 
     self.ontology_hierarchy = self.__makeOntologyHierarchy()  # .................... constructs hierarchy network labels
@@ -378,7 +378,7 @@ class OntologyContainer():
     self.nodeSubClasses = self.readNodeAssignments()
 
     if self.indices == {}:  # DOC: make indices if they do not yet exist
-
+      self.indices = makeIndices(self)
       try:
         self.indices = makeIndices(self)
       except:
