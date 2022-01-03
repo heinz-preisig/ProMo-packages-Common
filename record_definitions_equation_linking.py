@@ -70,7 +70,11 @@ class EntityBehaviour(dict):
 
 
   def getRootVariableID(self, entity_str_ID):
-    return int(self[entity_str_ID]["root_variable"])
+    if self[entity_str_ID]:
+      root_variable = int(self[entity_str_ID]["root_variable"])
+      return root_variable
+    else:
+      return None
 
   def getVariantList(self, network_def, entity_def):
     variant_set = set()
