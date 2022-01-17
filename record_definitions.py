@@ -218,7 +218,8 @@ class Interface(dict):  # ......................................................
     self["left_network"] = left_network
     self["right_network"] = right_network
     self["left_variable_classes"] = left_variable_classes
-    self["internal_variable_classes"] = ["transform", "constant"]  # ..... RULE: hard wired interface variable class
+    # self["internal_variable_classes"] = ["transform", "constant"]  # ..... RULE: hard wired interface variable class
+    self["internal_variable_classes"] = ["transform", "constant", "stateInfo", "response", "control"]  # ..... RULE: hard wired interface variable class
     self["token"] = "information"  # ..................................... RULE: hard wired token
     self["mechanism"] = "link"  # ........................................ RULE: hard wired mechanism
     self["nature"] = "unidirectional"  # ................................. RULE: hard wired tranfer nature
