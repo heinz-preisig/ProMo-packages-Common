@@ -595,7 +595,10 @@ class GraphDataObjects(OrderedDict):
     if application not in self[phase][root_object][decoration]:
       # self.__makeData(phase, root_object, decoration, application, state)
       print(" warning >>> should not come here")
-
+    try:
+      a = self[phase][root_object][decoration][application][state]
+    except:
+      print("exception occurred")
     return self[phase][root_object][decoration][application][state]
 
   def makeBrushesAndPens(self):

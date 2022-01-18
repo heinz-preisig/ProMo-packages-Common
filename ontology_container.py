@@ -26,6 +26,7 @@ __email__ = "heinz.preisig@chemeng.ntnu.no"
 __status__ = "beta"
 
 import os as OS
+import os.path
 from collections import OrderedDict
 
 from PyQt5 import QtGui, QtWidgets
@@ -60,6 +61,8 @@ from Common.resource_initialisation import VARIABLE_EQUATIONS_VERSION
 from OntologyBuilder.OntologyEquationEditor.resources import CODE
 from OntologyBuilder.OntologyEquationEditor.resources import LANGUAGES
 from OntologyBuilder.OntologyEquationEditor.variable_framework import Units
+
+from Common.record_definitions_equation_linking import VariantRecord
 
 
 def findID(indices, name):
@@ -315,6 +318,8 @@ class OntologyContainer():
     self.variable_types_on_networks, \
     self.variable_types_on_networks_per_component = self.__makeVariableTypeListsNetworks()  # TODO: per_component is
     # not used
+
+    self.entity_behaviours = self.__readVariableAssignmentToEntity()
 
     self.interfaces = self.__setupInterfaces()
 
@@ -1045,7 +1050,45 @@ class OntologyContainer():
         equation_variable_dictionary[eq_ID] = (var_ID, self.variables[var_ID]["equations"][eq_ID])
     return equation_variable_dictionary
 
+  def __readVariableAssignmentToEntity(self):
+    f = FILES["variable_assignment_to_entity_object"] % self.ontology_name
+    if not os.path.exists(f):
+      entity_behaviours = None
 
+    # loaded_entity_behaviours = getData(f)
+    data = getData(f)
+    entity_behaviours = VariantRecord()   # make empty structure
+    if data:
+      loaded_entity_behaviours = data["behaviours"]
+      # self.node_arc_associations = data["associations"]
+
+      if loaded_entity_behaviours:
+        for entity_str_ID in loaded_entity_behaviours:  # careful there may not be all entities at least during
+          # developments
+          if loaded_entity_behaviours[entity_str_ID]:
+            dummy = VariantRecord()
+            data = loaded_entity_behaviours[entity_str_ID]
+            for atr in dummy:
+              if atr not in data:
+                data[atr] = None
+            tree = {}
+            for treeStrID in data["tree"]:
+              tree[int(treeStrID)] = data["tree"][treeStrID]
+            data["tree"] = tree
+
+            nodes = {}
+            for nodeStrID in data["nodes"]:
+              nodes[int(nodeStrID)] = data["nodes"][nodeStrID]
+            data["nodes"] = nodes
+
+            entity_behaviours[entity_str_ID] = VariantRecord(tree=data["tree"],
+                                                                  nodes=data["nodes"],
+                                                                  IDs=data["IDs"],
+                                                                  root_variable=data["root_variable"],
+                                                                  blocked_list=data["blocked"],
+                                                                  buddies_list=data["buddies"],
+                                                                  to_be_inisialised=data["to_be_initialised"])
+    return entity_behaviours
 
   def writeMe(self):
 

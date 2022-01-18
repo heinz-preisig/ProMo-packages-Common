@@ -25,6 +25,7 @@ from copy import deepcopy
 
 from Common.common_resources import ENTITY_OBJECT_SEPARATOR
 from Common.common_resources import TEMPLATE_ENTITY_OBJECT, getData
+# from Common.record_definitions import VariantRecord
 
 
 
@@ -110,8 +111,11 @@ class EntityBehaviour(dict):
       blocked_ID.append(int(ID))
     return blocked_ID
 
-
+# NOTE: moved to record_definitions -- did not work as it generated a loop.
 class VariantRecord(dict):  # .............................................................. hash is global index_ID
+  """
+  Generates a 'variant' record being used to store base entity representations in the form of list of equations
+  """
   def __init__(self, tree={}, nodes=[], IDs=[], root_variable=None, blocked_list=[], buddies_list=[], to_be_inisialised=[]):
     super()
     self["tree"] = tree

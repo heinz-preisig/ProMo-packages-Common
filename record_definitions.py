@@ -297,3 +297,15 @@ def makeCompletEquationRecord(rhs="",
   self["network"] = network  # may not be the same as the variable, but further out in the tree
   self["incidence_list"] = incidence_list
   return self
+
+
+# class VariantRecord(dict):  # .............................................................. hash is global index_ID
+#   def __init__(self, tree={}, nodes=[], IDs=[], root_variable=None, blocked_list=[], buddies_list=[], to_be_inisialised=[]):
+#     super()
+#     self["tree"] = tree
+#     self["nodes"] = nodes
+#     self["IDs"] = IDs
+#     self["root_variable"] = root_variable
+#     self["blocked"] = blocked_list
+#     self["buddies"]= buddies_list
+#     self["to_be_initialised"] = to_be_inisialised
