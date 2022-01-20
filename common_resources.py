@@ -48,6 +48,7 @@ import sys
 
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
+from PyQt5 import QtGui
 
 from Common.resource_initialisation import DIRECTORIES
 from Common.single_list_selector_impl import SingleListSelector
@@ -147,7 +148,7 @@ def putDataOrdered(data, file_spec, indent="  "):
 
 
 def putData(data, file_spec, indent="  "):
-  print("WRITING TO FILE: ", file_spec)
+  print("writing to file: ", file_spec)
   dump = json.dumps(data, indent=indent)
   with open(file_spec, "w+") as f:
     f.write(dump)
@@ -161,7 +162,7 @@ def __getSortedDirList(location):
 
   :return: model name
   """
-  print("location: ", location)
+  # print("location: ", location)
   if not os.path.exists(location):
     # print("debugging no such directory")
     os.makedirs(location)
@@ -222,7 +223,7 @@ def askForModelFileGivenOntologyLocation(model_library_location,
                                         right_icon=right_icon,
                                         right_tooltip=right_tooltip)
 
-    print("debugging -- ask for model name", model_name, status)
+    # print("debugging -- ask for model name", model_name, status)
 
     if model_name:
       return model_name, "existent"
@@ -235,7 +236,7 @@ def askForModelFileGivenOntologyLocation(model_library_location,
     ui_ask = UI_String("give new model name or type exit ", "model name or exit", limiting_list=model_names)
     ui_ask.exec_()
     model_name = ui_ask.getText()
-    print("new model name defined", model_name)
+    # print("new model name defined", model_name)
     if not model_name:  # == "exit":
       return model_name, "exit"
   return model_name, "new"
@@ -271,7 +272,7 @@ def askForCasefileGivenLocation(case_rep_loc,
     ui_ask = UI_String("give new case name or type exit ", "case name or exit", limiting_list=case_names)
     ui_ask.exec_()
     case_name = ui_ask.getText()
-    print("debugging -- new model name defined", case_name)
+    # print("debugging -- new model name defined", case_name)
     if not case_name:  # == "exit":
       return case_name, "exit"
   return case_name, "new"
@@ -399,7 +400,7 @@ def saveBackupFile(path):
     os.rename(old_path, new_path)
     return old_path, new_path, next_path
   else:
-    print("no such file : ", path)
+    print("Error -- no such file : %s"%path, file=sys.stderr)
     return
 
 def saveWithBackup(data, path):
@@ -511,3 +512,34 @@ def walkBreathFirstFnc(tree, id):
     for child in tree[cur_node]["children"]:
       stack.append(child)
   return nodes
+
+
+class Stream(QtCore.QObject):
+  newText = QtCore.pyqtSignal(str)
+
+  def write(self, text):
+    self.newText.emit(str(text))
+    self.flush()
+
+  def flush(self):
+    pass
+
+
+class Redirect(QtWidgets.QWidget):
+  def __init__(self, textBrowser):
+    QtWidgets.QWidget.__init__(self)
+    self.textBrowser = textBrowser
+
+  def home(self):
+    self.std_outbox = self.textBrowser  # this is the QtGui.QTextEdit()
+    self.std_outbox.moveCursor(QtGui.QTextCursor.Start)
+    self.std_outbox.ensureCursorVisible()
+    self.std_outbox.setLineWrapColumnOrWidth(500)
+    self.std_outbox.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
+
+  def update(self, text):
+    cursor = self.std_outbox.textCursor()
+    cursor.movePosition(QtGui.QTextCursor.End)
+    cursor.insertText(text)
+    self.std_outbox.setTextCursor(cursor)
+    self.std_outbox.ensureCursorVisible()

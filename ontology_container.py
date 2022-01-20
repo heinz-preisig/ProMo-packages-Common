@@ -419,7 +419,7 @@ class OntologyContainer():
 
       interfaces[network] = Interface(network, left_nw, right_nw, left_variable_types)
 
-    print("debugging -- interface definitions")
+    # print("debugging -- interface definitions")
     return interfaces
 
   #####################
@@ -539,7 +539,7 @@ class OntologyContainer():
 
       pass
 
-    print("debugging")
+    # print("debugging")
 
     for nw, nature, token in self.object_key_list_inter:
       dummy = TEMPLATE_INTER_NODE_OBJECT % (nature)
@@ -766,8 +766,8 @@ class OntologyContainer():
           pair = TEMPLATE_CONNECTION_NETWORK % (interbranches[j], interbranches[i])
           interbranch_pairs.append(pair)
 
-    print("debugging -- end interbranches", interbranches)
-    print("debugging -- end interbranch_pairs", interbranch_pairs)
+    # print("debugging -- end interbranches", interbranches)
+    # print("debugging -- end interbranch_pairs", interbranch_pairs)
     return interbranches, interbranch_pairs
 
   def __makeVariableTypeListsNetworks(self):
@@ -1160,7 +1160,7 @@ class OntologyContainer():
         exit(-1)
 
   def readNodeAssignments(self):
-    print("debugging -- read node assignments")
+    # print("debugging -- read node assignments")
 
     assignment_file_name = FILES["variable_assignment_to_entity_object"] % self.ontology_name
     if OS.path.exists(assignment_file_name):
