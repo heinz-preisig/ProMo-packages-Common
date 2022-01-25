@@ -29,40 +29,39 @@ import os as OS
 import os.path
 from collections import OrderedDict
 
-from PyQt5 import QtGui, QtWidgets
+from PyQt5 import QtWidgets
 
-from Common.pop_up_message_box import makeMessageBox
-
-from Common.qt_resources import NO
-from Common.qt_resources import YES
-from Common.common_resources import getData
+from Common.common_resources import CONNECTION_NETWORK_SEPARATOR
 from Common.common_resources import M_None
-from Common.common_resources import putData
-from Common.common_resources import putDataOrdered
-from Common.common_resources import invertDict
-from Common.common_resources import saveBackupFile, saveWithBackup
 from Common.common_resources import TEMPLATE_ARC_APPLICATION
-from Common.common_resources import TEMPLATE_CONNECTION_NETWORK, CONNECTION_NETWORK_SEPARATOR
+from Common.common_resources import TEMPLATE_CONNECTION_NETWORK
 from Common.common_resources import TEMPLATE_INTER_NODE_OBJECT
 from Common.common_resources import TEMPLATE_INTRA_NODE_OBJECT
-from Common.common_resources import TEMPLATE_NODE_OBJECT, TEMPLATE_NODE_OBJECT_WITH_TOKEN, \
-  TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN
+from Common.common_resources import TEMPLATE_INTRA_NODE_OBJECT_WITH_TOKEN
+from Common.common_resources import TEMPLATE_NODE_OBJECT
+from Common.common_resources import TEMPLATE_NODE_OBJECT_WITH_TOKEN
+from Common.common_resources import getData
+from Common.common_resources import invertDict
+from Common.common_resources import putDataOrdered
+from Common.common_resources import saveWithBackup
 from Common.common_resources import walkBreathFirstFnc
 from Common.common_resources import walkDepthFirstFnc
+from Common.qt_resources import NO
 from Common.qt_resources import OK
+from Common.qt_resources import YES
 from Common.record_definitions import Interface
 from Common.record_definitions import OntologyContainerFile
 from Common.record_definitions import RecordVariable
 from Common.record_definitions import VariableFile
+from Common.record_definitions_equation_linking import VariantRecord
 from Common.resource_initialisation import DIRECTORIES
 from Common.resource_initialisation import FILES
 from Common.resource_initialisation import ONTOLOGY_VERSION
 from Common.resource_initialisation import VARIABLE_EQUATIONS_VERSION
 from OntologyBuilder.OntologyEquationEditor.resources import CODE
 from OntologyBuilder.OntologyEquationEditor.resources import LANGUAGES
+from OntologyBuilder.OntologyEquationEditor.resources import renderExpressionFromGlobalIDToInternal
 from OntologyBuilder.OntologyEquationEditor.variable_framework import Units
-
-from Common.record_definitions_equation_linking import VariantRecord
 
 
 def findID(indices, name):
@@ -404,6 +403,9 @@ class OntologyContainer():
 
     self.equation_dictionary = self.__makeEquationDictionary()
     self.equation_variable_dictionary = self.__makeEquationVariableDictionary()
+    self.equations,\
+    self.equation_information, \
+    self.equation_inverse_index = self.__makeEquationAndIndexLists()
 
   def __setupInterfaces(self):
     # RULE: by default all variable classes from the left network are available
@@ -1090,6 +1092,35 @@ class OntologyContainer():
                                                                   to_be_inisialised=data["to_be_initialised"])
     return entity_behaviours
 
+
+  def __makeEquationAndIndexLists(self):
+
+    equations = []
+    equation_information = {}
+    equation_inverse_index = {}
+    equation_variable_dictionary = self.equation_variable_dictionary
+    count = -1
+    for eq_ID in equation_variable_dictionary:
+      count += 1
+      var_ID, equation = equation_variable_dictionary[eq_ID]
+      var_type = self.variables[var_ID]["type"]
+      nw_eq = self.variables[var_ID]["network"]
+
+      rendered_expressions = renderExpressionFromGlobalIDToInternal(
+              equation["rhs"],
+              self.variables,
+              self.indices)
+
+      rendered_variable = self.variables[var_ID]["aliases"]["internal_code"]
+      equation_label = "%s := %s" % (rendered_variable, rendered_expressions)
+
+
+      # equations[eq_ID] = (var_ID, var_type, nw_eq, rendered_equation, pixelled_equation)
+      equations.append(equation_label)
+      equation_inverse_index[eq_ID] = count
+      equation_information[count] = (eq_ID, var_ID, var_type, nw_eq, equation_label)
+    return equations, equation_information, equation_inverse_index
+
   def writeMe(self):
 
     # container = OrderedDict({
@@ -1158,6 +1189,7 @@ class OntologyContainer():
       reply = QtWidgets.QMessageBox.warning(QtWidgets.QWidget(), "ProMo", msg, QtWidgets.QMessageBox.Ok)
       if reply == OK:
         exit(-1)
+        
 
   def readNodeAssignments(self):
     # print("debugging -- read node assignments")

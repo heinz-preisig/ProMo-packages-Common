@@ -219,7 +219,7 @@ class Interface(dict):  # ......................................................
     self["right_network"] = right_network
     self["left_variable_classes"] = left_variable_classes
     # self["internal_variable_classes"] = ["transform", "constant"]  # ..... RULE: hard wired interface variable class
-    self["internal_variable_classes"] = ["transform", "constant", "stateInfo", "response", "control"]  # ..... RULE: hard wired interface variable class
+    self["internal_variable_classes"] = ["get"] #["transform", "constant", "stateInfo", "response", "control"]  # ..... RULE: hard wired interface variable class
     self["token"] = "information"  # ..................................... RULE: hard wired token
     self["mechanism"] = "link"  # ........................................ RULE: hard wired mechanism
     self["nature"] = "unidirectional"  # ................................. RULE: hard wired tranfer nature
@@ -297,6 +297,21 @@ def makeCompletEquationRecord(rhs="",
   self["network"] = network  # may not be the same as the variable, but further out in the tree
   self["incidence_list"] = incidence_list
   return self
+
+# def makeLinkEquationRecord(lhs_ID = "",
+#                            rhs_ID="",
+#                            type = "interface_link_equation",
+#                            network = "",
+#                            incidence_list = [],
+#                            ):
+#   self = {}
+#   self["lhs_ID"] = lhs_ID
+#   self["rhs_ID"] = rhs_ID
+#   self["type"] = type
+#   self["network"] = network
+#   self["incidence_list"] = incidence_list
+#   return self
+
 
 
 # class VariantRecord(dict):  # .............................................................. hash is global index_ID
