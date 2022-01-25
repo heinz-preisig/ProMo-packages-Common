@@ -34,7 +34,7 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
   newSelection = QtCore.pyqtSignal(list)
   selected = QtCore.pyqtSignal(list)
 
-  def __init__(self, source_list, sink_list, variables):
+  def __init__(self, left_nw, left_list, right_nw, right_list, variables):
     '''
     plain constructor
     '''
@@ -46,14 +46,16 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
     roundButton(self.ui.pushAccept, "accept", "accept" )
     roundButton(self.ui.pushReset, "update", "reset lists" )
     roundButton(self.ui.pushReject, "exit", "exit" )
-    self.source_list = source_list
-    self.sink_list = sink_list
+    self.left_list = left_list
+    self.right_list = right_list
     self.variables = variables
 
     self.selectedSource = None
     self.selectedSink = None
 
     self.on_pushReset_pressed()
+    self.ui.labelLeft.setText(left_nw)
+    self.ui.labelRight.setText(right_nw)
 
 
 
@@ -67,15 +69,16 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
 
     self.left_index = []
     self. right_index = []
-    for id, text in self.source_list:
+    for id, text in self.left_list:
       self.ui.listSource.addItem(text)
       self.left_index.append(id)
 
-    for id, text in self.sink_list:
+    for id, text in self.right_list:
       self.ui.listSink.addItem(text)
       self.right_index.append(id)
 
     self.ui.pushAccept.hide()
+
 
   def on_listSource_itemClicked(self, item):
     row = self.ui.listSource.currentRow()
