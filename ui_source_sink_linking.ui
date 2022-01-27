@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1244</width>
+    <width>1072</width>
     <height>331</height>
    </rect>
   </property>
@@ -16,15 +16,25 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>50</x>
      <y>30</y>
-     <width>1131</width>
+     <width>981</width>
      <height>251</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="2">
-     <widget class="QListWidget" name="listSink"/>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="2,5,5,10,2">
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listSource"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="labelRight">
+      <property name="text">
+       <string>sink</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -67,7 +77,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushReject">
+       <widget class="QPushButton" name="pushExit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -87,9 +97,6 @@
       </item>
      </layout>
     </item>
-    <item row="1" column="1">
-     <widget class="QListWidget" name="listSource"/>
-    </item>
     <item row="0" column="1">
      <widget class="QLabel" name="labelLeft">
       <property name="text">
@@ -100,15 +107,70 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="labelRight">
+    <item row="1" column="3">
+     <widget class="QListWidget" name="listWidgetExisting"/>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="labelExisting">
       <property name="text">
-       <string>sink</string>
+       <string>existing</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QListWidget" name="listSink"/>
+    </item>
+    <item row="1" column="4">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushDelete">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>52</width>
+          <height>52</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

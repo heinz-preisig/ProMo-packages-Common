@@ -24,6 +24,9 @@ from PyQt5 import QtWidgets
 
 from Common.resources_icons import roundButton
 from Common.ui_source_sink_linking import Ui_SourceSinkLinking
+from Common.pop_up_message_box import makeMessageBox
+
+from OntologyBuilder.OntologyEquationEditor.resources import LANGUAGES
 
 
 class UI_SourceSinkLinking(QtWidgets.QDialog):
@@ -33,8 +36,15 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
 
   newSelection = QtCore.pyqtSignal(list)
   selected = QtCore.pyqtSignal(list)
+  delete_equ = QtCore.pyqtSignal(int, int)
 
-  def __init__(self, left_nw, left_list, right_nw, right_list, variables):
+  def __init__(self,
+               left_nw : str,
+               left_list: list,
+               right_nw : str,
+               right_list : list,
+               equation_list: list, # list of triples (left_var_ID, right_var_ID, equ_ID)
+               variables):
     '''
     plain constructor
     '''
@@ -45,9 +55,11 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
     self.show()
     roundButton(self.ui.pushAccept, "accept", "accept" )
     roundButton(self.ui.pushReset, "update", "reset lists" )
-    roundButton(self.ui.pushReject, "exit", "exit" )
+    roundButton(self.ui.pushExit, "exit", "exit" )
+    roundButton(self.ui.pushDelete, "delete", "delete selected equation" )
     self.left_list = left_list
     self.right_list = right_list
+    self.equation_list = equation_list
     self.variables = variables
 
     self.selectedSource = None
@@ -66,18 +78,37 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
 
     self.ui.listSource.clear()
     self.ui.listSink.clear()
+    self.ui.listWidgetExisting.clear()
 
     self.left_index = []
     self. right_index = []
-    for id, text in self.left_list:
+    self.delete_index = []
+
+    for id in self.left_list:
+      v = self.variables[id]
+      v.language = LANGUAGES["internal_code"]
+      text = str(v)
       self.ui.listSource.addItem(text)
       self.left_index.append(id)
 
-    for id, text in self.right_list:
+    for id in self.right_list:
+      v = self.variables[id]
+      v.language = LANGUAGES["internal_code"]
+      text = str(v)
       self.ui.listSink.addItem(text)
       self.right_index.append(id)
 
+    for left_ID, right_ID, equ in self.equation_list:
+      left_v = self.variables[int(left_ID)]
+      left_v.language = LANGUAGES["internal_code"]
+      right_v = self.variables[int(right_ID)]
+      right_v.language = LANGUAGES["internal_code"]
+      text = str(left_v)+ " := " + str(right_v)
+      self.ui.listWidgetExisting.addItem(text)
+      self.delete_index.append((equ,left_ID, right_ID))
+
     self.ui.pushAccept.hide()
+    self.ui.pushDelete.hide()
 
 
   def on_listSource_itemClicked(self, item):
@@ -111,8 +142,35 @@ class UI_SourceSinkLinking(QtWidgets.QDialog):
       # print("debugging -- source:", source, "units:", source_units, "indices:", source_indexes)
       # print("debugging -- sink  :", sink,  "units:", sink_units, "indices:", sink_indexes)
 
-      if (source_indexes == sink_indexes) and (source_units == sink_units):
-        self.ui.pushAccept.show()
+      for left_ID, right_ID, equ in self.equation_list:
+        if (self.selectedSink == left_ID) and (self.selectedSource == right_ID) :
+          msgbox = makeMessageBox("already defined", buttons=["OK"])
+          self.ui.listSink.clearSelection()
+          self.ui.listSource.clearSelection()
+          return
+
+      if (source_indexes == sink_indexes):
+        if (source_units == sink_units):
+          self.ui.pushAccept.show()
+        else:
+          msgbox = makeMessageBox("mismatch with units", buttons=["OK"])
+      else:
+        msgbox = makeMessageBox("mismatch with indices", buttons=["OK"])
+
+  def on_listWidgetExisting_itemClicked(self, item):
+    # pass
+    row = self.ui.listWidgetExisting.currentRow()
+    self.to_delete = row
+    self.ui.pushDelete.show()
+
+  def on_pushDelete_pressed(self):
+    row = self.to_delete
+    equ_to_delete, left_ID, right_ID = self.delete_index[row]
+    self.delete_equ.emit(int(equ_to_delete), int(left_ID))
+    print("debugging ")
+    self.close()
+
+
 
   def on_pushExit_pressed(self):
     self.close()

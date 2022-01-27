@@ -401,9 +401,12 @@ class OntologyContainer():
         def_network = self.indices[i]["network"][0]
         self.indices[i]["network"] = self.heirs_network_dictionary[def_network]
 
+    self.indexEquations()
+
+  def indexEquations(self):
     self.equation_dictionary = self.__makeEquationDictionary()
     self.equation_variable_dictionary = self.__makeEquationVariableDictionary()
-    self.equations,\
+    self.equations, \
     self.equation_information, \
     self.equation_inverse_index = self.__makeEquationAndIndexLists()
 

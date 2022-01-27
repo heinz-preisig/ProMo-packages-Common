@@ -21,10 +21,12 @@ __status__ = "beta"
 
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 
 BUTTONS = {
         "OK"             : QtWidgets.QMessageBox.Ok,
+        "NO"             : QtWidgets.QMessageBox.No,
+        "YES"             : QtWidgets.QMessageBox.Yes,
         "open"           : QtWidgets.QMessageBox.Open,
         "save"           : QtWidgets.QMessageBox.Save,
         "cancel"         : QtWidgets.QMessageBox.Cancel,
@@ -47,10 +49,14 @@ BUTTONS = {
 
 
 def makeMessageBox(message, buttons=["cancel", "OK"], infotext=""):
+  """
+  Buttons[0] is set as default
+  """
   msg_box = QtWidgets.QMessageBox()
   msg_box.setText(message)
   msg_box.setInformativeText(infotext)
   msg_box.setWindowTitle("dialog")
+  msg_box.setWindowFlags( QtCore.Qt.CustomizeWindowHint |QtCore.Qt.Popup)
 
   # save = QtWidgets.QMessageBox.Save
   # discard = QtWidgets.QMessageBox.Discard
@@ -60,6 +66,7 @@ def makeMessageBox(message, buttons=["cancel", "OK"], infotext=""):
     mybuttons = mybuttons | BUTTONS[buts]
 
   msg_box.setStandardButtons(mybuttons)  # discard | save | cancel);
+  msg_box.setDefaultButton(BUTTONS[buttons[0]])
   msg_box.show()
   r = msg_box.exec_()
 
